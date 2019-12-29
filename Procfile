@@ -1,1 +1,1 @@
-web: gunicorn PythonJavaTranslator.wsgi
+web: gunicorn PythonJavaTranslator.wsgi --log-file-
