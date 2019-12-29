@@ -22,9 +22,6 @@ class InputtedCode(models.Model):
             tab = ' ' * 4
             while True:
                 if line[0: (4 * need_indentation)] != tab * need_indentation:
-
-                    print("entering while loop when need_indentation is equal to: " + str(need_indentation))
-                    print(line)
                     need_indentation -= 1
                     self.output += f'{tab * need_indentation}' + '}\n'
                 else:
@@ -37,15 +34,16 @@ class InputtedCode(models.Model):
             if '+=' in line or '-=' in line or '/=' in line or '*=' in line:
                 self.output += line.strip() + ';\n'
                 continue
-            if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '>' in line and not '<' in line:
+            if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '<' in line and not '>' in line:
                 self.output += declarations(line, self.declared_variables)
-            if "if" in line:
-                self.output += ifWhileStatements(line, self.declared_variables)
             if 'print' in line:
                 self.output += translatePrint(line)
+            if "if" in line:
+                need_indentation += 1
+                self.output += ifWhileStatements(line, self.declared_variables)
             if 'while' in line:
                 need_indentation += 1
-                self.output += whileLoops(line)
+                self.output += ifWhileStatements(line, self.declared_variables)
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1

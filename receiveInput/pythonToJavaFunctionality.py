@@ -1,5 +1,4 @@
 import re
-# from .models import InputtedCode
 
 
 def declarations(string, declared_variables):
@@ -57,115 +56,115 @@ def comments(string):
     comment = string[string.index("#") + 1: len(string)]
     return non_comment + "//" + comment + ";\n"
 
+
 # if x in hello or y in yes or y in hello
-#if hello in object
+# if hello in object
 
 def ifWhileStatements(string, declared_variables):
     if string[0:2] == "if":
-        toReturn = "if"
+        to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
     else:
-        toReturn = "while"
-        string = string[string.index("while ") + 3:string.index(":")]
+        to_return = "while"
+        string = string[string.index("while ") + 6:string.index(":")]
     string = string.replace("(", " ")
     string = string.replace(")", " ")
     string = string.replace("True", "true")
     string = string.replace("False", "false")
-    stringSplit = string.split(" ")
-    andOrs = []
-    andOrsIndex = 0
-    for word in stringSplit:
+    string_split = string.split(" ")
+    and_ors = []
+    and_ors_index = 0
+    for word in string_split:
         if word == "and":
-            andOrs.append("&&")
+            and_ors.append("&&")
         if word == "or":
-            andOrs.append("||")
-
-    string = string.replace(" and ", " ---- ")
-    string = string.replace(" or ", " ---- ")
-
-    separate = string.split(" ---- ")
+            and_ors.append("||")
+    separate = re.split(' and | or ', string)
     for statement in separate:
         print(statement)
         if " in " in statement:
-            if andOrsIndex != len(andOrs):
-                toReturn += " (" + statement + ") " + andOrs[andOrsIndex]
+            if and_ors_index != len(and_ors):
+                to_return += " (" + statement + ") " + and_ors[and_ors_index]
             else:
-                toReturn += " (" + statement + ") "
-        elif "<=" in statement or "=="  in statement or ">=" in statement or ">" in statement or "<" in statement:
+                to_return += " (" + statement + ") "
+        elif "<=" in statement or "==" in statement or ">=" in statement or ">" in statement or "<" in statement:
             original = statement
-            statement  = statement.replace("<=", "+++++")
-            statement = statement.replace("<", "+++++")
-            statement = statement.replace(">=", "+++++")
-            statement = statement.replace(">", "+++++")
-            statement = statement.replace("==", "+++++")
-            split_statement = statement.split("+++++")
+            split_statement = re.split('<=|<|>=|>|==', statement)
             try:
                 split_statement[0] = int(split_statement[0].strip())
-                if andOrsIndex != len(andOrs):
-                    toReturn += " (" + original + ") " + andOrs[andOrsIndex]
+                if and_ors_index != len(and_ors):
+                    to_return += " (" + original + ") " + and_ors[and_ors_index]
                 else:
-                    toReturn += " (" + original + ") "
+                    to_return += " (" + original + ") "
             except ValueError:
                 try:
                     split_statement[0] = float(split_statement[0].strip())
-                    if andOrsIndex != len(andOrs):
-                        toReturn += " (" + original + ") " + andOrs[andOrsIndex]
+                    if and_ors_index != len(and_ors):
+                        to_return += " (" + original + ") " + and_ors[and_ors_index]
                     else:
-                        toReturn += " (" + original + ") "
+                        to_return += " (" + original + ") "
                 except ValueError:
                     for variable in split_statement:
                         variable = variable.strip()
                         if variable in declared_variables.keys():
-                            if declared_variables[variable] == "int" or declared_variables[variable] == "boolean" or declared_variables[variable] == "double":
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + original + ") " + andOrs[andOrsIndex]
+                            if declared_variables[variable] == "int" or declared_variables[variable] == "boolean" or \
+                                    declared_variables[variable] == "double":
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + original + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + original + ") "
+                                    to_return += " (" + original + ") "
                                     break
                         else:
                             if "<=" in original:
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") <= 0" + ") " + andOrs[andOrsIndex]
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") <= 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") <= 0" + ") "
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") <= 0" + ") "
                                     break
                             elif "<" in original:
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") < 0" + ") " + andOrs[andOrsIndex]
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") < 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") < 0" + ") "
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") < 0" + ") "
                                     break
                             elif ">=" in original:
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") >= 0" + ") " + andOrs[andOrsIndex]
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") >= 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") >= 0" + ") "
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") >= 0" + ") "
                                     break
                             elif ">" in original:
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") > 0" + ") " + andOrs[andOrsIndex]
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") > 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + split_statement[0] + ".compareTo(" + split_statement[1] + ") > 0" + ") "
+                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
+                                        1] + ") > 0" + ") "
                                     break
                             elif "==" in original:
-                                if andOrsIndex != len(andOrs):
-                                    toReturn += " (" + split_statement[0] + ".equals(" + split_statement[1] + ")" + ") " + andOrs[andOrsIndex]
+                                if and_ors_index != len(and_ors):
+                                    to_return += " (" + split_statement[0] + ".equals(" + split_statement[
+                                        1] + ")" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    toReturn += " (" + split_statement[0] + ".equals(" + split_statement[1] + ")" + ") "
+                                    to_return += " (" + split_statement[0] + ".equals(" + split_statement[
+                                        1] + ")" + ") "
                                     break
 
+        and_ors_index += 1
 
-
-
-        andOrsIndex += 1
-
-    return toReturn[: -1] + "{\n"
+    return to_return[: -1] + " {\n"
 
 
 def translatePrint(string):
@@ -209,12 +208,3 @@ def operations(string, declared_variables):
     # if all of the terms on the right side are ints, then make the left side an int too
     declared_variables[var_name] = 'int'
     return "int " + var_name + " = " + re.sub(r'\s+', ' ', right_side) + ";\n"
-
-
-def whileLoops(string):
-    string = string.strip()
-    string = string.replace('True', 'true')
-    string = string.replace('False', 'false')
-
-    output = 'while (' + string[6: -1] + ') {\n'
-    return output
