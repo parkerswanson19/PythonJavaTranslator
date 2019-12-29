@@ -1,1 +1,1 @@
-web: gunicorn PythonJavaTranslator.wsgi --log-file-
+web: gunicorn PythonJavaTranslator.wsgi --log-file- --preload --workers 1
