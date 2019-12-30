@@ -15,6 +15,7 @@
 
         <!-- Black Dashboard CSS -->
         <link href="{% static 'PythonJavaTranslator/css/black-dashboard.css' %}" rel="stylesheet"/>
+        <link href="{% static 'PythonJavaTranslator/css/Grid.css' %}" rel="stylesheet"/>
     </head>
     <body>
         <div class="wrapper ">
@@ -73,33 +74,26 @@ Tip 2: you can also add an image using data-image tag
                 <div class="content">
                     <div class="container-fluid">
                         <!-- your content here -->
-                        <div class="table">
-                            <ul>
-                                <li class="labels"><label>Python</label></li>
-                                <li class="labels">
-                                    <a href="#">
-                                        <i class="icon ion-md-swap swap"></i>
-                                    </a>
-                                </li>
-                                <li class="labels"><label>Java</label></li>
-                            </ul>
-                        </div>
                         <form action="/translator/translate/" method="post">{% csrf_token %}
                             <div class="table">
                                 <ul>
                                     <li>
                                         <div class="form-group">
                                                 
-                                            
-                                        <textarea id="input" name="content" rows="16" cols="80" class="form-control"
+                                            <label class="names">Python</label> 
+                                            <textarea id="input" name="content" rows="16" cols="80" class="form-control"
                                                   placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
                                         </div>
                                     </li>
+                                    <li class="swap-icon">
+                                        <a href="#">
+                                            <i class="icon ion-md-swap"></i>
+                                        </a>
+                                    </li>
                                     <li>
-                                        <div class="form-group">    
-                                        <textarea id="output" rows="16" cols="80" class="form-control"
-                                                  placeholder="Your Java code will be outputted here." readonly="readonly"
-                                                  value="Mike">{{ code.output }}</textarea>
+                                        <div class="form-group">   
+                                            <label class="names">Java</label>
+                                            <textarea id="output" rows="16" cols="80" class="form-control" placeholder="Your Java code will be outputted here." readonly="readonly" value="Mike">{{ code.output }}</textarea>
                                         </div>
                                     </li>
                                 </ul>
