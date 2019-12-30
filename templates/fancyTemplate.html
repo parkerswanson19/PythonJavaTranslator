@@ -10,6 +10,8 @@
         <!--  Fonts and icons  -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
 
         <!-- Black Dashboard CSS -->
         <link href="{% static 'PythonJavaTranslator/css/black-dashboard.css' %}" rel="stylesheet"/>
@@ -23,7 +25,7 @@ Tip 1: You can change the color of the sidebar using: data-color="purple | azure
 Tip 2: you can also add an image using data-image tag
 -->
                 <div class="logo">
-                    <a href="" class="simple-text logo-normal">
+                    <a href="#" class="simple-text logo-normal">
                         More Projects!
                     </a>
                 </div>
@@ -45,17 +47,23 @@ Tip 2: you can also add an image using data-image tag
                     <div class="container-fluid">
                         <div class="navbar-wrapper">
 
-                            <a class="navbar-brand" href="">Python to Java Translator</a>
+                            <a class="navbar-brand" href="/translator/">Python to Java Translator</a>
                         </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                                aria-expanded="false" aria-label="Toggle navigation">
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                         </button>
+
                         <div class="collapse navbar-collapse justify-content-end">
                             <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="tim-icons icon-bell-55"></i>  About the Creators
+                                    </a>
+                                </li>
                                 <!-- your navbar here -->
                             </ul>
                         </div>
@@ -65,20 +73,47 @@ Tip 2: you can also add an image using data-image tag
                 <div class="content">
                     <div class="container-fluid">
                         <!-- your content here -->
+                        <div class="table">
+                            <ul>
+                                <li class="labels"><label>Python</label></li>
+                                <li class="labels">
+                                    <a href="#">
+                                        <i class="icon ion-md-swap swap"></i>
+                                    </a>
+                                </li>
+                                <li class="labels"><label>Java</label></li>
+                            </ul>
+                        </div>
                         <form action="/translator/translate/" method="post">{% csrf_token %}
-                            <div class="form-group">
-                                <label>Python</label>
-                                <textarea id="input" name="content" rows="16" cols="80" class="form-control"
-                                          placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
+                            <div class="table">
+                                <ul>
+                                    <li>
+                                        <div class="form-group">
+                                                
+                                            
+                                        <textarea id="input" name="content" rows="16" cols="80" class="form-control"
+                                                  placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">    
+                                        <textarea id="output" rows="16" cols="80" class="form-control"
+                                                  placeholder="Your Java code will be outputted here." readonly="readonly"
+                                                  value="Mike">{{ code.output }}</textarea>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
                             </div>
-                            <div class="form-group">
-                                <label>Java</label>
-                                <textarea id="output" rows="16" cols="80" class="form-control"
-                                          placeholder="Your Java code will be outputted here." readonly="readonly"
-                                          value="Mike">{{ code.output }}</textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-fill btn-primary">Translate</button>
+
+                            <div class="table">
+                                <ul>
+                                    <li>
+                                        <button type="submit" class="btn btn-fill btn-primary">Translate</button>
+                                    </li>
+                                </ul>
+                                
                             </div>
                         </form>
                         <div name="documentation">
@@ -103,25 +138,25 @@ Tip 2: you can also add an image using data-image tag
                                         <li>Warning: Python substringing allows for a step parameter, Java’s substring method lacks this feature.</li>
                                     </ul>
                                     <li>tuples</li>
-                                        <ul>
-                                            <li>Warning: Only Python supports tuple unpacking in for loops.</li>
-                                        </ul>
+                                    <ul>
+                                        <li>Warning: Only Python supports tuple unpacking in for loops.</li>
+                                    </ul>
                                 </ul>
                                 <li>Comments</li>
                                 <li>Print statements</li>
                                 <li>Mathmatical operations</li>
-                                    <ul>
-                                        <li>Warning: Dividing two integers in Python will yield a double, where in Java, you’ll get an integer.</li>
-                                    </ul>
+                                <ul>
+                                    <li>Warning: Dividing two integers in Python will yield a double, where in Java, you’ll get an integer.</li>
+                                </ul>
                                 <li>If statements</li>
                                 <li>For loops</li>
-                                    <ul>
-                                        <li>Warning: Python supports using a for loop to iterate through a string character by character, Java foreach loops don’t support this.</li>
-                                    </ul>
+                                <ul>
+                                    <li>Warning: Python supports using a for loop to iterate through a string character by character, Java foreach loops don’t support this.</li>
+                                </ul>
                                 <li>While loops</li>
-                                    <ul>
-                                        <li>Warning: Java doesn’t have while-else functionality.</li>
-                                    </ul>
+                                <ul>
+                                    <li>Warning: Java doesn’t have while-else functionality.</li>
+                                </ul>
                             </ul>
                         </div>
                     </div>
