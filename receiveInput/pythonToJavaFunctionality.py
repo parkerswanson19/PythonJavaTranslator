@@ -4,7 +4,7 @@ import re
 def declarations(string, declared_variables):
     # grabs the variable name before the equal sign and strips unnecessary spaces
     var_name = string[0: string.index("=")].strip()
-    # grabs the value after the equal sign and strips unnecessary spaces
+    # grabs the value after the equal sign and strips unnecessary spaces 
     value = string[string.index("=") + 1: len(string)].strip()
 
     if var_name in declared_variables.keys():
