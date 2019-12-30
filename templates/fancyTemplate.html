@@ -1,99 +1,142 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-<head>
-    <title>Python Java Translator</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <!--  Fonts and icons  -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <head>
+        <title>Python Java Translator</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <!--  Fonts and icons  -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-    <!-- Black Dashboard CSS -->
-    <link href="{% static 'PythonJavaTranslator/css/black-dashboard.css' %}" rel="stylesheet"/>
-</head>
-<body>
-<div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
-        <!--
-          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+        <!-- Black Dashboard CSS -->
+        <link href="{% static 'PythonJavaTranslator/css/black-dashboard.css' %}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="wrapper ">
+            <div class="sidebar" data-color="purple" data-background-color="white">
+                <!--
+Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-          Tip 2: you can also add an image using data-image tag
-      -->
-        <div class="logo">
-            <a href="" class="simple-text logo-normal">
-                More Projects!
-            </a>
-        </div>
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="#0">
-                        <i class="tim-icons icon-chart-pie-36"></i>
-                        <p>Coming soon</p>
+Tip 2: you can also add an image using data-image tag
+-->
+                <div class="logo">
+                    <a href="" class="simple-text logo-normal">
+                        More Projects!
                     </a>
-                </li>
-                <!-- your sidebar here -->
-            </ul>
-        </div>
-    </div>
-    <div class="main-panel">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-            <div class="container-fluid">
-                <div class="navbar-wrapper">
-
-                    <a class="navbar-brand" href="">Python to Java Translator</a>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav">
-                        <!-- your navbar here -->
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="nav-item active  ">
+                            <a class="nav-link" href="#0">
+                                <i class="tim-icons icon-chart-pie-36"></i>
+                                <p>Coming soon</p>
+                            </a>
+                        </li>
+                        <!-- your sidebar here -->
                     </ul>
                 </div>
             </div>
-        </nav>
-        <!-- End Navbar -->
-        <div class="content">
-            <div class="container-fluid">
-                <!-- your content here -->
-                <form action="/home/translate/" method="post">{% csrf_token %}
-                    <div class="form-group">
-                        <label>Python</label>
-                        <textarea id="input" name="content" rows="16" cols="80" class="form-control"
-                                  placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Java</label>
-                        <textarea id="output" rows="16" cols="80" class="form-control"
-                                  placeholder="Your Java code will be outputted here." readonly="readonly"
-                                  value="Mike">{{ code.output }}</textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-fill btn-primary">Translate</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="float-left">
-                    <ul>
+            <div class="main-panel">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
 
-                    </ul>
+                            <a class="navbar-brand" href="">Python to Java Translator</a>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end">
+                            <ul class="navbar-nav">
+                                <!-- your navbar here -->
+                            </ul>
+                        </div>
+                    </div>
                 </nav>
-                <!-- your footer here -->
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <!-- your content here -->
+                        <form action="/home/translate/" method="post">{% csrf_token %}
+                            <div class="form-group">
+                                <label>Python</label>
+                                <textarea id="input" name="content" rows="16" cols="80" class="form-control"
+                                          placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Java</label>
+                                <textarea id="output" rows="16" cols="80" class="form-control"
+                                          placeholder="Your Java code will be outputted here." readonly="readonly"
+                                          value="Mike">{{ code.output }}</textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-fill btn-primary">Translate</button>
+                            </div>
+                        </form>
+                        <div name="documentation">
+                            <br>
+                            <br>
+                            <h4><strong>Official documentation for supported features:</strong></h4>
+                            <ul>
+                                <li>Variable declarations</li>
+                                <ul>
+                                    <li>Warning: After a variable is declared in Python, it can be re-assigned to a different variable type. Java doesn’t support this.</li>
+                                    <li>ints</li>
+                                    <li>doubles</li>
+                                    <li>Strings</li>
+                                    <ul>
+                                        <li>Warning: Strings have to use f-string formatting in order for them to be able to be translated to Java</li>
+                                    </ul>
+                                    <li>booleans</li>
+                                    <li>lists/arrays</li>
+                                    <ul>
+                                        <li>Warning: In Python, having multiple types of variables/objects in a list is allowed, in Java, arrays don’t support this feature.</li>
+                                        <li>Warning: Only Python supports reverse indexing.</li>
+                                        <li>Warning: Python substringing allows for a step parameter, Java’s substring method lacks this feature.</li>
+                                    </ul>
+                                    <li>tuples</li>
+                                        <ul>
+                                            <li>Warning: Only Python supports tuple unpacking in for loops.</li>
+                                        </ul>
+                                </ul>
+                                <li>Comments</li>
+                                <li>Print statements</li>
+                                <li>Mathmatical operations</li>
+                                    <ul>
+                                        <li>Warning: Dividing two integers in Python will yield a double, where in Java, you’ll get an integer.</li>
+                                    </ul>
+                                <li>If statements</li>
+                                <li>For loops</li>
+                                    <ul>
+                                        <li>Warning: Python supports using a for loop to iterate through a string character by character, Java foreach loops don’t support this.</li>
+                                    </ul>
+                                <li>While loops</li>
+                                    <ul>
+                                        <li>Warning: Java doesn’t have while-else functionality.</li>
+                                    </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-left">
+                            <ul>
+
+                            </ul>
+                        </nav>
+                        <!-- your footer here -->
+                    </div>
+                </footer>
             </div>
-        </footer>
-    </div>
-</div>
-</body>
+        </div>
+    </body>
 </html>

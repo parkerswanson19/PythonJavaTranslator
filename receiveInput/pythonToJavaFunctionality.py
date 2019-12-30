@@ -40,6 +40,16 @@ def declarations(string, declared_variables):
         declared_variables[var_name] = 'boolean'
         return "boolean " + var_name + " = " + value.lower() + ";\n"
 
+    # checks if the variable is a list
+    if '[' in value and ']' in value:
+        declared_variables[var_name] = 'array'
+        first_element = value[1:value.index(',')]
+        print('first element is: ' + str(first_element))
+        new_string = f'None = {first_element}'
+        type_of_array = declarations(new_string, {})
+        type_of_array = type_of_array.split()[0]
+        return f"{type_of_array}[] " + var_name + ' = ' + value + ";\n"
+
     # Checks if there's an operation on the right side of the equal sign
     if '+' in value or '-' in value or '*' in value or '/' in value or '%' in value:
         return operations(string, declared_variables)
@@ -48,8 +58,6 @@ def declarations(string, declared_variables):
 
 
 def comments(string):
-    if "#" not in string:
-        return "No comment found"
     string = string.strip()
 
     non_comment = string[0: string.index("#")]
