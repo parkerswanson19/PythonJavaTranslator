@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from . import views
+
 urlpatterns = [
 
     path('admin/', admin.site.urls),
 
     # Passes on the chopped URL for further processing in the receiveInput.urls py script
     path('home/', include("receiveInput.urls")),
+    path('translator/', include("receiveInput.urls")),
+    path('', views.redirect_view),
 
 ]

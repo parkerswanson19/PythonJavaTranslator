@@ -8,9 +8,7 @@ print(os.getcwd())
 
 
 # This method is called the first time the page is loaded. It just renders out the HTML file
-def index(request):
-    import os
-    #print(os.getcwd())
+def homePage(request):
     return render(request, 'fancyTemplate.html')
 
 

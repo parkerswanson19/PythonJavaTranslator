@@ -7,6 +7,7 @@ def declarations(string, declared_variables):
     # grabs the value after the equal sign and strips unnecessary spaces
     value = string[string.index("=") + 1: len(string)].strip()
 
+    # checks if the variable has already been declared
     if var_name in declared_variables.keys():
         return var_name + " = " + value + ";\n"
 
@@ -41,14 +42,32 @@ def declarations(string, declared_variables):
         return "boolean " + var_name + " = " + value.lower() + ";\n"
 
     # checks if the variable is a list
-    if '[' in value and ']' in value:
+    if '[' in value and ']' in value and not ':' in value:
         declared_variables[var_name] = 'array'
-        first_element = value[1:value.index(',')]
-        print('first element is: ' + str(first_element))
+        # grabs the first element in the array and checks its type
+        try:
+            # if there are no commas in the value string, then there's only one element in the array
+            first_element = value[1:value.index(',')]
+        except ValueError:
+            # a ValurError will be raised if no commas are found
+            first_element = value[1:value.index(']')]
+        new_string = f'None = {first_element}'  # Need to find the type of variables the list is holding
+        type_of_array = declarations(new_string, {})  # recursively call this function
+        type_of_array = type_of_array.split()[0]  # splice the variable type and store it
+        return f"{type_of_array}[] " + var_name + ' = {' + value[1:-1] + "};\n"
+
+    #hwody
+    # checks if the variable is a tuple, comments are the same as checking for list
+    if '(' in value and ')' in value:
+        declared_variables[var_name] = 'final array'
+        try:
+            first_element = value[1:value.index(',')]
+        except ValueError:
+            first_element = value[1:value.index(']')]
         new_string = f'None = {first_element}'
         type_of_array = declarations(new_string, {})
         type_of_array = type_of_array.split()[0]
-        return f"{type_of_array}[] " + var_name + ' = ' + value + ";\n"
+        return f"final {type_of_array}[] " + var_name + ' = ' + value + ";\n"
 
     # Checks if there's an operation on the right side of the equal sign
     if '+' in value or '-' in value or '*' in value or '/' in value or '%' in value:
