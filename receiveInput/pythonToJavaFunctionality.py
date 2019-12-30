@@ -86,7 +86,7 @@ def ifWhileStatements(string, declared_variables):
     string_split = string.split(" ")
     and_ors = []
     and_ors_index = 0
-    #find all of the ors and ands in the statement 
+    #find all of the ors and ands in the statement
     for word in string_split:
         if word == "and":
             and_ors.append("&&")
