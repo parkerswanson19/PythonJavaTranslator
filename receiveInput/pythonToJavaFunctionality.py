@@ -69,19 +69,24 @@ def comments(string):
 # if hello in object
 
 def ifWhileStatements(string, declared_variables):
+    #check if the statement is and if or a while
     if string[0:2] == "if":
         to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
     else:
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
+    #check if there are parentheses in the string, and if there are, remove them
     string = string.replace("(", " ")
     string = string.replace(")", " ")
+    #change the trues and falses to lowercases
     string = string.replace("True", "true")
     string = string.replace("False", "false")
+    #split the string on every space
     string_split = string.split(" ")
     and_ors = []
     and_ors_index = 0
+    #find all of the ors and ands in the statement
     for word in string_split:
         if word == "and":
             and_ors.append("&&")
@@ -169,9 +174,10 @@ def ifWhileStatements(string, declared_variables):
                                     to_return += " (" + split_statement[0] + ".equals(" + split_statement[
                                         1] + ")" + ") "
                                     break
-
+        #increment the index of the and or array
         and_ors_index += 1
 
+    #return the string output with a curly brace
     return to_return[: -1] + " {\n"
 
 
