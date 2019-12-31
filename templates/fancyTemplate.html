@@ -10,9 +10,17 @@
         <!--  Fonts and icons  -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
 
         <!-- Black Dashboard CSS -->
         <link href="{% static 'PythonJavaTranslator/css/black-dashboard.css' %}" rel="stylesheet"/>
+        <link href="{% static 'PythonJavaTranslator/css/Grid.css' %}" rel="stylesheet"/>
+        <!--   Core JS Files   -->
+        <script src="{% static 'PythonJavaTranslator/js/core/jquery.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'PythonJavaTranslator/js/core/popper.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'PythonJavaTranslator/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'PythonJavaTranslator/js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
     </head>
     <body>
         <div class="wrapper ">
@@ -23,7 +31,7 @@ Tip 1: You can change the color of the sidebar using: data-color="purple | azure
 Tip 2: you can also add an image using data-image tag
 -->
                 <div class="logo">
-                    <a href="" class="simple-text logo-normal">
+                    <a href="#" class="simple-text logo-normal">
                         More Projects!
                     </a>
                 </div>
@@ -45,17 +53,28 @@ Tip 2: you can also add an image using data-image tag
                     <div class="container-fluid">
                         <div class="navbar-wrapper">
 
-                            <a class="navbar-brand" href="">Python to Java Translator</a>
+                            <a class="navbar-brand" href="/translator/">About the Creators</a>
                         </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                                aria-expanded="false" aria-label="Toggle navigation">
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                             <span class="navbar-toggler-icon icon-bar"></span>
                         </button>
+
                         <div class="collapse navbar-collapse justify-content-end">
                             <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link">
+                                        <i class="tim-icons icon-bell-55"></i>Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">
+                                        <i class="tim-icons icon-bell-55"></i>Contact us
+                                    </a>
+                                </li>
                                 <!-- your navbar here -->
                             </ul>
                         </div>
@@ -66,64 +85,95 @@ Tip 2: you can also add an image using data-image tag
                     <div class="container-fluid">
                         <!-- your content here -->
                         <form action="/translator/translate/" method="post">{% csrf_token %}
-                            <div class="form-group">
-                                <label>Python</label>
-                                <textarea id="input" name="content" rows="16" cols="80" class="form-control"
-                                          placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Java</label>
-                                <textarea id="output" rows="16" cols="80" class="form-control"
-                                          placeholder="Your Java code will be outputted here." readonly="readonly"
-                                          value="Mike">{{ code.output }}</textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-fill btn-primary">Translate</button>
-                            </div>
-                        </form>
-                        <div name="documentation">
-                            <br>
-                            <br>
-                            <h4><strong>Official documentation for supported features:</strong></h4>
-                            <ul>
-                                <li>Variable declarations</li>
+                            <div class="table">
                                 <ul>
-                                    <li>Warning: After a variable is declared in Python, it can be re-assigned to a different variable type. Java doesn’t support this.</li>
-                                    <li>ints</li>
-                                    <li>doubles</li>
-                                    <li>Strings</li>
-                                    <ul>
-                                        <li>Warning: Strings have to use f-string formatting in order for them to be able to be translated to Java</li>
-                                    </ul>
-                                    <li>booleans</li>
-                                    <li>lists/arrays</li>
-                                    <ul>
-                                        <li>Warning: In Python, having multiple types of variables/objects in a list is allowed, in Java, arrays don’t support this feature.</li>
-                                        <li>Warning: Only Python supports reverse indexing.</li>
-                                        <li>Warning: Python substringing allows for a step parameter, Java’s substring method lacks this feature.</li>
-                                    </ul>
-                                    <li>tuples</li>
-                                        <ul>
-                                            <li>Warning: Only Python supports tuple unpacking in for loops.</li>
-                                        </ul>
+                                    <li><a class="nav-link" href="#"><h1>Python to Java Translator</h1></a></li>
                                 </ul>
-                                <li>Comments</li>
-                                <li>Print statements</li>
-                                <li>Mathmatical operations</li>
-                                    <ul>
-                                        <li>Warning: Dividing two integers in Python will yield a double, where in Java, you’ll get an integer.</li>
-                                    </ul>
-                                <li>If statements</li>
-                                <li>For loops</li>
-                                    <ul>
-                                        <li>Warning: Python supports using a for loop to iterate through a string character by character, Java foreach loops don’t support this.</li>
-                                    </ul>
-                                <li>While loops</li>
-                                    <ul>
-                                        <li>Warning: Java doesn’t have while-else functionality.</li>
-                                    </ul>
-                            </ul>
-                        </div>
+                                
+                            </div>
+                            <div class="table">
+                                <ul>
+                                    <li>
+                                        <div class="form-group">
+
+                                            <label class="names">Python</label> 
+                                            <textarea id="input" name="content" rows="16" cols="80" class="form-control" placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
+                                        </div>
+                                    </li>
+                                    <li class="swap-icon">
+                                        <a href="#">
+                                            <i class="icon ion-md-swap"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">   
+                                            <label class="names">Java</label>
+                                            <textarea id="output" rows="16" cols="80" class="form-control" placeholder="Your Java code will be outputted here." readonly="readonly" value="Mike">{{ code.output }}</textarea>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+
+                            <div class="table">
+                                <ul>
+                                    <li>
+                                        <button type="submit" class="btn btn-fill btn-primary">Translate</button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <br>
+                            <div class="table">
+                                <ul>
+                                    <li>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                            More information!
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="exampleModalLongTitle">Welcome to our code translator! We currently only support Python to Java but support for more languages is on its way! If you find any bugs or have any questions, don't hesitate to contact us.</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="documentation">
+                                                            <style>
+                                                                .documentation ul,
+                                                                .documentation li {
+                                                                    list-style: square;
+                                                                    display: block;
+                                                                    color: #525f7f;
+                                                                }
+                                                            </style>
+                                                            <ul>
+                                                                <li><strong>Currrently supported features!</strong></li>
+                                                                <li><strong>&#8226</strong> Variable declarations</li>
+                                                                <li><strong>&#8226</strong> Comments</li>
+                                                                <li><strong>&#8226</strong> Print statements</li>
+                                                                <li><strong>&#8226</strong> Mathmatical operations</li>
+                                                                <li><strong>&#8226</strong> While loops</li>
+                                                                <li><strong>&#8226</strong> If statements</li>
+                                                                <li><strong>&#8226</strong> For loops</li>
+                                                                <li><strong>&#8226</strong> More on its way!</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Contact us</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>                      
                     </div>
                 </div>
                 <footer class="footer">
