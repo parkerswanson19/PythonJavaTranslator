@@ -11,7 +11,7 @@ def declarations(string, declared_variables):
     if var_name in declared_variables.keys():
         return var_name + " = " + value + ";\n"
 
-    # checks if the value is a string   
+    # checks if the value is a string
     if '"' in value:
         declared_variables[var_name] = 'String'
         return "String " + var_name + " = " + value + ";\n"
@@ -56,6 +56,7 @@ def declarations(string, declared_variables):
         type_of_array = type_of_array.split()[0]  # splice the variable type and store it
         return f"{type_of_array}[] " + var_name + ' = {' + value[1:-1] + "};\n"
 
+    #hwody
     # checks if the variable is a tuple, comments are the same as checking for list
     if '(' in value and ')' in value:
         declared_variables[var_name] = 'final array'
