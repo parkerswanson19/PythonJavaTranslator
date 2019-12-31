@@ -38,6 +38,7 @@ class InputtedCode(models.Model):
             if 'print' in line:
                 self.output += translatePrint(line)
             # if "elif" in line:
+            #     need_indentation += 1
             #     self.output += ifWhileStatements(line, self.declared_variables)
             if "if" in line:
                 need_indentation += 1

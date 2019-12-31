@@ -91,7 +91,7 @@ def ifWhileStatements(string, declared_variables):
     if string[0:2] == "if":
         to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
-    elif string[0:5] == "if":
+    elif string[0:5] == "while":
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
     else:
