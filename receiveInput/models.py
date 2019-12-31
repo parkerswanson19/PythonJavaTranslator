@@ -45,6 +45,9 @@ class InputtedCode(models.Model):
             if 'while' in line:
                 need_indentation += 1
                 self.output += ifWhileStatements(line, self.declared_variables)
+            if 'else' in line:
+                need_indentation += 1
+                self.output += "else {\n"
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1
