@@ -91,9 +91,12 @@ def ifWhileStatements(string, declared_variables):
     if string[0:2] == "if":
         to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
-    else:
+    elif string[0:5] == "if":
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
+    else:
+        to_return = "else if"
+        string = string[string.index("elif ") + 5:string.index(":")]
     # check if there are parentheses in the string, and if there are, remove them
     string = string.replace("(", " ")
     string = string.replace(")", " ")
