@@ -13,7 +13,6 @@ class InputtedCode(models.Model):
     # This method takes the input and translates it, then assigns that result to the output field
     def translate(self):
         self.declared_variables = {}
-        # ADD TRANSLATE FUNCTIONALITY HERE
         split_lines = TextField.to_python(self.input, self.input).splitlines()
         output = TextField.to_python(self.output, self.output)
         need_indentation = 0  # is the initial state, no loops have come by so we don't need a }

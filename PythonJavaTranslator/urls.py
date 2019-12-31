@@ -20,10 +20,10 @@ from . import views
 
 urlpatterns = [
     # Passes on the chopped URL for further processing in the receiveInput.urls py script
+    path('', views.redirect_view),
+    path('translator/', include("receiveInput.urls")),
     path('admin/', admin.site.urls),
 
-    # path('home/', include("receiveInput.urls")),
-    path('translator/', include("receiveInput.urls")),
-    path('', views.redirect_view),
+
 
 ]

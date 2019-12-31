@@ -11,7 +11,7 @@ def declarations(string, declared_variables):
     if var_name in declared_variables.keys():
         return var_name + " = " + value + ";\n"
 
-    # checks if the value is a string
+    # checks if the value is a string   
     if '"' in value:
         declared_variables[var_name] = 'String'
         return "String " + var_name + " = " + value + ";\n"
@@ -49,14 +49,13 @@ def declarations(string, declared_variables):
             # if there are no commas in the value string, then there's only one element in the array
             first_element = value[1:value.index(',')]
         except ValueError:
-            # a ValurError will be raised if no commas are found
+            # a ValuEError will be raised if no commas are found
             first_element = value[1:value.index(']')]
         new_string = f'None = {first_element}'  # Need to find the type of variables the list is holding
         type_of_array = declarations(new_string, {})  # recursively call this function
         type_of_array = type_of_array.split()[0]  # splice the variable type and store it
         return f"{type_of_array}[] " + var_name + ' = {' + value[1:-1] + "};\n"
 
-    #hwody
     # checks if the variable is a tuple, comments are the same as checking for list
     if '(' in value and ')' in value:
         declared_variables[var_name] = 'final array'
@@ -88,27 +87,24 @@ def comments(string):
 # if hello in object
 
 def ifWhileStatements(string, declared_variables):
-    #check if the statement is and if or a while
+    # check if the statement is and if or a while
     if string[0:2] == "if":
         to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
-    elif string[0:5] == "while":
+    else:
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
-    else:
-        to_return = "else if"
-        string = string[string.index("elif ") + 5:string.index(":")]
-    #check if there are parentheses in the string, and if there are, remove them
+    # check if there are parentheses in the string, and if there are, remove them
     string = string.replace("(", " ")
     string = string.replace(")", " ")
-    #change the trues and falses to lowercases
+    # change the trues and falses to lowercases
     string = string.replace("True", "true")
     string = string.replace("False", "false")
-    #split the string on every space
+    # split the string on every space
     string_split = string.split(" ")
     and_ors = []
     and_ors_index = 0
-    #find all of the ors and ands in the statement
+    # find all of the ors and ands in the statement
     for word in string_split:
         if word == "and":
             and_ors.append("&&")
@@ -196,10 +192,10 @@ def ifWhileStatements(string, declared_variables):
                                     to_return += " (" + split_statement[0] + ".equals(" + split_statement[
                                         1] + ")" + ") "
                                     break
-        #increment the index of the and or array
+        # increment the index of the and or array
         and_ors_index += 1
 
-    #return the string output with a curly brace
+    # return the string output with a curly brace
     return to_return[: -1] + " {\n"
 
 
@@ -239,8 +235,6 @@ def operations(string, declared_variables):
             except:
                 declared_variables[var_name] = 'double'
                 return "double " + var_name + " = " + re.sub(r'\s+', ' ', right_side) + ";\n"
-
-    # print(declared_variables)
     # if all of the terms on the right side are ints, then make the left side an int too
     declared_variables[var_name] = 'int'
     return "int " + var_name + " = " + re.sub(r'\s+', ' ', right_side) + ";\n"
