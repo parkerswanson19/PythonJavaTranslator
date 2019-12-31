@@ -87,11 +87,12 @@ def comments(string):
 # if hello in object
 
 def ifWhileStatements(string, declared_variables):
+    string = string.strip()
     # check if the statement is and if or a while
     if string[0:2] == "if":
         to_return = "if"
         string = string[string.index("if ") + 3:string.index(":")]
-    elif string[0:5] == "if":
+    elif string[0:5] == "while":
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
     else:
