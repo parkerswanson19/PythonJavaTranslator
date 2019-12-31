@@ -15875,9 +15875,9 @@ img {
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     color: #ffffff;
-    margin-left: 9px;
-    margin-top: 3px;
-    text-transform: uppercase;
+    margin-left: 37px;
+    margin-top: 0px;
+    text-transform: none;
     font-size: 1rem;
 }
 
@@ -20468,6 +20468,10 @@ Copyright (c) 2015 Daniel Eden
 
 .swap-icon {
     font-size: 35px;
+}
+
+.exampleModalLongTitle {
+    
 }
 
 
