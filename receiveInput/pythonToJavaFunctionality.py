@@ -56,7 +56,6 @@ def declarations(string, declared_variables):
         type_of_array = type_of_array.split()[0]  # splice the variable type and store it
         return f"{type_of_array}[] " + var_name + ' = {' + value[1:-1] + "};\n"
 
-    #hwody
     # checks if the variable is a tuple, comments are the same as checking for list
     if '(' in value and ')' in value:
         declared_variables[var_name] = 'final array'
