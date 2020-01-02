@@ -114,17 +114,21 @@ def ifWhileStatements(string, declared_variables):
             and_ors.append("&&")
         if word == "or":
             and_ors.append("||")
+    #split the string on ands or ors
     separate = re.split(' and | or ', string)
+    #loop through each statement that was split
     for statement in separate:
-        print(statement)
+        #check if "in" is in the statement and handle it
         if " in " in statement:
             if and_ors_index != len(and_ors):
-                to_return += " (" + statement + ") " + and_ors[and_ors_index]
+                to_return += " (" + "FEAUTURE NOT YET SUPPORTED" + ") " + and_ors[and_ors_index]
             else:
-                to_return += " (" + statement + ") "
+                to_return += " (" + "FEAUTURE NOT YET SUPPORTED" + ") "
+        #check for every other possibility
         elif "<=" in statement or "==" in statement or ">=" in statement or ">" in statement or "<" in statement:
             original = statement
             split_statement = re.split('<=|<|>=|>|==', statement)
+            #check if the left half of the equation is an int
             try:
                 split_statement[0] = int(split_statement[0].strip())
                 if and_ors_index != len(and_ors):
@@ -132,6 +136,7 @@ def ifWhileStatements(string, declared_variables):
                 else:
                     to_return += " (" + original + ") "
             except ValueError:
+                # check if the left half of the equation is a double/float
                 try:
                     split_statement[0] = float(split_statement[0].strip())
                     if and_ors_index != len(and_ors):
@@ -141,6 +146,7 @@ def ifWhileStatements(string, declared_variables):
                 except ValueError:
                     for variable in split_statement:
                         variable = variable.strip()
+                        #check if the left half is a declared variable that is a boolean, int, or double
                         if variable in declared_variables.keys():
                             if declared_variables[variable] == "int" or declared_variables[variable] == "boolean" or \
                                     declared_variables[variable] == "double":
@@ -150,6 +156,7 @@ def ifWhileStatements(string, declared_variables):
                                 else:
                                     to_return += " (" + original + ") "
                                     break
+                        #handle the left half it is a string
                         else:
                             if "<=" in original:
                                 if and_ors_index != len(and_ors):
