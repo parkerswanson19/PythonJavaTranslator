@@ -80,10 +80,21 @@ def comments(string):
 
     non_comment = string[0: string.index("#")]
     comment = string[string.index("#") + 1: len(string)]
-    return non_comment + "//" + comment + ";\n"
+    return non_comment + "//" + comment + "\n"
 
 
-# if x in hello or y in yes or y in hello
+def concatenations(string):
+    string = string.strip()
+    if "str(" in string:
+        string = string.replace("str", "")
+
+
+def substrings(string):
+    first_number = string[string.index("[") + 1, string.index(":")]
+    second_number = string[string.index(":") + 1, string.index("]")]
+
+
+
 # if hello in object
 
 def ifWhileStatements(string, declared_variables):
