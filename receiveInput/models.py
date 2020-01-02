@@ -17,6 +17,8 @@ class InputtedCode(models.Model):
         output = TextField.to_python(self.output, self.output)
         need_indentation = 0  # is the initial state, no loops have come by so we don't need a }
         # 0 means to add a curly brace and no longer need to indent # 1 or more means need to indent that many times
+        need_to_import_array_list = True
+
         for line in split_lines:
             tab = ' ' * 4
             while True:
@@ -34,7 +36,7 @@ class InputtedCode(models.Model):
                 self.output += line.strip() + ';\n'
                 continue
             if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '<' in line and not '>' in line:
-                self.output += declarations(line, self.declared_variables)
+                self.output += declarations(self.output, line, self.declared_variables)
             if 'print' in line:
                 self.output += translatePrint(line)
             # if "elif" in line:
@@ -49,6 +51,13 @@ class InputtedCode(models.Model):
             if 'else' in line:
                 need_indentation += 1
                 self.output += "else {\n"
+            if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
+                print(str(need_to_import_array_list))
+                if need_to_import_array_list:
+                    self.output = 'import java.util.ArrayList;\n' + self.output
+                    need_to_import_array_list = False
+                print(output)
+                self.output += lists(line)
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1
