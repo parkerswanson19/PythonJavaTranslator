@@ -11,7 +11,7 @@ def declarations(string, declared_variables):
     if var_name in declared_variables.keys():
         return var_name + " = " + value + ";\n"
 
-    # checks if the value is a string   
+    # checks if the value is a string
     if '"' in value:
         declared_variables[var_name] = 'String'
         return "String " + var_name + " = " + value + ";\n"
