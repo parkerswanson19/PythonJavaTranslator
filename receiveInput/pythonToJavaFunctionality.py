@@ -1,7 +1,7 @@
 import re
 
 
-def declarations(string, declared_variables):
+def declarations(output, string, declared_variables):
     # grabs the variable name before the equal sign and strips unnecessary spaces
     var_name = string[0: string.index("=")].strip()
     # grabs the value after the equal sign and strips unnecessary spaces
@@ -10,9 +10,46 @@ def declarations(string, declared_variables):
     # checks if the variable has already been declared
     if var_name in declared_variables.keys():
         return var_name + " = " + value + ";\n"
+        # checks if the variable is a list
+
+    if '[' in value and ']' in value and not ':' in value:
+        if not 'ArrayList' in declared_variables.values():
+            output = 'import java.util.ArrayList;\n\n' + output
+        declared_variables[var_name] = 'ArrayList'
+
+        # # grabs the first element in the array and checks its type
+        # try:
+        #     # if there are no commas in the value string, then there's only one element in the array
+        #     first_element = value[1:value.index(',')]
+        # except ValueError:
+        #     # a ValueError will be raised if no commas are found
+        #     first_element = value[1:value.index(']')]
+        # new_string = f'None = {first_element}'  # Need to find the type of variables the list is holding
+        # type_of_array = declarations(new_string, {})  # recursively call this function
+        # type_of_array = type_of_array.split()[0]  # splice the variable type and store it
+
+        list_of_values = value[1:-1].split(',')
+        to_return = f"ArrayList " + var_name + ' = new ArrayList();\n'
+        for value in list_of_values:
+            value = value.strip()
+            to_return += f'{var_name}.add({value});\n'
+
+        return to_return
+
+    # checks if the variable is a tuple, comments are the same as checking for list
+    if '(' in value and ')' in value:
+        declared_variables[var_name] = 'final array'
+        try:
+            first_element = value[1:value.index(',')]
+        except ValueError:
+            first_element = value[1:value.index(']')]
+        new_string = f'None = {first_element}'
+        type_of_array = declarations(new_string, {})
+        type_of_array = type_of_array.split()[0]
+        return f"final {type_of_array}[] " + var_name + ' = ' + value + ";\n"
 
     # checks if the value is a string
-    if '"' in value:
+    if '"' in value or '\'' in value:
         declared_variables[var_name] = 'String'
         return "String " + var_name + " = " + value + ";\n"
 
@@ -41,33 +78,6 @@ def declarations(string, declared_variables):
         declared_variables[var_name] = 'boolean'
         return "boolean " + var_name + " = " + value.lower() + ";\n"
 
-    # checks if the variable is a list
-    if '[' in value and ']' in value and not ':' in value:
-        declared_variables[var_name] = 'array'
-        # grabs the first element in the array and checks its type
-        try:
-            # if there are no commas in the value string, then there's only one element in the array
-            first_element = value[1:value.index(',')]
-        except ValueError:
-            # a ValuEError will be raised if no commas are found
-            first_element = value[1:value.index(']')]
-        new_string = f'None = {first_element}'  # Need to find the type of variables the list is holding
-        type_of_array = declarations(new_string, {})  # recursively call this function
-        type_of_array = type_of_array.split()[0]  # splice the variable type and store it
-        return f"{type_of_array}[] " + var_name + ' = {' + value[1:-1] + "};\n"
-
-    # checks if the variable is a tuple, comments are the same as checking for list
-    if '(' in value and ')' in value:
-        declared_variables[var_name] = 'final array'
-        try:
-            first_element = value[1:value.index(',')]
-        except ValueError:
-            first_element = value[1:value.index(']')]
-        new_string = f'None = {first_element}'
-        type_of_array = declarations(new_string, {})
-        type_of_array = type_of_array.split()[0]
-        return f"final {type_of_array}[] " + var_name + ' = ' + value + ";\n"
-
     # Checks if there's an operation on the right side of the equal sign
     if '+' in value or '-' in value or '*' in value or '/' in value or '%' in value:
         return operations(string, declared_variables)
@@ -82,9 +92,6 @@ def comments(string):
     comment = string[string.index("#") + 1: len(string)]
     return non_comment + "//" + comment + ";\n"
 
-
-# if x in hello or y in yes or y in hello
-# if hello in object
 
 def ifWhileStatements(string, declared_variables):
     string = string.strip()
@@ -242,3 +249,12 @@ def operations(string, declared_variables):
     # if all of the terms on the right side are ints, then make the left side an int too
     declared_variables[var_name] = 'int'
     return "int " + var_name + " = " + re.sub(r'\s+', ' ', right_side) + ";\n"
+
+
+# For lists' append and remove functionality
+def lists(string):
+    name = string[:string.index('.')]
+    item_to_append = string[string.index('(') + 1: string.index(')')]
+    if 'append' in string:
+        return name + '.add(' + item_to_append + ');'
+    return name + '.remove(' + item_to_append + ');'
