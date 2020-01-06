@@ -99,10 +99,36 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
-def substrings(string):
-    first_number = string[string.index("[") + 1, string.index(":")]
-    second_number = string[string.index(":") + 1, string.index("]")]
+def substrings(string, declared_variables):
+    output = ""
+    first = string[0:string.index("=")].strip()
+    second = string[string.index("=") + 1: len(string)].strip()
+    second = second.split("+")
 
+    if first not in declared_variables:
+        first = "String " + first
+
+    output += first + " = "
+
+    for var in second:
+        var = var.strip()
+        if "[" in var:
+            name = var[0:var.index("[")]
+            print(name)
+            if name in declared_variables:
+                if declared_variables[name] == "String":
+                    var = var.replace("[", ".substring(")
+                    var = var.replace(":", ",")
+                    var = var.replace("]", ")")
+                elif declared_variables[name] == "ArrayList":
+                    if ":" in var:
+                        return
+                    var = var.replace("[", ".get(")
+                    var = var.replace("]", ")")
+        output += var + " + "
+
+
+    return output[0:-3] + ";"
 
 # if hello in object
 
