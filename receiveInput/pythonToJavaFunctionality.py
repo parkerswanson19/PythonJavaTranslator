@@ -282,3 +282,19 @@ def lists(string):
     if 'pop' in string or 'remove':
         return 'Object ' + name + '.remove(' + item_to_append + ');\n'
     return "// There's been an error on this line with this translator."
+
+
+def length(string, declared_variables):
+    # grabs the variable name before the equal sign and strips unnecessary spaces
+    var_name = string[0: string.index("=")].strip()
+    # grabs the value after the equal sign and strips unnecessary spaces
+    right_side = string[string.index("=") + 1: len(string)]
+
+    # This is if the variable on the left needs to be declared as an int
+    if var_name in declared_variables.keys():
+        output = ""
+    else:
+        output = "int "
+    name = right_side[right_side.index('(') + 1:right_side.index(')')]
+    if name in declared_variables.keys():
+        return output + var_name + ' = ' + name + '.length();\n'        
