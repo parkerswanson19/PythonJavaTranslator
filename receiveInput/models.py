@@ -29,6 +29,14 @@ class InputtedCode(models.Model):
                     break
             if need_indentation > 0:
                 self.output += (tab * need_indentation)
+            if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
+                # print(str(need_to_import_array_list))
+                # if need_to_import_array_list:
+                #     self.output = 'import java.util.ArrayList;\n' + self.output
+                #     need_to_import_array_list = False
+                # print(output)
+                self.output += lists(line)
+                continue
             if '#' in line:
                 self.output += comments(line)
                 continue
@@ -51,13 +59,7 @@ class InputtedCode(models.Model):
             if 'else' in line:
                 need_indentation += 1
                 self.output += "else {\n"
-            if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
-                print(str(need_to_import_array_list))
-                if need_to_import_array_list:
-                    self.output = 'import java.util.ArrayList;\n' + self.output
-                    need_to_import_array_list = False
-                print(output)
-                self.output += lists(line)
+
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1
