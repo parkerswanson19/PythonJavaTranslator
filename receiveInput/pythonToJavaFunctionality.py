@@ -295,6 +295,7 @@ def length(string, declared_variables):
         output = ""
     else:
         output = "int "
+        declared_variables[var_name] = 'int'
     name = right_side[right_side.index('(') + 1:right_side.index(')')]
     if name in declared_variables.keys():
-        return output + var_name + ' = ' + name + '.length();\n'        
+        return output + var_name + ' = ' + name + '.length();\n'
