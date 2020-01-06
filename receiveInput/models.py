@@ -37,6 +37,9 @@ class InputtedCode(models.Model):
                 # print(output)
                 self.output += lists(line)
                 continue
+            if 'len' in line:
+                self.output += length(line, self.declared_variables)
+                continue
             if '#' in line:
                 self.output += comments(line)
                 continue
@@ -62,7 +65,6 @@ class InputtedCode(models.Model):
             if 'else' in line:
                 need_indentation += 1
                 self.output += "else {\n"
-
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1
