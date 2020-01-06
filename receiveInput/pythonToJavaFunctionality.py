@@ -8,7 +8,7 @@ def declarations(output, string, declared_variables):
     value = string[string.index("=") + 1: len(string)].strip()
 
     # checks if the variable has already been declared
-    if var_name in declared_variables.keys():
+    if var_name in declared_variables.keys() and not declared_variables[var_name] == 'ArrayList':
         return var_name + " = " + value + ";\n"
         # checks if the variable is a list
 
@@ -104,7 +104,6 @@ def substrings(string):
     second_number = string[string.index(":") + 1, string.index("]")]
 
 
-
 # if hello in object
 
 def ifWhileStatements(string, declared_variables):
@@ -135,21 +134,21 @@ def ifWhileStatements(string, declared_variables):
             and_ors.append("&&")
         if word == "or":
             and_ors.append("||")
-    #split the string on ands or ors
+    # split the string on ands or ors
     separate = re.split(' and | or ', string)
-    #loop through each statement that was split
+    # loop through each statement that was split
     for statement in separate:
-        #check if "in" is in the statement and handle it
+        # check if "in" is in the statement and handle it
         if " in " in statement:
             if and_ors_index != len(and_ors):
                 to_return += " (" + "FEAUTURE NOT YET SUPPORTED" + ") " + and_ors[and_ors_index]
             else:
                 to_return += " (" + "FEAUTURE NOT YET SUPPORTED" + ") "
-        #check for every other possibility
+        # check for every other possibility
         elif "<=" in statement or "==" in statement or ">=" in statement or ">" in statement or "<" in statement:
             original = statement
             split_statement = re.split('<=|<|>=|>|==', statement)
-            #check if the left half of the equation is an int
+            # check if the left half of the equation is an int
             try:
                 split_statement[0] = int(split_statement[0].strip())
                 if and_ors_index != len(and_ors):
@@ -167,7 +166,7 @@ def ifWhileStatements(string, declared_variables):
                 except ValueError:
                     for variable in split_statement:
                         variable = variable.strip()
-                        #check if the left half is a declared variable that is a boolean, int, or double
+                        # check if the left half is a declared variable that is a boolean, int, or double
                         if variable in declared_variables.keys():
                             if declared_variables[variable] == "int" or declared_variables[variable] == "boolean" or \
                                     declared_variables[variable] == "double":
@@ -177,7 +176,7 @@ def ifWhileStatements(string, declared_variables):
                                 else:
                                     to_return += " (" + original + ") "
                                     break
-                        #handle the left half it is a string
+                        # handle the left half it is a string
                         else:
                             if "<=" in original:
                                 if and_ors_index != len(and_ors):
@@ -276,6 +275,10 @@ def operations(string, declared_variables):
 def lists(string):
     name = string[:string.index('.')]
     item_to_append = string[string.index('(') + 1: string.index(')')]
-    if 'append' in string:
-        return name + '.add(' + item_to_append + ');'
-    return name + '.remove(' + item_to_append + ');'
+    if 'append' in string or 'insert' in string:
+        return name + '.add(' + item_to_append + ');\n'
+    # if 'insert' in string:
+    #     return name + '.add(' + item_to_append + ');'
+    if 'pop' in string or 'remove':
+        return 'Object ' + name + '.remove(' + item_to_append + ');\n'
+    return "// There's been an error on this line with this translator."
