@@ -44,7 +44,7 @@ class InputtedCode(models.Model):
                 self.output += comments(line)
                 continue
             if "=" in line and "[" in line and "]" in line:
-                self.output += brackets(line, self.declared_variables, self.output)
+                self.output = brackets(line, self.declared_variables, self.output)
                 continue
             if "input(" in line:
                 self.output = userInput(line, self.output, self.declared_variables)

@@ -61,7 +61,7 @@ def declarations(output, string, declared_variables):
     return "// Translation for this line isn't supported yet. \n"
 
 
-def listDeclaration(string, output, declared_variables):
+def listDeclarations(string, output, declared_variables):
     """This function is called when the variable name before the opening square bracket hasn't been declared."""
 
     # grabs the variable name before the equal sign and strips unnecessary spaces
@@ -352,3 +352,5 @@ def length(string, declared_variables):
     name = right_side[right_side.index('(') + 1:right_side.index(')')]
     if name in declared_variables.keys():
         return output + var_name + ' = ' + name + '.length();\n'
+    else:
+        return '// The string needs to be assigned to a variable first'
