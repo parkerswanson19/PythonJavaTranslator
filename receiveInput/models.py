@@ -35,7 +35,7 @@ class InputtedCode(models.Model):
                 #     self.output = 'import java.util.ArrayList;\n' + self.output
                 #     need_to_import_array_list = False
                 # print(output)
-                self.output += lists(line)
+                self.output += listOperations(line)
                 continue
             if 'len' in line:
                 self.output += length(line, self.declared_variables)

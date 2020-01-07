@@ -12,30 +12,6 @@ def declarations(output, string, declared_variables):
         return var_name + " = " + value + ";\n"
         # checks if the variable is a list
 
-    if '[' in value and ']' in value and not ':' in value:
-        if not 'ArrayList' in declared_variables.values():
-            output = 'import java.util.ArrayList;\n\n' + output
-        declared_variables[var_name] = 'ArrayList'
-
-        # # grabs the first element in the array and checks its type
-        # try:
-        #     # if there are no commas in the value string, then there's only one element in the array
-        #     first_element = value[1:value.index(',')]
-        # except ValueError:
-        #     # a ValueError will be raised if no commas are found
-        #     first_element = value[1:value.index(']')]
-        # new_string = f'None = {first_element}'  # Need to find the type of variables the list is holding
-        # type_of_array = declarations(new_string, {})  # recursively call this function
-        # type_of_array = type_of_array.split()[0]  # splice the variable type and store it
-
-        list_of_values = value[1:-1].split(',')
-        to_return = f"ArrayList " + var_name + ' = new ArrayList();\n'
-        for value in list_of_values:
-            value = value.strip()
-            to_return += f'{var_name}.add({value});\n'
-
-        return to_return
-
     # checks if the variable is a tuple, comments are the same as checking for list
     if '(' in value and ')' in value:
         declared_variables[var_name] = 'final array'
@@ -85,6 +61,30 @@ def declarations(output, string, declared_variables):
     return "// Translation for this line isn't supported yet. \n"
 
 
+def listDeclaration(string, output, declared_variables):
+    """This function is called when the variable name before the opening square bracket hasn't been declared."""
+
+    # grabs the variable name before the equal sign and strips unnecessary spaces
+    var_name = string[0: string.index("=")].strip()
+    # grabs the value after the equal sign and strips unnecessary spaces
+    value = string[string.index("=") + 1: len(string)].strip()
+    #
+    # # checks if the variable has already been declared
+    # if var_name in declared_variables.keys() and not declared_variables[var_name] == 'ArrayList':
+    #     return var_name + " = " + value + ";\n"
+
+    # checks if the variable is a list
+    output = 'import java.util.ArrayList;\n\n' + output
+
+    list_of_values = value[1:-1].split(',')
+    to_return = f"ArrayList " + var_name + ' = new ArrayList();\n'
+    for value in list_of_values:
+        value = value.strip()
+        to_return += f'{var_name}.add({value});\n'
+
+    return output + to_return
+
+
 def comments(string):
     string = string.strip()
 
@@ -127,8 +127,8 @@ def substrings(string, declared_variables):
                     var = var.replace("]", ")")
         output += var + " + "
 
-
     return output[0:-3] + ";"
+
 
 # if hello in object
 
@@ -298,7 +298,7 @@ def operations(string, declared_variables):
 
 
 # For lists' append and remove functionality
-def lists(string):
+def listOperations(string):
     name = string[:string.index('.')]
     item_to_append = string[string.index('(') + 1: string.index(')')]
     if 'append' in string or 'insert' in string:
