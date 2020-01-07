@@ -99,22 +99,21 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
-def substrings(string, declared_variables):
+def brackets(string, declared_variables, existing):
     output = ""
+    # copy both sides of the equal signs
     first = string[0:string.index("=")].strip()
     second = string[string.index("=") + 1: len(string)].strip()
+    #split the right side of the equal sign by every "+"
     second = second.split("+")
 
-    if first not in declared_variables:
-        first = "String " + first
 
-    output += first + " = "
-
+    #run through all the values that were split
     for var in second:
         var = var.strip()
         if "[" in var:
             name = var[0:var.index("[")]
-            print(name)
+            #check if the
             if name in declared_variables:
                 if declared_variables[name] == "String":
                     var = var.replace("[", ".substring(")
@@ -125,10 +124,19 @@ def substrings(string, declared_variables):
                         return
                     var = var.replace("[", ".get(")
                     var = var.replace("]", ")")
-        output += var + " + "
+                output += var + " + "
+                if first not in declared_variables:
+                    first = "String " + first
+                    declared_variables[first] = "String"
+                    output = first + " = " + output
+            else:
+                existing = listDeclarations(string, existing, declared_variables)
+                if first not in declared_variables:
+                    declared_variables[first] = "ArrayList"
+                return existing
 
 
-    return output[0:-3] + ";"
+    return existing + output[0:-3] + ";"
 
 # if hello in object
 
@@ -254,6 +262,25 @@ def ifWhileStatements(string, declared_variables):
 
     # return the string output with a curly brace
     return to_return[: -1] + " {\n"
+
+
+def userInput(string, output, declared_variables):
+    if "import java.util.Scanner" not in output:
+        output = "import java.util.Scanner;\n\n" + output
+
+    if "= new Scanner(System.in);" not in output:
+        output += "Scanner std = new Scanner(System.in);\n"
+
+    first = string[0:string.index("=")].strip()
+    if first in declared_variables:
+        output += first + " = std.nextLine();"
+    else:
+        output += "String " + first + " = std.nextLine();"
+        declared_variables[first] = "String"
+
+    return output
+
+
 
 
 def translatePrint(string):
