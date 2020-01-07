@@ -43,7 +43,7 @@ class InputtedCode(models.Model):
             if '#' in line:
                 self.output += comments(line)
                 continue
-            if "=" in line and "[" in line and ":" in line and "]" in line:
+            if "=" in line and "[" in line and "]" in line:
                 self.output += brackets(line, self.declared_variables, self.output)
                 continue
             if "input(" in line:
