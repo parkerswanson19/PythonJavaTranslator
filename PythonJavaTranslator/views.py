@@ -8,4 +8,4 @@ def redirect_view(request):
 
 
 def aboutTheCreators(request):
-    return render(request, 'aboutMe.html')
+    return render(request, 'AboutMe.html')
