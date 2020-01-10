@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: black;
+    font-size: 18px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header-right a {
+    margin-left: 20px;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+}
+
+.main-page {
+    display: flex;
+    background-image: linear-gradient()
+}
+
+.content-container {
+    flex: 0 1 89%;
+}
+
+h1 {
+    font-size: 400%;
+    font-weight: 100;
+    text-align: center;
+}
+
+/*SIDEBAR*/
+
+/* The sidebar menu */
+.sidebar {
+    height: 100vh; /* Full-height: remove this if you want "auto" height */
+    flex: 1 1 10%;
+    width: auto;
+    /*width: 160px;  Set the width of the sidebar */
+    position: relative; /* Fixed Sidebar (stay in place on scroll) */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-image: linear-gradient(#C5050C, #C70409); /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 10px;
+    box-shadow: 10px 10px 8px #cbcbcb;
+}
+
+h2 {
+    background: none;
+    color: white;
+    text-align: center;
+    font-size: 130%;
+    padding: 20px 0;
+}
+
+/* The navigation menu links */
+.sidebar a {
+    margin-top: 10px;
+    background: none;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.button:hover,
+.button:active {
+    background-color: #fff;
+    color: #C5050C; 
+}
+
+.content {
+    display: flex;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 25px;
+}
+
+.person div {
+    align-self: center;
+}
+
+.person p {
+    margin-top: 20px;
+}
+
+.image {
+    height: 400px;
+}
+
+.image img {
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
