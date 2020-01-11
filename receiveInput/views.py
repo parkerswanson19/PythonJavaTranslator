@@ -22,4 +22,4 @@ def takeInput(request):
     new_input.translate()
 
     # Re-renders the page and passes the InputtedCode object to the HTML file so the text boxes can be updated
-    return render(request, 'fancyTemplate.html', {'code': new_input})
+    return render(request, 'translator.html', {'code': new_input})
