@@ -114,7 +114,7 @@ def forLoops(string, declared_variables):
         iterable = string[string.index("in ") + 4: ":"]
         if iterable in declared_variables:
             if declared_variables[iterable] == "String":
-
+                
                 return "STRINGS ARE NOT ITERABLE IN JAVA"
             elif declared_variables[iterable] == "ArrayList":
                 output += iterable + "){"
