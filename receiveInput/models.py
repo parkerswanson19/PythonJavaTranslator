@@ -37,6 +37,10 @@ class InputtedCode(models.Model):
             if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
                 self.output += listOperations(line)
                 continue
+            if "for" in line:
+                need_indentation += 1
+                self.output += forLoops(line, self.declared_variables)
+                continue
             if 'len' in line:
                 self.output += length(line, self.declared_variables)
                 continue
