@@ -99,6 +99,42 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
+def forLoops(string, declared_variables):
+    output = ""
+    #Find whether the for loop is looping through an element(list/string) or through a range of numbers
+    #See if “range(“ is in the line or not
+    if "range(" not in string:
+        # If element:
+        # Convert to a for each loop in java
+        # Use Object as the element type for the for each loop
+        # for (Object a: list){
+        output += "for (Object "
+        name = string[string.index("for ") + 5:string.index(" in")]
+        output += name + ": "
+        iterable = string[string.index("in ") + 4: ":"]
+        if iterable in declared_variables:
+            if declared_variables[iterable] == "String":
+
+                return "STRINGS ARE NOT ITERABLE IN JAVA"
+            elif declared_variables[iterable] == "ArrayList":
+                output += iterable + "){"
+        else:
+            return "LIST NOT DECLARED"
+    else:
+        # If range of numbers:
+        # Find out the range of numbers
+        # If it’s range of numbers or if length of something
+        # See if “len(“ is in the line
+        # Find out if there is a multiplier
+        # Convert to standard for loop in java
+        if "len(" in string:
+            name = string[string.index("for ") + 5:string.index(" in")]
+            output += "for(int " + name + "; " + name
+
+
+
+
+
 def brackets(string, declared_variables, existing):
     output = ""
     # copy both sides of the equal signs
@@ -113,8 +149,9 @@ def brackets(string, declared_variables, existing):
         var = var.strip()
         if "[" in var:
             name = var[0:var.index("[")]
-            #check if the
+            #check if the split values are already declared
             if name in declared_variables:
+                #convert code to java if the element is a string
                 if declared_variables[name] == "String":
                     var = var.replace("[", ".substring(")
                     var = var.replace(":", ",")
@@ -265,12 +302,15 @@ def ifWhileStatements(string, declared_variables):
 
 
 def userInput(string, output, declared_variables):
+    #check if the import statement has already been implemented
     if "import java.util.Scanner" not in output:
         output = "import java.util.Scanner;\n\n" + output
 
+    #check if a scanner object has been created already
     if "= new Scanner(System.in);" not in output:
         output += "Scanner std = new Scanner(System.in);\n"
 
+    #check if the element has already been declared and add the std.nextLine() instead of input()
     first = string[0:string.index("=")].strip()
     if first in declared_variables:
         output += first + " = std.nextLine();"
