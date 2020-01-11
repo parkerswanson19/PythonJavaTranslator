@@ -101,8 +101,8 @@ def concatenations(string):
 
 def forLoops(string, declared_variables):
     output = ""
-    #Find whether the for loop is looping through an element(list/string) or through a range of numbers
-    #See if “range(“ is in the line or not
+    # Find whether the for loop is looping through an element(list/string) or through a range of numbers
+    # See if “range(“ is in the line or not
     if "range(" not in string:
         # If element:
         # Convert to a for each loop in java
@@ -132,26 +132,22 @@ def forLoops(string, declared_variables):
             output += "for(int " + name + "; " + name
 
 
-
-
-
 def brackets(string, declared_variables, existing):
     output = ""
     # copy both sides of the equal signs
     first = string[0:string.index("=")].strip()
     second = string[string.index("=") + 1: len(string)].strip()
-    #split the right side of the equal sign by every "+"
+    # split the right side of the equal sign by every "+"
     second = second.split("+")
 
-
-    #run through all the values that were split
+    # run through all the values that were split
     for var in second:
         var = var.strip()
         if "[" in var:
             name = var[0:var.index("[")]
-            #check if the split values are already declared
+            # check if the split values are already declared
             if name in declared_variables:
-                #convert code to java if the element is a string
+                # convert code to java if the element is a string
                 if declared_variables[name] == "String":
                     var = var.replace("[", ".substring(")
                     var = var.replace(":", ",")
@@ -172,8 +168,8 @@ def brackets(string, declared_variables, existing):
                     declared_variables[first] = "ArrayList"
                 return existing
 
-
     return existing + output[0:-3] + ";"
+
 
 # if hello in object
 
@@ -302,15 +298,15 @@ def ifWhileStatements(string, declared_variables):
 
 
 def userInput(string, output, declared_variables):
-    #check if the import statement has already been implemented
+    # check if the import statement has already been implemented
     if "import java.util.Scanner" not in output:
         output = "import java.util.Scanner;\n\n" + output
 
-    #check if a scanner object has been created already
+    # check if a scanner object has been created already
     if "= new Scanner(System.in);" not in output:
         output += "Scanner std = new Scanner(System.in);\n"
 
-    #check if the element has already been declared and add the std.nextLine() instead of input()
+    # check if the element has already been declared and add the std.nextLine() instead of input()
     first = string[0:string.index("=")].strip()
     if first in declared_variables:
         output += first + " = std.nextLine();"
@@ -319,8 +315,6 @@ def userInput(string, output, declared_variables):
         declared_variables[first] = "String"
 
     return output
-
-
 
 
 def translatePrint(string):
@@ -332,6 +326,8 @@ def translatePrint(string):
             output += start + '"' + string[7:-2] + '");\n'
         else:  # This is if we're printing other things in the print statement
             output += start + string[6:-1] + ');\n'
+    else:
+        return "// There's been an error on this line."
     return output
 
 
@@ -378,19 +374,30 @@ def listOperations(string):
 
 
 def length(string, declared_variables):
+    output = ""
     # grabs the variable name before the equal sign and strips unnecessary spaces
-    var_name = string[0: string.index("=")].strip()
-    # grabs the value after the equal sign and strips unnecessary spaces
-    right_side = string[string.index("=") + 1: len(string)]
+    if '=' in string:
+        var_name = string[0: string.index("=")].strip()
+        # grabs the value after the equal sign and strips unnecessary spaces
+        right_side = string[string.index("=") + 1: len(string)]
 
-    # This is if the variable on the left needs to be declared as an int
-    if var_name in declared_variables.keys():
-        output = ""
-    else:
-        output = "int "
-        declared_variables[var_name] = 'int'
-    name = right_side[right_side.index('(') + 1:right_side.index(')')]
-    if name in declared_variables.keys():
-        return output + var_name + ' = ' + name + '.length();\n'
-    else:
-        return '// The string needs to be assigned to a variable first'
+        # This is if the variable on the left needs to be declared as an int
+        if var_name in declared_variables.keys():
+            output = ""
+        else:
+            output = "int "
+            declared_variables[var_name] = 'int'
+        # This determines the type of the variable in the len() function
+        name = right_side[right_side.index('len(') + 4:right_side.index(')')]
+        if name in declared_variables.keys():
+            if declared_variables[name] == 'ArrayList':
+                return output + var_name + ' = ' + name + '.size();\n'
+            if declared_variables[name] == 'String':
+                return output + var_name + ' = ' + name + '.length();\n'
+        else:
+            return '// The string needs to be assigned to a variable first'
+    elif 'print' in string:
+        return 'Hello bois'
+
+
+
