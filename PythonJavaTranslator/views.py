@@ -7,5 +7,9 @@ def redirect_view(request):
     return response
 
 
+def mainPage(request):
+    return render(request, 'main-page.html')
+
+
 def aboutTheCreators(request):
-    return render(request, 'AboutMe.html')
+    return render(request, 'about-the-creators.html')

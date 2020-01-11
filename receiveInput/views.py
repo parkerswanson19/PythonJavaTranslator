@@ -8,8 +8,8 @@ print(os.getcwd())
 
 
 # This method is called the first time the page is loaded. It just renders out the HTML file
-def homePage(request):
-    return render(request, 'fancyTemplate.html')
+def translatorHomePage(request):
+    return render(request, 'translator.html')
 
 
 # This method is called every time the translate button is pressed

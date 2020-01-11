@@ -1,9 +1,11 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
     <head>
         <title>madlabs.dev</title>
-        <link href="main-site-styles.css" rel="stylesheet"/>
+        
+        <link href="{% static 'PythonJavaTranslator/css/main-site-styles.css' %}" rel="stylesheet"/>
     </head>
 
     <body>
@@ -13,7 +15,7 @@
                     MadLabs
                 </div>
                 <div class="header-right">
-                    <a href="about-the-creators.html">About</a> 
+                    <a href="/home/about/">About</a> 
                     <a href="#">Contact</a>
                 </div>
 
