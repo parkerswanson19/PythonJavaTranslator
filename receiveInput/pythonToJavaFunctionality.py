@@ -101,17 +101,18 @@ def concatenations(string):
 
 def forLoops(string, declared_variables):
     output = ""
-    #Find whether the for loop is looping through an element(list/string) or through a range of numbers
-    #See if “range(“ is in the line or not
+    # Find whether the for loop is looping through an element(list/string) or through a range of numbers
+    # See if “range(“ is in the line or not
     if "range(" not in string:
         # If element:
         # Convert to a for each loop in java
         # Use Object as the element type for the for each loop
         # for (Object a: list){
         output += "for (Object "
-        name = string[string.index("for ") + 5:string.index(" in")]
+        name = string[string.index("for ") + 4:string.index(" in")]
         output += name + ": "
-        iterable = string[string.index("in ") + 4: ":"]
+        iterable = string[string.index("in ") + 3: string.index(":")]
+        print(iterable)
         if iterable in declared_variables:
             if declared_variables[iterable] == "String":
 
@@ -121,17 +122,73 @@ def forLoops(string, declared_variables):
         else:
             return "LIST NOT DECLARED"
     else:
+        starting = "0"
+        end = "0"
+        increment = "1"
         # If range of numbers:
         # Find out the range of numbers
         # If it’s range of numbers or if length of something
         # See if “len(“ is in the line
         # Find out if there is a multiplier
         # Convert to standard for loop in java
-        if "len(" in string:
-            name = string[string.index("for ") + 5:string.index(" in")]
-            output += "for(int " + name + "; " + name
+        name = string[string.index("for ") + 4:string.index(" in")]
+        output += "for(int " + name
+
+        splitt = string[string.index("range(") + 6: string.index(":") - 1]
+        splitt = splitt.split(",")
+        len_range = len(splitt)
+
+        if len_range == 3:
+            for number in range(len(splitt)):
+                if number == 0:
+                    if "len(" in splitt[number]:
+                        starting = length(splitt[number], declared_variables)
+                    else:
+                        starting = splitt[number]
+                if number == 1:
+                    if "len(" in splitt[number]:
+                        print(splitt[number])
+                        print(declared_variables)
+                        end = length(splitt[number], declared_variables)
+                    else:
+                        end = splitt[number]
+                if number == 2:
+                    if "len(" in splitt[number]:
+                        increment = length(splitt[number], declared_variables)
+                    else:
+                        increment = splitt[number]
+        elif len_range == 2:
+            for number in range(len(splitt)):
+                if number == 0:
+                    if "len(" in splitt[number]:
+                        starting = length(splitt[number], declared_variables)
+                    else:
+                        starting = splitt[number]
+                if number == 1:
+                    if "len(" in splitt[number]:
+                        end = length(splitt[number], declared_variables)
+                    else:
+                        end = splitt[number]
+        else:
+            if "len(" in splitt[0]:
+                end = length(splitt[0], declared_variables)
+            else:
+                end = splitt[0]
+
+        output += " = " + starting + "; "
+
+        if "len" not in increment:
+            if int(increment) <= 0:
+                output += name + " > " + end + "; "
+            else:
+                output += name + " < " + end + "; "
+        else:
+            output += name + " < " + end + "; "
+
+        output += name + " += " + increment + "){"
 
 
+    return output
 
 
 
@@ -389,7 +446,7 @@ def length(string, declared_variables):
     else:
         output = "int "
         declared_variables[var_name] = 'int'
-    name = right_side[right_side.index('(') + 1:right_side.index(')')]
+    name = right_side[right_side.index('len(') + 4:right_side.index(')')]
     if name in declared_variables.keys():
         return output + var_name + ' = ' + name + '.length();\n'
     else:

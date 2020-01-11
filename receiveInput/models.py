@@ -59,6 +59,9 @@ class InputtedCode(models.Model):
             # if "elif" in line:
             #     need_indentation += 1
             #     self.output += ifWhileStatements(line, self.declared_variables)
+            if 'for' in line:
+                need_indentation += 1
+                self.output += forLoops(line, self.declared_variables)
             if "if" in line:
                 need_indentation += 1
                 self.output += ifWhileStatements(line, self.declared_variables)
