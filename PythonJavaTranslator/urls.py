@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     # Passes on the chopped URL for further processing in the receiveInput.urls py script
     path('', views.redirect_view),
+    path('home/about/', views.aboutTheCreators),
     path('translator/', include("receiveInput.urls")),
     path('admin/', admin.site.urls),
 

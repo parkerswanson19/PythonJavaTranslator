@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+}
+
+.people {
+    display: flex;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 50px;
+}
+
+.person div {
+    align-self: center;
+}
+
+.person img {
+    width: auto;
+    height: 150%;
+}
+
+.person p {
+    margin-top: 20px;
+}
