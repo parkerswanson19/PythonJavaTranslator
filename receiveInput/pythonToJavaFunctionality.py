@@ -117,6 +117,7 @@ def forLoops(string, declared_variables):
             if declared_variables[iterable] == "String":
                 output = "for (int i = 0; i < " + iterable + ".length(); i++) {\n"
                 output += "    " + name + " = " + iterable + ".charAt(i);\n"
+                declared_variables[name] = 'String'
                 return output
             elif declared_variables[iterable] == "ArrayList":
                 output += iterable + "){"
@@ -378,19 +379,28 @@ def userInput(string, output, declared_variables):
     return output
 
 
-def translatePrint(string):
-    output = ""
+def translatePrint(string, declared_variables):
+    output = 'System.out.println('
     string = string.strip()
-    start = 'System.out.println('
-    if string[0:5] == 'print':
-        if string[6] == "'" or string[6] == '"':  # This is if we're printing a String
-            output += start + '"' + string[7:-2] + '");\n'
-        else:  # This is if we're printing other things in the print statement
-            output += start + string[6:-1] + ');\n'
-    else:
-        return "// There's been an error on this line."
+    string = string[6:-1]  # Splice out all of the contents of the print statement
+    items = string.split('+')
+    for item in items:
+        item = item.strip()
+        if (item[0] == '"' and item[-1] == '"') or (item[0] == "'" and item[-1] == "'"):
+            item = '"' + item[1:-1] + '"'
+            output += item + ' + '
+        elif item in declared_variables.keys() and declared_variables[item] != 'String':
+            output += 'str(' + item + ') + '
+        else:
+            output += item + ' + '
+    output = output[:-3] + ');\n'
     return output
 
+
+# if string[0] == "'" or string[0] == '"':  # This is if we're printing a String
+    #     output += start + '"' + string[7:-2] + '");\n'
+    # else:  # This is if we're printing other things in the print statement
+    #     output += start + string[6:-1] + ');\n'
 
 def operations(string, declared_variables):
     """This method is used when there's an operation on the right side of the equation. It splits the right side of
@@ -460,11 +470,11 @@ def length(string, declared_variables):
     elif 'print' in string:
         first_part = string[:string.index('len(')]
         len_part = string[string.index('len(') + 4:string.index(')')]
-        last_part = string[string.index(')') + 4:]
+        last_part = string[string.index(')') + 1:]
         if declared_variables[len_part] == 'ArrayList':
-            return first_part + len_part + '.size()' + last_part + ');\n'
+            return first_part + len_part + '.size()' + last_part
         if declared_variables[len_part] == 'String':
-            return first_part + len_part + '.length()' + last_part + ');\n'
+            return first_part + len_part + '.length()' + last_part
         return string
     else:
         len_part = string[string.index('len(') + 4:string.index(')')]

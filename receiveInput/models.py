@@ -31,14 +31,13 @@ class InputtedCode(models.Model):
                 self.output += (tab * need_indentation)
             if 'print' in line and '#' not in line:
                 # Just making sure the print line wasn't commented out, this may need to be removed
-                line = translatePrint(line)
+                line = translatePrint(line, self.declared_variables)
             if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
                 self.output += listOperations(line)
                 continue
             if "for" in line:
                 need_indentation += 1
                 self.output += forLoops(line, self.declared_variables)
-                print("OUTPUT IS: " + line)
                 continue
             if 'len' in line:
                 self.output += length(line, self.declared_variables)
