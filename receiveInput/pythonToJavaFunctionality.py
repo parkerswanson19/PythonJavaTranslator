@@ -188,7 +188,7 @@ def forLoops(string, declared_variables):
         output += name + " += " + increment + "){"
 
 
-    return output
+    return output + "\n"
 
 
 
