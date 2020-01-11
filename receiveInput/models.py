@@ -29,12 +29,12 @@ class InputtedCode(models.Model):
                     break
             if need_indentation > 0:
                 self.output += (tab * need_indentation)
+            if 'print' in line:
+                line = translatePrint(line)
+
+                # if '+' not in line :
+                #     self.output += line
             if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
-                # print(str(need_to_import_array_list))
-                # if need_to_import_array_list:
-                #     self.output = 'import java.util.ArrayList;\n' + self.output
-                #     need_to_import_array_list = False
-                # print(output)
                 self.output += listOperations(line)
                 continue
             if 'len' in line:
@@ -54,14 +54,6 @@ class InputtedCode(models.Model):
                 continue
             if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '<' in line and not '>' in line:
                 self.output += declarations(self.output, line, self.declared_variables)
-            if 'print' in line:
-                self.output += translatePrint(line)
-            # if "elif" in line:
-            #     need_indentation += 1
-            #     self.output += ifWhileStatements(line, self.declared_variables)
-            if 'for' in line:
-                need_indentation += 1
-                self.output += forLoops(line, self.declared_variables)
             if "if" in line:
                 need_indentation += 1
                 self.output += ifWhileStatements(line, self.declared_variables)
@@ -71,6 +63,10 @@ class InputtedCode(models.Model):
             if 'else' in line:
                 need_indentation += 1
                 self.output += "else {\n"
+            # This line is necessary if there's only a string in the print statement that didn't need any further
+            # processing, meaning there are no string concatenation going on
+            if 'System.out.println' in line:
+                self.output += line
             if need_indentation > 0 and split_lines[-1] == line:
                 while True:
                     need_indentation -= 1
