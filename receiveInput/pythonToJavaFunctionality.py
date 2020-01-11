@@ -179,7 +179,7 @@ def forLoops(string, declared_variables):
 
         output += " = " + starting + "; "
 
-        if "len" not in increment:
+        if "length" not in increment and "size" not in increment:
             if int(increment) <= 0:
                 output += name + " > " + end + "; "
             else:
