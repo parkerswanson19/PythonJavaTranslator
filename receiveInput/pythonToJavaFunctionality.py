@@ -397,7 +397,19 @@ def length(string, declared_variables):
         else:
             return '// The string needs to be assigned to a variable first'
     elif 'print' in string:
-        return 'Hello bois'
-
+        first_part = string[:string.index('len(')]
+        len_part = string[string.index('len(') + 4:string.index(')')]
+        last_part = string[string.index(')') + 4:]
+        if declared_variables[len_part] == 'ArrayList':
+            return first_part + len_part + '.size()' + last_part + ');\n'
+        if declared_variables[len_part] == 'String':
+            return first_part + len_part + '.length()' + last_part + ');\n'
+        return string
+    else:
+        len_part = string[string.index('len(') + 4:string.index(')')]
+        if declared_variables[len_part] == 'ArrayList':
+            return len_part + '.size()'
+        if declared_variables[len_part] == 'String':
+            return len_part + '.length()'
 
 
