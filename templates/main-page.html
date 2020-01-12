@@ -1,56 +1,143 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>madlabs.dev</title>
 
-    <head>
-        <title>madlabs.dev</title>
+    <link
+      href="{% static 'PythonJavaTranslator/css/main-site-styles.css' %}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <section class="main-page">
+      <div class="header">
+        <div class="header-left">
+          MadLabs
+        </div>
+        <div class="header-right">
+          <a href="/home/about/">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="welcome">
+        <h1>Welcome to MadLabs!</h1>
+      </div>
+      <div class="pointer">
+        <a href="#portfolio">Our Portfolio!</a>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="{% static 'PythonJavaTranslator/img/PythonToJavaTranslatorImage.png' %}" />
+          </div>
+        </div>
+        <div class="card card-text">
+          <div class="content">
+            <h3>Python to Java Translator</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="https://loremflickr.com/320/160?random=1" />
+          </div>
+        </div>
+        <div class="card card-text">
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="https://loremflickr.com/320/160?random=1" />
+            
+          </div>
+        </div>
+        <div class="card card-text">
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="https://loremflickr.com/320/160?random=1" />
+            
+          </div>
+        </div>
+        <div class="card card-text">
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
+        </div>
         
-        <link href="{% static 'PythonJavaTranslator/css/main-site-styles.css' %}" rel="stylesheet"/>
-    </head>
-
-    <body>
-        <div class="main-page">
-            <div class="header">
-                <div class="header-left">
-                    MadLabs
-                </div>
-                <div class="header-right">
-                    <a href="/home/about/">About</a> 
-                    <a href="#">Contact</a>
-                </div>
-
-            </div>
-            <div class="welcome">
-                <h1>Welcome to MadLabs!</h1>
-            </div>
-            <div class="pointer">
-                Our Portfolio!
-            </div>
+      </div>
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="https://loremflickr.com/320/160?random=1" />
+            
+          </div>
         </div>
-
-        <div class="portfolio">
-            <div class="project">
-                <div class="image">
-                    <img src="https://loremflickr.com/320/240?random=1">
-                </div>
-            </div>
-            <div class="project">
-                <div class="image">
-                    <img src="https://loremflickr.com/320/240?random=2">
-                </div>
-            </div>
-            <div class="project">
-                <div class="image">
-                    <img src="https://loremflickr.com/320/240?random=3">
-                </div>
-            </div>
-            <div class="project">
-                <div class="image">
-                    <img src="https://loremflickr.com/320/240?random=4">
-                </div>
-            </div>
+        <div class="card card-text">
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
         </div>
-
-
-    </body>
+      </div>
+      <div class="project">
+        <div class="card card-img">
+          <div class="content">
+            <img src="https://loremflickr.com/320/160?random=1" />
+            
+          </div>
+        </div>
+        <div class="card card-text">
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              eveniet totam recusandae eum nulla, id dolore facere debitis
+              doloribus eius.
+            </p>
+            <a href="#">Read more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
