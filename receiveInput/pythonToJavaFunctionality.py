@@ -102,6 +102,47 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
+def tryExcept(string):
+    # NullPointerException
+    # NumberFormatException
+    # IllegalStateException
+    # NoSuchMethodException
+    # ClassCastException
+    # ParseException
+    # InvocationTargetException
+    common_exceptions = {"ValueError": "IllegalArgumentException", "RuntimeError": "RuntimeException",
+                         "IndexError": "IndexOutOfBoundsException", "NameError": "NoSuchFieldException",
+                         }
+    output = ""
+    if "raise " in string:
+        message = ""
+        output += "throw new "
+        if "(" and ")" in string:
+            message = string[string.index("("):string.index(")") + 1]
+        split_string = string.split(" ")
+        if split_string[1] in common_exceptions:
+            output += common_exceptions[split_string[1]] + message
+        else:
+            output += "Exception" + message
+
+        return output + ";"
+
+    elif "try:" in string:
+        return "try {\n"
+
+    elif "except " in string:
+        split_string = string.split(" ")
+        output += "catch"
+        if split_string[1] in common_exceptions:
+            output += common_exceptions[split_string[1]] + "e"
+        else:
+            output += "Exception"
+
+        return output + "{\n"
+
+
+
+
 def forLoops(string, declared_variables):
     output = ""
     # Find whether the for loop is looping through an element(list/string) or through a range of numbers
@@ -136,7 +177,7 @@ def forLoops(string, declared_variables):
         # See if “len(“ is in the line
         # Find out if there is a multiplier
         # Convert to standard for loop in java
-        name = string[string.index("for ") + 4:string.index(" in")]
+        name = string[string.index("for ") + 4:string.index(" in ")]
         output += "for(int " + name
 
         splitt = string[string.index("range(") + 6: string.index(":") - 1]
