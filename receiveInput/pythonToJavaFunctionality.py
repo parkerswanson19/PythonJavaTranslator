@@ -445,12 +445,15 @@ def operations(string, declared_variables):
 def listOperations(string):
     name = string[:string.index('.')]
     item_to_append = string[string.index('(') + 1: string.index(')')]
+    print(item_to_append)
+    if item_to_append[0] == "'" and item_to_append[-1] == "'":
+        item_to_append = '"' + item_to_append[1:-1] + '"'
     if 'append' in string or 'insert' in string:
         return name + '.add(' + item_to_append + ');\n'
     # if 'insert' in string:
     #     return name + '.add(' + item_to_append + ');'
-    if 'pop' in string or 'remove':
-        return 'Object ' + name + '.remove(' + item_to_append + ');\n'
+    if 'pop' in string or 'remove' in string:
+        return name + '.remove(' + item_to_append + ');\n'
     return "// There's been an error on this line with this translator."
 
 
