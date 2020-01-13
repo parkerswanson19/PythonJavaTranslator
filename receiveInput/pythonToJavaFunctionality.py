@@ -294,6 +294,8 @@ def ifWhileStatements(string, declared_variables):
     # change the trues and falses to lowercases
     string = string.replace("True", "true")
     string = string.replace("False", "false")
+    if string.strip() == "true" or string.strip() == "false":
+        return to_return + " (" + string + ") {\n"
     # split the string on every space
     string_split = string.split(" ")
     and_ors = []
