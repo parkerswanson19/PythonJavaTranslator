@@ -18,10 +18,13 @@ class InputtedCode(models.Model):
         need_indentation = 0  # is the initial state, no loops have come by so we don't need a }
         # 0 means to add a curly brace and no longer need to indent # 1 or more means need to indent that many times
         need_to_import_array_list = True
-
         for line in split_lines:
             tab = ' ' * 4
             while True:
+                unaltered_copy = line
+                if line == '    rowNum += 1':
+                    print(need_indentation)
+                    print(line[0: (4 * need_indentation)] != tab * need_indentation)
                 if line[0: (4 * need_indentation)] != tab * need_indentation:
                     need_indentation -= 1
                     self.output += f'{tab * need_indentation}' + '}\n'
@@ -35,7 +38,7 @@ class InputtedCode(models.Model):
             if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
                 self.output += listOperations(line)
                 continue
-            if "for" in line:
+            if "for " in line:
                 need_indentation += 1
                 self.output += forLoops(line, self.declared_variables)
                 continue
@@ -61,23 +64,23 @@ class InputtedCode(models.Model):
                 continue
             if '+=' in line or '-=' in line or '/=' in line or '*=' in line:
                 self.output += line.strip() + ';\n'
-                continue
-            if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '<' in line and not '>' in line:
+            if '=' in line and not '==' in line and not '<=' in line and not '>=' in line and not '<' in line and not \
+                    '>' in line and not '+=' in line and not '-=' in line and not '/=' in line and not '*=' in line:
                 self.output += declarations(self.output, line, self.declared_variables)
             if "if" in line:
                 need_indentation += 1
-                self.output += ifWhileStatements(line, self.declared_variables)
+                self.output += ifWhileStatements(output, line, self.declared_variables)
             if 'while' in line:
                 need_indentation += 1
-                self.output += ifWhileStatements(line, self.declared_variables)
-            if 'else' in line:
+                self.output += ifWhileStatements(output, line, self.declared_variables)
+            if 'else' in line and not 'if' in line:
                 need_indentation += 1
-                self.output += "else {\n"
+                self.output = self.output.strip() + " else {\n"
             # This line is necessary if there's only a string in the print statement that didn't need any further
             # processing, meaning there are no string concatenation going on
-            if 'System.out.println' in line:
+            if 'System.out.print' in line:
                 self.output += line
-            if need_indentation > 0 and split_lines[-1] == line:
+            if need_indentation > 0 and unaltered_copy == split_lines[-1]:
                 while True:
                     need_indentation -= 1
                     self.output += f'{tab * need_indentation}' + '}\n'
