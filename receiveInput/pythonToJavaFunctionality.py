@@ -131,7 +131,7 @@ def forLoops(string, declared_variables):
         # See if “len(“ is in the line
         # Find out if there is a multiplier
         # Convert to standard for loop in java
-        name = string[string.index("for ") + 4:string.index(" in")]
+        name = string[string.index("for ") + 4:string.index(" in ")]
         output += "for(int " + name
 
         splitt = string[string.index("range(") + 6: string.index(":") - 1]
