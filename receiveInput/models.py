@@ -42,6 +42,14 @@ class InputtedCode(models.Model):
             if 'len' in line:
                 self.output += length(line, self.declared_variables)
                 continue
+            if 'try:' in line:
+                need_indentation += 1
+                self.output += tryExcept(line)
+            if 'except ' in line:
+                need_indentation += 1
+                self.output += tryExcept(line)
+            if "raise " in line:
+                self.output += tryExcept(line)
             if '#' in line:
                 self.output += comments(line)
                 continue

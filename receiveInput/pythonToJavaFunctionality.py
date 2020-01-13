@@ -99,6 +99,47 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
+def tryExcept(string):
+    # NullPointerException
+    # NumberFormatException
+    # IllegalStateException
+    # NoSuchMethodException
+    # ClassCastException
+    # ParseException
+    # InvocationTargetException
+    common_exceptions = {"ValueError": "IllegalArgumentException", "RuntimeError": "RuntimeException",
+                         "IndexError": "IndexOutOfBoundsException", "NameError": "NoSuchFieldException",
+                         }
+    output = ""
+    if "raise " in string:
+        message = ""
+        output += "throw new "
+        if "(" and ")" in string:
+            message = string[string.index("("):string.index(")") + 1]
+        split_string = string.split(" ")
+        if split_string[1] in common_exceptions:
+            output += common_exceptions[split_string[1]] + message
+        else:
+            output += "Exception" + message
+
+        return output + ";"
+
+    elif "try:" in string:
+        return "try {\n"
+
+    elif "except " in string:
+        split_string = string.split(" ")
+        output += "catch"
+        if split_string[1] in common_exceptions:
+            output += common_exceptions[split_string[1]] + "e"
+        else:
+            output += "Exception"
+
+        return output + "{\n"
+
+
+
+
 def forLoops(string, declared_variables):
     output = ""
     # Find whether the for loop is looping through an element(list/string) or through a range of numbers
