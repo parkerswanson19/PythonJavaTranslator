@@ -94,7 +94,6 @@ Tip 2: you can also add an image using data-image tag
                                 <ul>
                                     <li>
                                         <div class="form-group">
-
                                             <label class="names">Python</label> 
                                             <textarea id="input" name="content" rows="20" cols="80" class="form-control" placeholder="Paste your Python code here!" value="Mike">{{ code.input }}</textarea>
                                         </div>
@@ -150,16 +149,56 @@ Tip 2: you can also add an image using data-image tag
                                                                 }
                                                             </style>
                                                             <ul>
-                                                                <li><strong>Currently supported features!</strong></li>
-                                                                <li><strong>&#8226</strong> Variable declarations</li>
-                                                                <li><strong>&#8226</strong> Comments</li>
-                                                                <li><strong>&#8226</strong> Print statements</li>
-                                                                <li><strong>&#8226</strong> Mathematical operations</li>
-                                                                <li><strong>&#8226</strong> While loops</li>
-                                                                <li><strong>&#8226</strong> If statements</li>
-                                                                <li><strong>&#8226</strong> For loops</li>
-                                                                <li><strong>&#8226</strong> More on its way!</li>
+                                                                <li><strong>Currently supported features! (Click on one for sample code)</strong></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='variables()' data-dismiss="modal">Variable declarations</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='comments()' data-dismiss="modal">Comments</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='prints()' data-dismiss="modal">Print statements</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='math()' data-dismiss="modal">Mathematical operations</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='whiles()' data-dismiss="modal">While loops</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='ifElses()' data-dismiss="modal">If/Else statements</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='fors()' data-dismiss="modal">For loops</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='lists()' data-dismiss="modal">Lists</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='tryCatches()' data-dismiss="modal">Try/Catch blocks</a></li>
+                                                                <li><strong>&#8226</strong> <a href="#" onclick='userInput()' data-dismiss="modal">User input</a></li>
                                                             </ul>
+                                                            <script>
+                                                                function variables(){
+                                                                    var text = "name = \"Buckingham U. 'Bucky' Badger\"\nyearOfBirth = 1940\nheight = 6.1\nisBestMascot = True\nrivals = ['Goldy the Gopher', 'Biff the Wolverine', 'Cy the Cardinal']\n# Hit translate below!";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function comments(){
+                                                                    var text = "# This is a comment\n# Ugh, why does my CS teacher want me to add these all the time?\n# Hit translate below!";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function prints(){
+                                                                    var text = "print('Hello, world!')\nname = 'John Smith'\nprint('Hello, ' + name)\n# Hit translate below!";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function math(){
+                                                                    var text = "# How many cookies will each child get?\nnumOfCookies = 16\nnumOfChildren = 4\ncookiesPerChild = numOfCookies / numOfChildren\nprint('Each child gets ' + str(cookiesPerChild) + ' cookies.'\n# Hit translate below!";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function whiles(){
+                                                                    var text = "# Pyramid Printer\nnumOfRows = 5\nrowNum = 1\nwhile rowNum <= numOfRows:\n    numOfSpaces = numOfRows - rowNum\n    numOfStars = rowNum * 2 - 1\n    while numOfSpaces > 0:\n        print(' ', end='')\n        numOfSpaces -= 1\n    while numOfStars > 0:\n        print('*', end='')\n        numOfStars -= 1\n    print()\n    rowNum += 1";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function ifElses(){
+                                                                    var text = "grade = 5\nif grade <= 5:\n    print(\"You're in elementary school.\")\nelif grade <= 8:\n    print(\"You're in middle school.\")\nelif grade <= 12:\n    print(\"You're in high school.\")\nelse:\n    print(\"You're either in college or in the workforce.\")";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function fors(){
+                                                                    var text = "here the text that you want to input.";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function lists(){
+                                                                    var text = "here the text that you want to input.";
+                                                                    document.getElementById("input").value = text;
+                                                                }
+                                                                function tryCatches(){
+                                                                    var text = "here the text that you want to input.";
+                                                                    document.getElementById("input").value = text;
+                                                                }    
+                                                                </script>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

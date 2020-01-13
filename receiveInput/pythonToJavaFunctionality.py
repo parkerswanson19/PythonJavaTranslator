@@ -25,9 +25,10 @@ def declarations(output, string, declared_variables):
         return f"final {type_of_array}[] " + var_name + ' = ' + value + ";\n"
 
     # checks if the value is a string
-    if '"' in value or '\'' in value:
+    if '"' in value or '\'' in value and 'System.out.print' not in value:
+        print('Value is: ' + value)
         declared_variables[var_name] = 'String'
-        return "String " + var_name + " = " + value + ";\n"
+        return "String " + var_name + ' = "' + value[1:-1] + '";\n'
 
     # checks if the value is an int
     try:
@@ -86,6 +87,8 @@ def listDeclarations(string, output, declared_variables):
 
 
 def comments(string):
+    if string == '# Hit translate below!':
+        return '// Paste this code in a Java main method and run it!'
     string = string.strip()
 
     non_comment = string[0: string.index("#")]
@@ -235,7 +238,7 @@ def brackets(string, declared_variables, existing):
 
 # if hello in object
 
-def ifWhileStatements(string, declared_variables):
+def ifWhileStatements(output, string, declared_variables):
     string = string.strip()
     # check if the statement is and if or a while
     if string[0:2] == "if":
@@ -380,10 +383,17 @@ def userInput(string, output, declared_variables):
 
 
 def translatePrint(string, declared_variables):
-    output = 'System.out.println('
     string = string.strip()
+    if string[-7:-1] == "end=''":
+        output = 'System.out.print('
+        string = string[:-9] + '0'
+    elif len(string) == 7:
+        return 'System.out.println();\n'
+    else:
+        output = 'System.out.println('
     string = string[6:-1]  # Splice out all of the contents of the print statement
     items = string.split('+')
+
     for item in items:
         item = item.strip()
         if (item[0] == '"' and item[-1] == '"') or (item[0] == "'" and item[-1] == "'"):
