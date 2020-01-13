@@ -8,8 +8,8 @@ print(os.getcwd())
 
 
 # This method is called the first time the page is loaded. It just renders out the HTML file
-def homePage(request):
-    return render(request, 'fancyTemplate.html')
+def translatorHomePage(request):
+    return render(request, 'translator.html')
 
 
 # This method is called every time the translate button is pressed
@@ -22,4 +22,4 @@ def takeInput(request):
     new_input.translate()
 
     # Re-renders the page and passes the InputtedCode object to the HTML file so the text boxes can be updated
-    return render(request, 'fancyTemplate.html', {'code': new_input})
+    return render(request, 'translator.html', {'code': new_input})
