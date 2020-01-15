@@ -115,17 +115,19 @@ def tryExcept(string, self_output):
                          }
     output = ""
     if "raise " in string:
+        string = string.strip()
         message = ""
         output += "throw new "
         if "(" and ")" in string:
             message = string[string.index("("):string.index(")") + 1]
         split_string = string.split(" ")
-        if split_string[1] in common_exceptions:
-            output += common_exceptions[split_string[1]] + message
+        error_and_message = split_string[1]
+        if error_and_message[:error_and_message.index("(")] in common_exceptions:
+            output += common_exceptions[error_and_message[:error_and_message.index("(")]] + message
         else:
-            output += " Exception" + message
+            output += "Exception" + message
 
-        return output + ";"
+        return self_output + output + ";\n"
 
     elif "try:" in string:
         return "try {\n"
@@ -134,7 +136,6 @@ def tryExcept(string, self_output):
         string = string.replace(":", "")
         split_string = string.split(" ")
         self_output = self_output[:-1] + " catch "
-        print(split_string)
         if split_string[1] in common_exceptions:
             output += common_exceptions[split_string[1]] + " e"
         else:

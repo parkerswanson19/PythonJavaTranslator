@@ -52,7 +52,7 @@ class InputtedCode(models.Model):
                 need_indentation += 1
                 self.output = tryExcept(line, self.output)
             if "raise " in line:
-                self.output = tryExcept(line)
+                self.output = tryExcept(line, self.output)
             if '#' in line:
                 self.output += comments(line)
                 continue
