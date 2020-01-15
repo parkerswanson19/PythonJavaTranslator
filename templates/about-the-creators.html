@@ -2,56 +2,65 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
-        <title>About the Creators</title>
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-        
-        <link href="{% static 'PythonJavaTranslator/css/about-the-creators.css' %}" rel="stylesheet"/>
+<head>
+    <title>About the Creators</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
 
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-    </head>
+    <link href="{% static 'PythonJavaTranslator/css/about-the-creators.css' %}" rel="stylesheet"/>
+</head>
 
-    <body>
+<body>
 
-        <div class="main-page">
-            <div class="sidebar">
-                <h2>Our Portfolio!</h2>
-                <hr />
-                <a class="button" href="/translator/">Python to Java Translator</a>
-                <a class="button" href="#">Coming soon!</a>
-                <a class="button" href="#">Coming soon!</a>
-                <a class="button" href="#">Coming soon!</a>
+<div class="main-page">
+    <div class="sidebar">
+        <h2>Our Portfolio!</h2>
+        <hr/>
+        <a class="button" href="/translator/">Python to Java Translator</a>
+        <a class="button" href="#">Coming soon!</a>
+        <a class="button" href="#">Coming soon!</a>
+        <a class="button" href="#">Coming soon!</a>
+    </div>
+    <div class="content-container">
+        <div class="header">
+            <div class="header-left">
+{#                <a href="#">Back</a>#}
             </div>
-            <div class="content-container">
-                <div class="header">
-                    <div class="header-left">
-                        <a href="#">Back</a>
-                    </div>
-                    <div class="header-right">
-                        <a href="/home/">Home</a> 
-                        <a href="#">Contact Us</a>
-                    </div>
-                </div>
-                <h1>About the Creators</h1>
-                <div class="content">
-                    <div class="person">
-                        <div class="image">
-                            <img src="https://loremflickr.com/240/320">
-                        </div>
-                        <p class="text">Sourish is a boi, lmao I'll come back to this soon</p>
-                    </div>
-                    <div class="person">
-                        <div class="image">
-                            <img src="{% static 'PythonJavaTranslator/img/IMG_4121.JPG' %}">
-                        </div>
-                        <p class="text">Parker is a freshman studying computer science and data science at the University
-                            of Wisconsin-Madison. He has a strong passion for programming and data and has previously
-                            interned at LiquidSpace. When Parker is not coding, he enjoys spending his time
-                            with friends, playing tennis and table tennis, and watching Stranger Things.</p>
-                    </div>
-                </div>
+            <div class="header-right">
+                <a href="/home/">Home</a>
+                <a href="#">Contact Us</a>
             </div>
         </div>
+        <h1>About the Creators</h1>
+        <div class="content">
+            <div class="person">
+                <div class="image">
+                    <img src="{% static 'PythonJavaTranslator/img/this-the-only-half-decent-pic-of-me-sorry-for-the-sunglasses.jpg' %}">
+                </div>
+                <p class="text">Sourish is a freshman pursuing a double major in computer science and economics at the
+                    University of Wisconsin-Madison. He loves computer science because of the critical thinking
+                    and problem solving skills it demands. Besides coding, Sourish also enjoys public speaking and
+                    reading the news. In his free time, he's found linking up with friends, playing
+                    video games, or reading.</p>
+                <div>
+                    <a href="https://sourish07.github.io" class="personal-link">Personal website!</a>
+                </div>
+            </div>
+            <div class="person">
+                <div class="image">
+                    <img src="{% static 'PythonJavaTranslator/img/cutie.JPG' %}">
+                </div>
+                <p class="text">Parker is a freshman studying computer science and data science at the University
+                    of Wisconsin-Madison. He has a strong passion for programming and data and has previously
+                    interned at LiquidSpace. When Parker is not coding, he enjoys spending his time
+                    with friends, playing tennis and table tennis, and watching Stranger Things.</p>
+                <div>
+                    <a href="#boi-go-make-one" class="personal-link">Personal website!</a>
+                </div>
 
-    </body>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>

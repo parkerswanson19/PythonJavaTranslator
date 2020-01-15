@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');*/
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');*/
 @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
 * {
@@ -35,7 +35,6 @@ body {
 
 .main-page {
     display: flex;
-    background-image: linear-gradient()
 }
 
 .content-container {
@@ -103,8 +102,9 @@ h2 {
 .person {
     display: flex;
     flex-direction: column;
-    align-self: center;
+
     padding: 25px;
+    width: 50%;
 }
 
 .person div {
@@ -123,6 +123,23 @@ h2 {
     height: 100%;
 }
 
+.personal-link {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+    border: 1px solid #C5050C;
+    color: #C5050C;
+    border-radius: 25px;
+    transition: 0.2s;
+}
+
+.personal-link:hover,
+.personal-link:active {
+    background: #C5050C;
+    color: #fff;
+}
 
 
 
