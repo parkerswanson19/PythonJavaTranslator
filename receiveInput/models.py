@@ -21,22 +21,19 @@ class InputtedCode(models.Model):
         for line in split_lines:
             tab = ' ' * 4
             while True:
-                unaltered_copy = line
-                if line == '    rowNum += 1':
-                    print(need_indentation)
-                    print(line[0: (4 * need_indentation)] != tab * need_indentation)
                 if line[0: (4 * need_indentation)] != tab * need_indentation:
                     need_indentation -= 1
                     self.output += f'{tab * need_indentation}' + '}\n'
                 else:
                     break
+            unaltered_copy = line
             if need_indentation > 0:
                 self.output += (tab * need_indentation)
             if 'print' in line and '#' not in line:
                 # Just making sure the print line wasn't commented out, this may need to be removed
                 line = translatePrint(line, self.declared_variables)
             if 'append' in line or 'insert' in line or 'pop' in line or 'remove' in line:
-                self.output += listOperations(line)
+                self.output += listOperations(line, self.declared_variables)
                 continue
             if "for " in line:
                 need_indentation += 1
@@ -72,7 +69,7 @@ class InputtedCode(models.Model):
                 self.output = ifWhileStatements(self.output, line, self.declared_variables)
             if 'while' in line:
                 need_indentation += 1
-                self.output += ifWhileStatements(self.output, line, self.declared_variables)
+                self.output = ifWhileStatements(self.output, line, self.declared_variables)
             if 'else' in line and not 'if' in line:
                 need_indentation += 1
                 self.output = self.output.strip() + " else {\n"

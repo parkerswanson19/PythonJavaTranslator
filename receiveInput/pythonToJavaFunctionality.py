@@ -81,6 +81,8 @@ def listDeclarations(string, output, declared_variables):
     to_return = f"ArrayList " + var_name + ' = new ArrayList();\n'
     for value in list_of_values:
         value = value.strip()
+        if value[0] == "'" and value[-1] == "'":
+            value = '"' + value[1:-1] + '"'
         to_return += f'{var_name}.add({value});\n'
 
     return output + to_return
@@ -139,8 +141,6 @@ def tryExcept(string):
             output += "Exception"
 
         return output + "{\n"
-
-
 
 
 def forLoops(string, declared_variables):
@@ -233,9 +233,7 @@ def forLoops(string, declared_variables):
 
         output += name + " += " + increment + "){"
 
-
     return output + "\n"
-
 
 
 def brackets(string, declared_variables, existing):
@@ -422,7 +420,6 @@ def userInput(string, output, declared_variables):
     else:
         output += "String " + first + " = std.nextLine();"
         declared_variables[first] = "String"
-
     return output
 
 
@@ -440,11 +437,13 @@ def translatePrint(string, declared_variables):
 
     for item in items:
         item = item.strip()
+        if 'str(' in item:
+            item = item[4:-1]
         if (item[0] == '"' and item[-1] == '"') or (item[0] == "'" and item[-1] == "'"):
             item = '"' + item[1:-1] + '"'
             output += item + ' + '
         elif item in declared_variables.keys() and declared_variables[item] != 'String':
-            output += 'str(' + item + ') + '
+            output += '' + item + ' + '
         else:
             output += item + ' + '
     output = output[:-3] + ');\n'
@@ -452,9 +451,9 @@ def translatePrint(string, declared_variables):
 
 
 # if string[0] == "'" or string[0] == '"':  # This is if we're printing a String
-    #     output += start + '"' + string[7:-2] + '");\n'
-    # else:  # This is if we're printing other things in the print statement
-    #     output += start + string[6:-1] + ');\n'
+#     output += start + '"' + string[7:-2] + '");\n'
+# else:  # This is if we're printing other things in the print statement
+#     output += start + string[6:-1] + ');\n'
 
 def operations(string, declared_variables):
     """This method is used when there's an operation on the right side of the equation. It splits the right side of
@@ -486,20 +485,39 @@ def operations(string, declared_variables):
 
 
 # For lists' append and remove functionality
-def listOperations(string):
-    name = string[:string.index('.')]
+def listOperations(string, declared_variables):
+    declaration = ''
+    if '=' in string:
+        declaration = 'Object ' + string[:string.index('=') + 1].strip() + ' '
+        name = string[string.index('=') + 1:string.index('.')].strip()
+    else:
+        name = string[:string.index('.')]
     item_to_append = string[string.index('(') + 1: string.index(')')]
-    print(item_to_append)
-    if item_to_append[0] == "'" and item_to_append[-1] == "'":
+    if len(item_to_append) > 0 and item_to_append[0] == "'" and item_to_append[-1] == "'":
         item_to_append = '"' + item_to_append[1:-1] + '"'
-    if 'append' in string or 'insert' in string:
+    if 'append' in string:
         return name + '.add(' + item_to_append + ');\n'
-    # if 'insert' in string:
-    #     return name + '.add(' + item_to_append + ');'
+    if 'insert' in string:
+        items = item_to_append.split(',')
+        if len(items) == 2:
+
+            items[1] = items[1].strip()
+            print(items[1])
+            if items[1][0] == "'" and items[1][-1] == "'":
+                items[1] = '"' + items[1][1:-1] + '"'
+                print('yes')
+            return name + '.add(' + items[0] + ', ' + items[1] + ');\n'
+        else:
+            return "// There's been a typo"
     if 'pop' in string or 'remove' in string:
-        return name + '.remove(' + item_to_append + ');\n'
+        if len(item_to_append) == 0:
+            item_to_append = name + '.size() - 1'
+        return declaration + name + '.remove(' + item_to_append + ');\n'
     return "// There's been an error on this line with this translator."
 
+
+# if value[0] == "'" and value[-1] == "'":
+#     value = '"' + value[1:-1] + '"'
 
 def length(string, declared_variables):
     output = ""
@@ -539,5 +557,3 @@ def length(string, declared_variables):
             return len_part + '.size()'
         if declared_variables[len_part] == 'String':
             return len_part + '.length()'
-
-
