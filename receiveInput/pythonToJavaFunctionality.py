@@ -289,6 +289,7 @@ def ifWhileStatements(output, string, declared_variables):
         to_return = "while"
         string = string[string.index("while ") + 6:string.index(":")]
     else:
+        output = output[:-1] + " "
         to_return = "else if"
         string = string[string.index("elif ") + 5:string.index(":")]
     # check if there are parentheses in the string, and if there are, remove them
@@ -355,54 +356,54 @@ def ifWhileStatements(output, string, declared_variables):
                         else:
                             if "<=" in original:
                                 if and_ors_index != len(and_ors):
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") <= 0" + ") " + and_ors[and_ors_index]
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") <= 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") <= 0" + ") "
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") <= 0" + ") "
                                     break
                             elif "<" in original:
                                 if and_ors_index != len(and_ors):
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") < 0" + ") " + and_ors[and_ors_index]
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") < 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") < 0" + ") "
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") < 0" + ") "
                                     break
                             elif ">=" in original:
                                 if and_ors_index != len(and_ors):
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") >= 0" + ") " + and_ors[and_ors_index]
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") >= 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") >= 0" + ") "
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") >= 0" + ") "
                                     break
                             elif ">" in original:
                                 if and_ors_index != len(and_ors):
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") > 0" + ") " + and_ors[and_ors_index]
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") > 0" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    to_return += " (" + split_statement[0] + ".compareTo(" + split_statement[
-                                        1] + ") > 0" + ") "
+                                    to_return += " (" + split_statement[0].strip() + ".compareTo(" + split_statement[
+                                        1].strip() + ") > 0" + ") "
                                     break
                             elif "==" in original:
                                 if and_ors_index != len(and_ors):
-                                    to_return += " (" + split_statement[0] + ".equals(" + split_statement[
-                                        1] + ")" + ") " + and_ors[and_ors_index]
+                                    to_return += " (" + split_statement[0].strip() + ".equals(" + split_statement[
+                                        1].strip() + ")" + ") " + and_ors[and_ors_index]
                                     break
                                 else:
-                                    to_return += " (" + split_statement[0] + ".equals(" + split_statement[
-                                        1] + ")" + ") "
+                                    to_return += " (" + split_statement[0].strip() + ".equals(" + split_statement[
+                                        1].strip() + ")" + ") "
                                     break
         # increment the index of the and or array
         and_ors_index += 1
 
     # return the string output with a curly brace
-    return to_return[: -1] + " {\n"
+    return output + to_return[: -1] + " {\n"
 
 
 def userInput(string, output, declared_variables):
