@@ -85,4 +85,4 @@ class InputtedCode(models.Model):
                         if need_indentation == 0:
                             break
             except:
-                self.output += "// There's been an error with this line. Check for typos.\n"
+                self.output += "// ERROR: CHECK LINE FOR TYPOS.\n"
