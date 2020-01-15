@@ -194,7 +194,7 @@ Tip 2: you can also add an image using data-image tag
                                                                     document.getElementById("input").value = text;
                                                                 }
                                                                 function tryCatches(){
-                                                                    var text = "try:\n    x = 5\n    y = 9\n    z = x + y\nexcept ValueError:\n    print('There's been an error)\n# Hit translate below!";
+                                                                    var text = "try:\n    x = 5\n    y = 9\n    z = x + y\n    if z > 6:\n        raise ValueError('Z is too large')\nexcept ValueError:\n    print('There's been an error')\n# Hit translate below!";
                                                                     document.getElementById("input").value = text;
                                                                 }
                                                                 function userInput(){
