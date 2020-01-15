@@ -47,12 +47,12 @@ class InputtedCode(models.Model):
                 continue
             if 'try:' in line:
                 need_indentation += 1
-                self.output += tryExcept(line)
+                self.output = tryExcept(line, self.output)
             if 'except ' in line:
                 need_indentation += 1
-                self.output += tryExcept(line)
+                self.output = tryExcept(line, self.output)
             if "raise " in line:
-                self.output += tryExcept(line)
+                self.output = tryExcept(line)
             if '#' in line:
                 self.output += comments(line)
                 continue
@@ -72,7 +72,7 @@ class InputtedCode(models.Model):
                 self.output = ifWhileStatements(self.output, line, self.declared_variables)
             if 'while' in line:
                 need_indentation += 1
-                self.output += ifWhileStatements(self.output, line, self.declared_variables)
+                self.output = ifWhileStatements(self.output, line, self.declared_variables)
             if 'else' in line and not 'if' in line:
                 need_indentation += 1
                 self.output = self.output.strip() + " else {\n"

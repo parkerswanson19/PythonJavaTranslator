@@ -102,7 +102,7 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
-def tryExcept(string):
+def tryExcept(string, self_output):
     # NullPointerException
     # NumberFormatException
     # IllegalStateException
@@ -123,7 +123,7 @@ def tryExcept(string):
         if split_string[1] in common_exceptions:
             output += common_exceptions[split_string[1]] + message
         else:
-            output += "Exception" + message
+            output += " Exception" + message
 
         return output + ";"
 
@@ -131,14 +131,16 @@ def tryExcept(string):
         return "try {\n"
 
     elif "except " in string:
+        string = string.replace(":", "")
         split_string = string.split(" ")
-        output += "catch"
+        self_output = self_output[:-1] + " catch "
+        print(split_string)
         if split_string[1] in common_exceptions:
-            output += common_exceptions[split_string[1]] + "e"
+            output += common_exceptions[split_string[1]] + " e"
         else:
-            output += "Exception"
+            output += " Exception e"
 
-        return output + "{\n"
+        return self_output + output + "{\n"
 
 
 
@@ -423,7 +425,7 @@ def userInput(string, output, declared_variables):
         output += "String " + first + " = std.nextLine();"
         declared_variables[first] = "String"
 
-    return output
+    return output + "\n"
 
 
 def translatePrint(string, declared_variables):
