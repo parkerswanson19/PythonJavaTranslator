@@ -104,7 +104,7 @@ def concatenations(string):
         string = string.replace("str", "")
 
 
-def tryExcept(string):
+def tryExcept(string, self_output):
     # NullPointerException
     # NumberFormatException
     # IllegalStateException
@@ -117,30 +117,35 @@ def tryExcept(string):
                          }
     output = ""
     if "raise " in string:
+        string = string.strip()
         message = ""
         output += "throw new "
         if "(" and ")" in string:
             message = string[string.index("("):string.index(")") + 1]
         split_string = string.split(" ")
-        if split_string[1] in common_exceptions:
-            output += common_exceptions[split_string[1]] + message
+        error_and_message = split_string[1]
+        if error_and_message[:error_and_message.index("(")] in common_exceptions:
+            output += common_exceptions[error_and_message[:error_and_message.index("(")]] + message
         else:
             output += "Exception" + message
 
-        return output + ";"
+        return self_output + output + ";\n"
 
     elif "try:" in string:
         return "try {\n"
 
     elif "except " in string:
+        string = string.replace(":", "")
         split_string = string.split(" ")
-        output += "catch"
+        self_output = self_output[:-1] + " catch "
         if split_string[1] in common_exceptions:
-            output += common_exceptions[split_string[1]] + "e"
+            output += common_exceptions[split_string[1]] + " e"
         else:
-            output += "Exception"
+            output += " Exception e"
 
-        return output + "{\n"
+        return self_output + output + "{\n"
+
+
 
 
 def forLoops(string, declared_variables):
@@ -420,7 +425,8 @@ def userInput(string, output, declared_variables):
     else:
         output += "String " + first + " = std.nextLine();"
         declared_variables[first] = "String"
-    return output
+
+    return output + "\n"
 
 
 def translatePrint(string, declared_variables):
@@ -515,9 +521,6 @@ def listOperations(string, declared_variables):
         return declaration + name + '.remove(' + item_to_append + ');\n'
     return "// There's been an error on this line with this translator."
 
-
-# if value[0] == "'" and value[-1] == "'":
-#     value = '"' + value[1:-1] + '"'
 
 def length(string, declared_variables):
     output = ""
