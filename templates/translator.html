@@ -6,6 +6,7 @@
 <head lang="en">
     <link href="{% static 'PythonJavaTranslator/css/translator-styles.css' %}" rel="stylesheet" />
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet" />
+    <link href="{% static 'PythonJavaTranslator/fonts/style.css' %}" rel="stylesheet" />
     <title>madlabs.dev</title>
 </head>
 
@@ -43,7 +44,7 @@
                     </a>
                     <div class="form-group">
                         <p class="labels">Java</p>
-                        <textarea readonly id="output" rows="20" cols="20" class="form-control java-textarea"
+                        <textarea readonly id="output" rows="20" cols="20" class="form-control"
                             placeholder="Your Java code will be outputted here.">{{ code.output }}</textarea>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="close-button modal-btn" class="link3-close-modal">
+                        <button class="close-button" class="link3-close-modal">
                             Close
                         </button>
                         <button type="button" class="modal-btn">
