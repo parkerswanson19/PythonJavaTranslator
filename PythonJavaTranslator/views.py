@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def redirect_view(request):
-    response = redirect('/translator/')
+    response = redirect('/home/')
     return response
 
 
