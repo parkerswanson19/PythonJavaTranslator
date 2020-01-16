@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,500&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 
 /* General */
 * {
@@ -39,7 +38,7 @@ button:focus {
 }
 
 .header-left {
-    margin-left: 50px;
+    margin-left: 52px;
 }
 
 .header-right a {
@@ -72,7 +71,7 @@ button:focus {
 .sidebar h2 {
     color: white;
     font-weight: 300;
-    font-size: 75%;
+    font-size: 85%;
     text-align: center;
     margin: 15px 30px 15px;
 }
@@ -161,6 +160,27 @@ p {
 
 .form-group textarea:focus {
     border-color: #ba54f5;
+}
+
+/* Text area scrollbars */
+.form-control::-webkit-scrollbar-track{
+	background-color: black;
+}
+
+.form-control::-webkit-scrollbar{
+	width: 5px;
+}
+
+.form-control::-webkit-scrollbar-thumb{
+	border-radius: 100px;
+	background-color: #e14eca;
+}
+
+.form-control::selection {
+  background: rgba(226, 0, 255, 0.76); /* WebKit/Blink Browsers */
+}
+.form-control::-moz-selection {
+  background: rgba(226, 0, 255, 0.76); /* Gecko Browsers */
 }
 
 .labels {
