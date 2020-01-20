@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'receiveInput',
+    'RapAnalyzer'
     # Had to add the app to installed apps list so Django can see it
 ]
 
