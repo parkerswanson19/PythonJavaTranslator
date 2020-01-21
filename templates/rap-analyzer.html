@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
+    <title>Rap Analyzer</title>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <a href="/home/">madlabs.dev</a>
+    </div>
+    <div class="header-right">
+        <a href="#">About the Creators</a>
+        <a href="#">Contact Us</a>
+    </div>
+</div>
+<div class="body">
+    <h1>Rap Analyzer</h1>
+    <form action="#" method="post">{% csrf_token %}
+        <div class="form-row">
+            <p>Name of song</p>
+            <input type="text" name="song-name" value="" placeholder="Name"/>
+        </div>
+        <div class="form-row">
+            <p>Name of artist</p>
+            <input type="text" name="artist-name" value="" placeholder="Artist"/>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn">
+                Analyze!
+            </button>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn">
+                How does this work?
+            </button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

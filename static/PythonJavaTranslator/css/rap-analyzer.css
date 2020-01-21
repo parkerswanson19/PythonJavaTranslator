@@ -1,0 +1,100 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+body, html {
+    background-color: #2ecc71;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+::selection {
+  background: #99EF36; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #99EF36; /* Gecko Browsers */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    height: 50px;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right a {
+    margin-left: 10px;
+}
+
+.header-left a {
+    font-size: 130%;
+}
+
+.header-right a,
+.header-left a {
+    text-decoration: none;
+    color: #065E88;
+}
+
+/* Form body */
+h1 {
+    font-size: 400%;
+    text-align: center;
+}
+.body {
+    flex: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-row {
+    display: flex;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.form-row p {
+     margin-right: 1vw;
+}
+
+.form-row input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.form-row input:focus {
+    border-bottom: 2px solid #065E88;
+}
+
+.form-row button {
+    background-color: #065E88;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+}
