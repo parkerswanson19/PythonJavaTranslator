@@ -24,6 +24,7 @@ urlpatterns = [
     path('home/', views.mainPage),
     path('home/about/', views.aboutTheCreators),
     path('translator/', include("receiveInput.urls")),
+    path('rap-analyzer/', include("RapAnalyzer.urls")),
     path('admin/', admin.site.urls),
 
 
