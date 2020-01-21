@@ -20,28 +20,37 @@
     </div>
 </div>
 <div class="body">
-    <h1>Rap Analyzer</h1>
-    <form action="#" method="post">{% csrf_token %}
-        <div class="form-row">
-            <p>Name of song</p>
-            <input type="text" name="song-name" value="" placeholder="Name"/>
+    <div class="sidebar">
+        <h2 class="sidebar-header">MORE PROJECTS!</h2>
+        <li href="/translator/">Python to Java Translator</li>
+        <li>Raspberry Pi</li>
+    </div>
+    <div class="body-content">
+        <div class="body-box">
+            <h1>Rap Analyzer</h1>
+            <form action="#" method="post">{% csrf_token %}
+                <div class="form-row">
+                    <p>Name of song</p>
+                    <input type="text" name="song-name" value="" placeholder="Name"/>
+                </div>
+                <div class="form-row">
+                    <p>Name of artist</p>
+                    <input type="text" name="artist-name" value="" placeholder="Artist"/>
+                </div>
+                <div class="form-row">
+                    <button type="submit" class="btn">
+                        Analyze!
+                    </button>
+                </div>
+            </form>
+            <div class="form-row">
+                <button href="/#" class="btn">
+                    How does this work?
+                </button>
+            </div>
         </div>
-        <div class="form-row">
-            <p>Name of artist</p>
-            <input type="text" name="artist-name" value="" placeholder="Artist"/>
-        </div>
-        <div class="form-row">
-            <button type="submit" class="btn">
-                Analyze!
-            </button>
-        </div>
-        <div class="form-row">
-            <button type="submit" class="btn">
-                How does this work?
-            </button>
-        </div>
-    </form>
 
+    </div>
 </div>
 </body>
 </html>

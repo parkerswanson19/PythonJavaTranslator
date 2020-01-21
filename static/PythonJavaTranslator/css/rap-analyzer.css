@@ -10,13 +10,31 @@
 }
 
 body, html {
-    background-color: #2ecc71;
+    /*background-color: #2ecc71;*/
+    background-color: #77B7D7;
 }
 
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+.body-content {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.body-box {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-self: center;
+    padding: 10px;
+    background-color: #00AD4B;
+    border-radius: 15px;
+    height: 470px;
 }
 
 ::selection {
@@ -32,6 +50,10 @@ body {
     justify-content: space-between;
     padding: 10px 10px;
     height: 50px;
+    background-color: #06699A;
+    margin-bottom: 25px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .header-left,
@@ -51,16 +73,19 @@ body {
 .header-right a,
 .header-left a {
     text-decoration: none;
-    color: #065E88;
+    /*color: #065E88;*/
+    color: #fff;
 }
 
 /* Form body */
 h1 {
     font-size: 400%;
     text-align: center;
+    color: #023E5B;
 }
 .body {
     flex: 1;
+    display: flex;
 }
 
 form {
@@ -72,6 +97,7 @@ form {
 
 .form-row {
     display: flex;
+    justify-content: center;
     margin-top: 20px;
     padding: 20px;
 }
@@ -97,4 +123,48 @@ form {
     padding: 5px 10px;
     border-radius: 10px;
     border: none;
+}
+
+/* Sidebar */
+.sidebar {
+    height: calc(100vh);
+    margin-left: 20px;
+    flex: 0 1 auto;
+    width: 230px;
+    position: relative; /* Fixed Sidebar (stay in place on scroll) */
+    bottom: 0; /* Stay at the top */
+    left: 0;
+    background-image: linear-gradient(#00AD4B, #00672D); /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.sidebar h2 {
+    color: white;
+    font-weight: 300;
+    font-size: 85%;
+    text-align: center;
+    margin: 15px 30px 15px;
+}
+
+.sidebar-header:after {
+    content: "";
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    height: 1px;
+    width: calc(100% - 30px);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar li:first-of-type {
+    margin-top: 50px;
+}
+
+.sidebar li {
+    margin-top: 20px;
+    font-size: 70%;
+    color: white;
+    font-weight: 300;
 }
