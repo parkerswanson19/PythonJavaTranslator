@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 
 * {
     margin: 0;
@@ -11,7 +11,7 @@
 
 body, html {
     /*background-color: #2ecc71;*/
-    background-color: #77B7D7;
+    background-color: #5C6784;
 }
 
 body {
@@ -38,10 +38,11 @@ body {
 }
 
 ::selection {
-  background: #99EF36; /* WebKit/Blink Browsers */
+    background: #99EF36; /* WebKit/Blink Browsers */
 }
+
 ::-moz-selection {
-  background: #99EF36; /* Gecko Browsers */
+    background: #99EF36; /* Gecko Browsers */
 }
 
 /* Header */
@@ -50,7 +51,7 @@ body {
     justify-content: space-between;
     padding: 10px 10px;
     height: 50px;
-    background-color: #06699A;
+    background-color: #1d263b;
     margin-bottom: 25px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -79,10 +80,27 @@ body {
 
 /* Form body */
 h1 {
+    font-family: 'Alata', sans-serif;
     font-size: 400%;
     text-align: center;
-    color: #023E5B;
+    color: #fff;
+    position: relative;
 }
+
+h1:after {
+    position: absolute;
+    content: "";
+
+    height: 2px;
+    bottom: -4px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+}
+
 .body {
     flex: 1;
     display: flex;
@@ -103,26 +121,28 @@ form {
 }
 
 .form-row p {
-     margin-right: 1vw;
+    margin-right: 10px;
+    color: white;
 }
 
 .form-row input {
     background: none;
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.3);
     transition: 0.2s;
 }
 
 .form-row input:focus {
-    border-bottom: 2px solid #065E88;
+    border-bottom: 2px solid #1d263b;
 }
 
 .form-row button {
-    background-color: #065E88;
+    background-color: #4cb963;
     color: white;
     padding: 5px 10px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 
 /* Sidebar */
@@ -163,7 +183,12 @@ form {
 }
 
 .sidebar li {
-    margin-top: 20px;
+    padding: 5px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    margin-top: 10px;
     font-size: 70%;
     color: white;
     font-weight: 300;
