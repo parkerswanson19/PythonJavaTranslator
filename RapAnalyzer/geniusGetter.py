@@ -12,4 +12,11 @@ page_soup = soup(webpage, "html.parser")
 lyrics = page_soup.find("div", {"class": "lyrics"})
 a_tags = lyrics.findAll("a")
 
-print(a_tags[0].contents)
+for tag in a_tags:
+    print(tag.contents)
+    for line in tag.contents:
+        if isinstance(line, str) == True:
+            line.replace("\n", "")
+            print(line)
+
+# print(a_tags[0].contents)
