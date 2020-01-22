@@ -15,11 +15,10 @@ def find_lyrics(url):
 
 
 def get_song_info(song_title, artist_name):
-    base_url = 'https://api.genius.com'
+    url = 'https://api.genius.com/search'
     headers = {'Authorization': 'Bearer ' + 'ULuimckPtpbjfzBpV-nOi0UtSfmcaHtuUmz5v1w8hWmgUQphXNvglKhbDk_yjTz8'}
-    search_url = base_url + '/search'
     data = {'q': song_title + ' ' + artist_name}
-    response = requests.get(search_url, data=data, headers=headers)
+    response = requests.get(url, headers=headers, data=data)
 
     return response
 
@@ -50,3 +49,6 @@ class Song:
             self.bare_lyrics += line + " "
 
         self.num_of_words = len(self.bare_lyrics.split())
+        # print(self.lyrics)
+
+
