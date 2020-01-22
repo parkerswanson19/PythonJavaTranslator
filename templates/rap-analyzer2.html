@@ -28,26 +28,9 @@
     <div class="body-content">
         <div class="body-box">
             <h1>Rap Analyzer</h1>
-            <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
-                <div class="form-row">
-                    <p>Name of song</p>
-                    <input type="text" name="song-name" value="" placeholder="Name"/>
-                </div>
-                <div class="form-row">
-                    <p>Name of artist</p>
-                    <input type="text" name="artist-name" value="" placeholder="Artist"/>
-                </div>
-                <div class="form-row">
-                    <button type="submit" class="btn">
-                        Analyze!
-                    </button>
-                </div>
-            </form>
-            <div id="info-button" class="form-row">
-                <button href="/#" class="btn">
-                    How does this work?
-                </button>
-            </div>
+            <p></p>
+            <textarea>{{ code.lyrics }}</textarea>
+
         </div>
     </div>
 </div>
