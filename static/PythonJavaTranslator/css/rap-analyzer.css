@@ -155,7 +155,8 @@ form {
 
 /* Sidebar */
 .sidebar {
-    height: calc(95vh);
+    /*height: calc(90vh);*/
+    height: 100%;
     margin-left: 20px;
     flex: 0 1 auto;
     width: 230px;
@@ -206,10 +207,48 @@ form {
 textarea {
     margin-top: 20px;
     padding: 10px;
-    width: 600px;
-    height: 100%;
+    width: 40vw;
+    height: 75vh;
+    /*background-color: #4cb963;*/
+    /*background-color: #a0eade;*/
+    background-color: #f0fff0;
+    resize: none;
+    border: none;
+    border-radius: 10px;
+    color: #1d263b;
 }
+
+/*!* width *!*/
+/*textarea::-webkit-scrollbar {*/
+/*    width: 10px;*/
+/*}*/
+
+/*!* Track *!*/
+/*textarea::-webkit-scrollbar-track {*/
+/*    box-shadow: inset 0 0 5px grey;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*!* Handle *!*/
+/*textarea::-webkit-scrollbar-thumb {*/
+/*    background: #FF2400;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*!* Handle on hover *!*/
+/*textarea::-webkit-scrollbar-thumb:hover {*/
+/*    background: #b30000;*/
+/*}*/
 
 .row {
     display: flex;
+}
+
+.body-content ul {
+    margin: 25px 0 25px 25px;
+}
+
+.body-content ul li {
+    list-style: none;
+    color: white;
 }
