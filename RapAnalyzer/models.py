@@ -1,4 +1,5 @@
 import requests
+import re
 from django.db import models
 # from .geniusGetter import *
 
@@ -34,10 +35,25 @@ class Song:
     def analyze(self):
         song_info = get_song_info(self.name, self.artist)
         song_info = song_info.json()
+        # with open("file.json", 'w') as file:
+        #     file.write(str(song_info))
+
         for hit in song_info["response"]["hits"]:
-            if hit["result"]["title"].lower().replace(".", "") == self.name.lower().replace(".", ""):
-                song = hit
-                self.lyrics = find_lyrics(song["result"]["url"])
+            user_input_name = self.name.lower()
+            user_input_name = user_input_name.replace(".", "")
+            user_input_name = user_input_name.replace("(", "")
+            user_input_name = user_input_name.replace(")", "")
+            user_input_name = user_input_name.replace(",", "")
+
+            hit_name = hit["result"]["title"].lower()
+            hit_name = hit_name.replace(".", "")
+            hit_name = hit_name.replace("(", "")
+            hit_name = hit_name.replace(")", "")
+            hit_name = hit_name.replace(",", "")
+            hit_name = hit_name.replace(u'\u200b', "")
+
+            if user_input_name == hit_name:
+                self.lyrics = find_lyrics(hit["result"]["url"])
                 break
         else:
             self.lyrics = "Error: Song not found. Check for typos."
