@@ -18,13 +18,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .body-content {
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
+    align-items: baseline;
 }
 
 .body-box {
@@ -35,7 +36,8 @@ body {
     padding: 10px;
     background-color: #00AD4B;
     border-radius: 15px;
-    height: 470px;
+    /*height: 470px;*/
+    max-height: 90vh;
 }
 
 ::selection {
@@ -135,6 +137,7 @@ form {
     border: none;
     border-bottom: 2px solid rgba(100, 100, 100, 0.3);
     transition: 0.2s;
+    color: #1d263b;
 }
 
 .form-row input:focus {
@@ -197,4 +200,16 @@ form {
     font-size: 70%;
     color: white;
     font-weight: 300;
+}
+
+/* Page 2 */
+textarea {
+    margin-top: 20px;
+    padding: 10px;
+    width: 600px;
+    height: 100%;
+}
+
+.row {
+    display: flex;
 }

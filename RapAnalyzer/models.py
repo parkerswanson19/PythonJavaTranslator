@@ -14,6 +14,16 @@ def find_lyrics(url):
     return lyrics
 
 
+def request_song_info(song_title, artist_name):
+    base_url = 'https://api.genius.com'
+    headers = {'Authorization': 'Bearer ' + 'ULuimckPtpbjfzBpV-nOi0UtSfmcaHtuUmz5v1w8hWmgUQphXNvglKhbDk_yjTz8'}
+    search_url = base_url + '/search'
+    data = {'q': song_title + ' ' + artist_name}
+    response = requests.get(search_url, data=data, headers=headers)
+
+    return response
+
+
 class Song:
     def __init__(self, name, artist):
         self.name = name
@@ -29,3 +39,14 @@ class Song:
 
         url = f"https://genius.com/{artist}-{name}-lyrics"
         self.lyrics = find_lyrics(url)
+
+
+
+
+
+
+
+
+song = request_song_info('sicko mode', 'travis scott')
+json = song.json()
+print(json)
