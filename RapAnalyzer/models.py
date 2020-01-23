@@ -6,12 +6,17 @@ from bs4 import BeautifulSoup
 
 
 # Create your models here.
+
+
+
 def find_lyrics(url):
     page = requests.get(url)
-    html = BeautifulSoup(page.text, 'lxml')
+    html = BeautifulSoup(page.text, 'html.parser')
     lyrics = html.find('div', class_='lyrics').get_text()
 
     return lyrics
+
+print(find_lyrics("https://genius.com/Travis-scott-sicko-mode-lyrics"))
 
 
 class Song:
