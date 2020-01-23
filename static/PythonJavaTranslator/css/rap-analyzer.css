@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
 * {
     margin: 0;
@@ -11,7 +12,8 @@
 
 body, html {
     /*background-color: #2ecc71;*/
-    background-color: #5C6784;
+    /*background-color: #00ad4b;*/
+    background-color: #4cb963;
 }
 
 body {
@@ -34,7 +36,7 @@ body {
     justify-items: center;
     justify-self: center;
     padding: 10px;
-    background-color: #00AD4B;
+    background-color: #00ad4b;
     border-radius: 15px;
     /*height: 470px;*/
     max-height: 90vh;
@@ -152,7 +154,7 @@ form {
 }
 
 .form-row button {
-    background-color: #4cb963;
+    background-color: #5c6784;
     color: white;
     padding: 10px 15px;
     border-radius: 10px;
@@ -171,7 +173,8 @@ form {
     position: relative; /* Fixed Sidebar (stay in place on scroll) */
     bottom: 0; /* Stay at the top */
     left: 0;
-    background-image: linear-gradient(#00AD4B, #00672D); /* Black */
+    /*background-image: linear-gradient(#00AD4B, #00672D); !* Black *!*/
+    background-color: #00ad4b;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding: 10px;
     border-radius: 10px;
@@ -217,13 +220,14 @@ textarea {
     padding: 10px;
     width: 40vw;
     height: 70vh;
+    border-color: white;
     /*background-color: #4cb963;*/
     /*background-color: #a0eade;*/
     background-color: #f0fff0;
     resize: none;
-    border: none;
     border-radius: 10px;
     color: #1d263b;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* width */
@@ -268,4 +272,11 @@ textarea {
     margin-top: 15px;
     list-style: none;
     color: white;
+}
+
+@-moz-document url-prefix() {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #4cb963 rgba(205, 205, 205, 0);
+    }
 }
