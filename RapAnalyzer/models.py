@@ -30,12 +30,22 @@ def get_song_info(song_title, artist_name):
 
 
 class Song:
+    swear_words = ["fuck", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga", "niggas", "ass",
+                   "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
+                   "piss", "asshole", "damn", "goddamn"]
+
+    drugs = ["percs", "percocet", "cocaine", "xan"]
+
+    jewelery = ["patek"]
+
     def __init__(self, name, artist):
         self.name = name
+        self.full_name = ""
         self.artist = artist
         self.lyrics = None
         self.bare_lyrics = ""
         self.num_of_words = 0
+        self.num_of_swear_words = 0
 
     def analyze(self):
         song_info = get_song_info(self.name, self.artist)
@@ -59,6 +69,7 @@ class Song:
 
             if user_input_name == hit_name:
                 self.lyrics = find_lyrics(hit["result"]["url"])
+                self.full_name = hit["result"]["full_title"]
                 break
         else:
             self.lyrics = "Error: Song not found. Check for typos."
@@ -69,7 +80,13 @@ class Song:
                 continue
             self.bare_lyrics += line + " "
 
+        self.bare_lyrics = self.bare_lyrics.replace(",", "")
+        self.bare_lyrics = self.bare_lyrics.replace("(", "")
+        self.bare_lyrics = self.bare_lyrics.replace(")", "")
+        self.bare_lyrics = self.bare_lyrics.lower()
         self.num_of_words = len(self.bare_lyrics.split())
-        # print(self.lyrics)
 
+        for word in self.swear_words:
+            self.num_of_swear_words += self.bare_lyrics.count(word)
 
+        print("YEET " + str (self.num_of_swear_words))
