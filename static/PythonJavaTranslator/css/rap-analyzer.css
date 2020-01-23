@@ -103,6 +103,13 @@ h1:after {
 
 }
 
+.body-box h2 {
+    text-align: center;
+    padding: 15px;
+    font-size: 130%;
+    color: white;
+}
+
 .body {
     flex: 1;
     display: flex;
@@ -159,7 +166,8 @@ form {
     height: 100%;
     margin-left: 20px;
     flex: 0 1 auto;
-    width: 230px;
+    width: auto;
+    max-width: 230px;
     position: relative; /* Fixed Sidebar (stay in place on scroll) */
     bottom: 0; /* Stay at the top */
     left: 0;
@@ -208,7 +216,7 @@ textarea {
     margin-top: 20px;
     padding: 10px;
     width: 40vw;
-    height: 75vh;
+    height: 70vh;
     /*background-color: #4cb963;*/
     /*background-color: #a0eade;*/
     background-color: #f0fff0;

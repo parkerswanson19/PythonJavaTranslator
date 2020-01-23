@@ -23,15 +23,18 @@
     <div class="sidebar">
         <h2 class="sidebar-header">MORE PROJECTS!</h2>
         <li><a href="/translator/">Python to Java Translator</a></li>
-        <li><a href="/#">More coming soon!</a></li>
+        <li><a href="/#/">More coming soon!</a></li>
     </div>
     <div class="body-content">
         <div class="body-box">
             <h1>Hello world</h1>
+            <h2>{{ code.full_name }}</h2>
             <div class="row">
-                <textarea class="lyrics-output">{{ code.lyrics }}</textarea>
+                <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
                 <ul>
                     <li>Number of words:<br>{{ code.num_of_words }}</li>
+                    <li>Number of swear words:<br>{{ code.num_of_swear_words }}</li>
+                    <li>Number of drug references:<br></li>
                     <li>Average grade level of song:<br>(Placeholder)</li>
                     <li>Number of adlibs:<br>(Placeholder)</li>
                 </ul>
