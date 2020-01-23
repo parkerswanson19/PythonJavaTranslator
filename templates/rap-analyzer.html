@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
-    <title>Rap Analyzer</title>
+    <title>Hello world</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
         <a href="/home/">madlabs.dev</a>
     </div>
     <div class="header-right">
-        <a href="#">About the Creators</a>
+        <a href="/home/about/">About the Creators</a>
         <a href="#">Contact Us</a>
     </div>
 </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="body-content">
         <div class="body-box">
-            <h1>Rap Analyzer</h1>
+            <h1>Hello world</h1>
             <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
                 <div class="form-row">
                     <p>Name of song</p>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-row">
                     <p>Name of artist</p>
-                    <input type="text" name="artist-name" value="" placeholder="Artist"/>
+                    <input type="text" name="artist-name" value="" placeholder="Artist (Optional)"/>
                 </div>
                 <div class="form-row">
                     <button type="submit" class="btn">

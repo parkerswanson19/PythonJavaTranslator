@@ -18,13 +18,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .body-content {
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
+    align-items: baseline;
 }
 
 .body-box {
@@ -35,7 +36,8 @@ body {
     padding: 10px;
     background-color: #00AD4B;
     border-radius: 15px;
-    height: 470px;
+    /*height: 470px;*/
+    max-height: 90vh;
 }
 
 ::selection {
@@ -135,6 +137,7 @@ form {
     border: none;
     border-bottom: 2px solid rgba(100, 100, 100, 0.3);
     transition: 0.2s;
+    color: #1d263b;
 }
 
 .form-row input:focus {
@@ -152,7 +155,8 @@ form {
 
 /* Sidebar */
 .sidebar {
-    height: calc(95vh);
+    /*height: calc(90vh);*/
+    height: 100%;
     margin-left: 20px;
     flex: 0 1 auto;
     width: 230px;
@@ -197,4 +201,63 @@ form {
     font-size: 70%;
     color: white;
     font-weight: 300;
+}
+
+/* Page 2 */
+textarea {
+    margin-top: 20px;
+    padding: 10px;
+    width: 40vw;
+    height: 75vh;
+    /*background-color: #4cb963;*/
+    /*background-color: #a0eade;*/
+    background-color: #f0fff0;
+    resize: none;
+    border: none;
+    border-radius: 10px;
+    color: #1d263b;
+}
+
+/* width */
+.lyrics-output::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.lyrics-output::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+.lyrics-output::-webkit-scrollbar-thumb {
+    background: #4cb963;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.lyrics-output::-webkit-scrollbar-thumb:hover {
+    background: #4cb963;
+}
+
+.lyrics-output::selection {
+  background: rgba(76, 188, 95, 0.76); /* WebKit/Blink Browsers */
+}
+
+.lyrics-output::-moz-selection {
+  background: rgba(76, 188, 95, 0.76); /* Gecko Browsers */
+}
+
+.row {
+    display: flex;
+}
+
+.body-content ul {
+    margin: 25px 0 25px 25px;
+}
+
+.body-content ul li {
+    margin-top: 15px;
+    list-style: none;
+    color: white;
 }
