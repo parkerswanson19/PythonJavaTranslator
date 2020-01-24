@@ -1,6 +1,6 @@
 APScheduler==3.6.1
 asgiref==3.2.3
-beautpythoifulsoup4==4.8.1
+beautifulsoup4==4.8.1
 bs4==0.0.1
 certifi==2019.9.11
 chardet==3.0.4
