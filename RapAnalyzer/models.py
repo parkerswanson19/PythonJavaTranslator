@@ -4,9 +4,13 @@ from django.db import models
 # from .geniusGetter import *
 from bs4 import BeautifulSoup
 
-def to_database(title_, lyrics_, swear_words, num_words, artist_, url_):
+def to_database(title_, lyrics_, swear_words, num_words, artist_, url_, jewelry_, drugs_, g, f, p,
+                adlibs_, lines_, syllabes_, big, sentences_):
     obj = SongDB(title = title_, lyrics = lyrics_, num_of_words = num_words, url = url_,
-                 num_of_swear_words = swear_words, artist = artist_)
+                 num_of_swear_words = swear_words, artist = artist_, jewelry = jewelry_,
+                 drugs = drugs_, reading_level_g = g, reading_level_f = f, reading_level_p = p,
+                 adlibs = adlibs_, lines = lines_, syllables = syllabes_, big_words = big,
+                 sentence_length = sentences_)
     obj.save()
 
 def find_lyrics(url):
@@ -64,6 +68,16 @@ class SongDB(models.Model):
     lyrics = models.TextField()
     num_of_swear_words = models.IntegerField()
     url = models.URLField()
+    jewelry = models.IntegerField()
+    drugs = models.IntegerField()
+    reading_level_g = models.FloatField()
+    reading_level_f = models.TextField()
+    reading_level_p = models.FloatField()
+    adlibs = models.IntegerField()
+    lines = models.IntegerField()
+    syllables = models.IntegerField()
+    big_words = models.IntegerField()
+    sentence_length = models.IntegerField()
 
     def __str__(self):
         return self.title
@@ -261,4 +275,6 @@ class Song:
         print("YEET " + str (self.num_of_swear_words))
 
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-                    hit["result"]["url"])
+                    hit["result"]["url"], self.num_of_jewelery_references, self.num_of_drug_references,
+                    self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
+                    self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self. avg_sen_len)
