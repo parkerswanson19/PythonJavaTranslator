@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def redirect_view(request):
-    response = redirect('/rap-analyzer/')
+    response = redirect('/home/')
     return response
 
 

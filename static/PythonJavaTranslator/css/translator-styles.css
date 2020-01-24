@@ -148,7 +148,7 @@ p {
     width: 100%;
     resize: none;
     background: none;
-    color: white;
+    color: #dfdfdf;
     border: none;
     border-bottom: 1px solid #2b3553;
     transition: 0.5s;
