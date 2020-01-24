@@ -6,7 +6,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: 'Alata', sans-serif;
     font-size: 20px;
 }
 
@@ -38,8 +39,6 @@ body {
     padding: 10px;
     background-color: #00ad4b;
     border-radius: 15px;
-    /*height: 470px;*/
-    max-height: 90vh;
 }
 
 ::selection {
@@ -56,7 +55,7 @@ body {
     justify-content: space-between;
     padding: 10px 10px;
     height: 50px;
-    background-color: #1d263b;
+    /*background-color: #1d263b;*/
     margin-bottom: 25px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -85,7 +84,7 @@ body {
 
 /* Form body */
 h1 {
-    font-family: 'Alata', sans-serif;
+    /*font-family: 'Alata', sans-serif;*/
     font-size: 400%;
     text-align: center;
     color: #fff;
@@ -103,6 +102,11 @@ h1:after {
     right: 0;
     width: 100%;
 
+}
+h3 {
+    font-size: 75%;
+    color: #fff;
+    text-align: right;
 }
 
 .body-box h2 {
@@ -174,7 +178,8 @@ form {
     bottom: 0; /* Stay at the top */
     left: 0;
     /*background-image: linear-gradient(#00AD4B, #00672D); !* Black *!*/
-    background-color: #00ad4b;
+    /*background-color: #00ad4b;*/
+    background-color: #1d263b;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding: 10px;
     border-radius: 10px;
@@ -217,16 +222,18 @@ form {
 /* Page 2 */
 textarea {
     margin-top: 20px;
-    padding: 10px;
-    width: 40vw;
-    height: 70vh;
+    padding: 1px 10px;
+    width: 30vw;
+    /*height: 70vh;*/
     border-color: white;
     /*background-color: #4cb963;*/
     /*background-color: #a0eade;*/
-    background-color: #f0fff0;
+    /*background-color: #f0fff0;*/
+    background-color: #4cb963;
+    color: #deedde;
     resize: none;
     border-radius: 10px;
-    color: #1d263b;
+    /*color: #1d263b;*/
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -264,19 +271,23 @@ textarea {
     display: flex;
 }
 
-.body-content ul {
+.stats-list {
     margin: 25px 0 25px 25px;
 }
 
-.body-content ul li {
+.stats-list li {
     margin-top: 15px;
     list-style: none;
     color: white;
 }
 
+.stats-list span {
+    font-weight: bold;
+}
+
 @-moz-document url-prefix() {
     * {
         scrollbar-width: thin;
-        scrollbar-color: #4cb963 rgba(205, 205, 205, 0);
+        scrollbar-color: #00ad4b rgba(205, 205, 205, 0);
     }
 }

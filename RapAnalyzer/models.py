@@ -1,17 +1,13 @@
 import requests
 import re
-from django.db import models
-# from .geniusGetter import *
 
 from bs4 import BeautifulSoup
 
 
-# Create your models here.
 def find_lyrics(url):
     page = requests.get(url)
-    html = BeautifulSoup(page.text, 'lxml')
-    lyrics = html.find('div', class_='lyrics').get_text()
-
+    soup = BeautifulSoup(page.text, 'lxml')
+    lyrics = soup.find('div', class_='lyrics').get_text()
     return lyrics
 
 
@@ -20,10 +16,8 @@ def get_song_info(*args):
     headers = {'Authorization': 'Bearer ' + 'ULuimckPtpbjfzBpV-nOi0UtSfmcaHtuUmz5v1w8hWmgUQphXNvglKhbDk_yjTz8'}
     parameters = " ".join(args)
     data = {'q': parameters}
-    # print("ARGS" + str(args))
-    # print(type(*args))
     response = requests.get(url, headers=headers, data=data)
-    # with open("kanye.json", "w") as file:
+    # with open("test.json", "w") as file:
     #     file.write(str(response.json()))
     return response.json()
 
@@ -37,12 +31,10 @@ def find_syllables(word):
     for vowel in vowels:
         counter += word.count(vowel)
 
-    # print("number of vowels " + str(counter))
-
     i = 0
     while i < len(word):
-        word_1 = word[i:i + 2]
-        word_2 = word[i:i + 3]
+        # word_1 = word[i:i + 2]
+        # word_2 = word[i:i + 3]
         if word[i:i + 3] in triphthongs:
             counter -= 2
             i += 1
@@ -57,7 +49,6 @@ def find_syllables(word):
         elif word[-2:] == 'ed':
             counter -= 1
 
-    # print(word + " has " + str(counter) + " syllables")
     return counter
 
 
@@ -66,7 +57,7 @@ class Song:
                    "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
                    "piss", "asshole", "damn", "goddamn"]
 
-    drugs = ["percs", "percocet", "cocaine", "xan"]
+    drugs = ["percs", "percocet", "cocaine", "xan", "molly"]
 
     jewelery = ["patek"]
 
@@ -85,6 +76,8 @@ class Song:
         self.num_of_words = 0
         self.num_of_swear_words = 0
         self.num_of_drug_references = 0
+        self.num_of_jewelery_references = 0
+        self.num_of_adlibs = 0
 
         # The grade level indices
         self.gunning_fog = 0
@@ -154,6 +147,7 @@ class Song:
         #########################################################################
         # Second, the number of lines, words, and syllables of each word is found
         #########################################################################
+
         lines = self.lyrics.split("\n")
         self.num_of_lines = len(lines)
         for line in lines:
@@ -241,9 +235,9 @@ class Song:
         self.power_sumner_kearl = z - 2.2029
         self.power_sumner_kearl = float(f"{self.power_sumner_kearl:.2f}")
 
-        ###########################################################
+        #########################################################################################
         # Finally, all of the extra/fun stats are calculated (swear words, drug references, etc.)
-        ###########################################################
+        #########################################################################################
 
         for word in self.swear_words:
             self.num_of_swear_words += self.bare_lyrics.count(word)
