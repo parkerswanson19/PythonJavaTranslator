@@ -2,8 +2,8 @@ import requests
 import re
 from django.db import models
 # from .geniusGetter import *
-
 from bs4 import BeautifulSoup
+from RapAnalyzer.toDB import to_database
 
 
 # Create your models here.
@@ -29,10 +29,21 @@ def get_song_info(song_title, artist_name):
     return response
 
 
+class SongDB(models.Model):
+    num_of_words = models.IntegerField()
+    title = models.TextField()
+    artist = models.TextField()
+    lyrics = models.TextField()
+    num_of_swear_words = models.IntegerField()
+    url = models.URLField()
+
+    def __str__(self):
+        return self.title
+
 class Song:
-    swear_words = ["fuck", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga", "niggas", "ass",
+    swear_words = ["fuck", "fucker", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga", "niggas", "ass",
                    "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
-                   "piss", "asshole", "damn", "goddamn"]
+                   "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
     drugs = ["percs", "percocet", "cocaine", "xan"]
 
@@ -90,3 +101,6 @@ class Song:
             self.num_of_swear_words += self.bare_lyrics.count(word)
 
         print("YEET " + str (self.num_of_swear_words))
+
+        to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+                    hit["result"]["url"])
