@@ -91,7 +91,7 @@ class Song:
 
     drugs = ["percs", "percocet", "cocaine", "xan", "molly"]
 
-    jewelery = ["patek"]
+    jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie"]
 
     def __init__(self, song_title, artist, lyrics_query):
         # Attributes that the user (can) enter
