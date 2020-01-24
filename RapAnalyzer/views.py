@@ -13,7 +13,7 @@ def RapAnalyzerAnalyze(request):
     # Creates a new Song object and assigns it to a local variable
     # 'content' is the name of the first textbox on the HTML page. It's telling Django to take the content of that box,
     # and assign it to the input field in the InputtedCode class
-    new_input = Song(request.POST['song-name'], request.POST['artist-name'])
+    new_input = Song(request.POST['song-name'], request.POST['artist-name'], request.POST['lyrics'])
 
     new_input.analyze()
 

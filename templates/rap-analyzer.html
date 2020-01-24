@@ -28,6 +28,7 @@
     <div class="body-content">
         <div class="body-box">
             <h1>Hello world</h1>
+            <h3>Powered by Genius.com</h3>
             <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
                 <div class="form-row">
                     <p>Name of song</p>
@@ -36,6 +37,10 @@
                 <div class="form-row">
                     <p>Name of artist</p>
                     <input type="text" name="artist-name" value="" placeholder="Artist (Optional)"/>
+                </div>
+                <div class="form-row">
+                    <p>Don't know the name or artist?</p>
+                    <input type="text" name="lyrics" value="" placeholder="Lyrics"/>
                 </div>
                 <div class="form-row">
                     <button type="submit" class="btn">
