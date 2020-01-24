@@ -14,7 +14,8 @@
 body, html {
     /*background-color: #2ecc71;*/
     /*background-color: #00ad4b;*/
-    background-color: #4cb963;
+    /*background-color: #4cb963;*/
+    background-color: #eeeeee;
 }
 
 body {
@@ -37,8 +38,10 @@ body {
     justify-items: center;
     justify-self: center;
     padding: 10px;
-    background-color: #00ad4b;
+    /*background-color: #00ad4b;*/
+    background-color: white;
     border-radius: 15px;
+    box-shadow: 5px 5px 10px #5c6784;
 }
 
 ::selection {
@@ -79,7 +82,7 @@ body {
 .header-left a {
     text-decoration: none;
     /*color: #065E88;*/
-    color: #fff;
+    color: #000000;
 }
 
 /* Form body */
@@ -87,7 +90,7 @@ h1 {
     /*font-family: 'Alata', sans-serif;*/
     font-size: 400%;
     text-align: center;
-    color: #fff;
+    color: #000000;
     position: relative;
 }
 
@@ -96,7 +99,7 @@ h1:after {
     content: "";
     height: 2px;
     bottom: -4px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -113,7 +116,7 @@ h3 {
     text-align: center;
     padding: 15px;
     font-size: 130%;
-    color: white;
+    color: #000000;
 }
 
 .body {
@@ -142,7 +145,7 @@ form {
 
 .form-row p {
     margin-right: 10px;
-    color: white;
+    color: #000000;
 }
 
 .form-row input {
@@ -150,7 +153,7 @@ form {
     border: none;
     border-bottom: 2px solid rgba(100, 100, 100, 0.3);
     transition: 0.2s;
-    color: #1d263b;
+    color: #2d4e6e;
 }
 
 .form-row input:focus {
@@ -229,8 +232,8 @@ textarea {
     /*background-color: #4cb963;*/
     /*background-color: #a0eade;*/
     /*background-color: #f0fff0;*/
-    background-color: #4cb963;
-    color: #deedde;
+    background-color: rgba(244, 255, 243, 0.17);
+    color: #000000;
     resize: none;
     border-radius: 10px;
     /*color: #1d263b;*/
@@ -278,7 +281,7 @@ textarea {
 .stats-list li {
     margin-top: 15px;
     list-style: none;
-    color: white;
+    color: #000000;
 }
 
 .stats-list span {
@@ -288,6 +291,6 @@ textarea {
 @-moz-document url-prefix() {
     * {
         scrollbar-width: thin;
-        scrollbar-color: #00ad4b rgba(205, 205, 205, 0);
+        scrollbar-color: #1d263b rgba(205, 205, 205, 0);
     }
 }
