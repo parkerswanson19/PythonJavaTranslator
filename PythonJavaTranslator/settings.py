@@ -87,7 +87,6 @@ DATABASES = {
         'PASSWORD': 'Sle5smfJV-n0d42Or-s9I1kb1QdXhMgk',
         'HOST': 'rajje.db.elephantsql.com',
         'PORT': '5432',
-
     }
 }
 

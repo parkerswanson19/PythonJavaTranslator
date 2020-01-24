@@ -146,8 +146,6 @@ def tryExcept(string, self_output):
         return self_output + output + "{\n"
 
 
-
-
 def forLoops(string, declared_variables):
     output = ""
     # Find whether the for loop is looping through an element(list/string) or through a range of numbers
