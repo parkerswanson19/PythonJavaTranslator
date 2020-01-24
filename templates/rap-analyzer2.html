@@ -34,8 +34,13 @@
                 <ul>
                     <li>Number of words:<br>{{ code.num_of_words }}</li>
                     <li>Number of swear words:<br>{{ code.num_of_swear_words }}</li>
-                    <li>Number of drug references:<br></li>
-                    <li>Average grade level of song:<br>(Placeholder)</li>
+{#                    <li>Number of drug references:<br></li>#}
+                    <li>Average grade level of song:<br></li>
+                    <ul>
+                        <li>Gunning Fog Index:<br>{{ code.gunning_fog }}</li>
+                        <li>The Flesch Formula:<br>{{ code.flesch }}</li>
+                        <li>Power Sumner Kearl<br>{{ code.power_sumner_kearl }}</li>
+                    </ul>
                     <li>Number of adlibs:<br>(Placeholder)</li>
                 </ul>
             </div>
