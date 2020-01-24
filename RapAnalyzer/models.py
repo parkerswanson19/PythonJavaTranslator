@@ -3,12 +3,15 @@ import re
 from django.db import models
 # from .geniusGetter import *
 from bs4 import BeautifulSoup
-from RapAnalyzer.toDB import to_database
 
+def to_database(title_, lyrics_, swear_words, num_words, artist_, url_):
+    obj = SongDB(title = title_, lyrics = lyrics_, num_of_words = num_words, url = url_,
+                 num_of_swear_words = swear_words, artist = artist_)
+    obj.save()
 
 def find_lyrics(url):
     page = requests.get(url)
-    soup = BeautifulSoup(page.text, 'lxml')
+    soup = BeautifulSoup(page.text, 'html.parser')
     lyrics = soup.find('div', class_='lyrics').get_text()
     return lyrics
 
