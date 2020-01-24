@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'receiveInput',
+    'RapAnalyzer'
     # Had to add the app to installed apps list so Django can see it
 ]
 
@@ -80,8 +81,13 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'zxtvpxus',
+        'USER': 'zxtvpxus',
+        'PASSWORD': 'Sle5smfJV-n0d42Or-s9I1kb1QdXhMgk',
+        'HOST': 'rajje.db.elephantsql.com',
+        'PORT': '5432',
+
     }
 }
 

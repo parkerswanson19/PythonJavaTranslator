@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
+    <title>Rap Analyzer</title>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <a href="/home/">madlabs.dev</a>
+    </div>
+    <div class="header-right">
+        <a href="/home/about/">About the Creators</a>
+        <a href="#">Contact Us</a>
+    </div>
+</div>
+<div class="body">
+    <div class="sidebar">
+        <h2 class="sidebar-header">MORE PROJECTS!</h2>
+        <li><a href="/translator/">Python to Java Translator</a></li>
+        <li><a href="/#/">More coming soon!</a></li>
+    </div>
+    <div class="body-content">
+        <div class="body-box">
+            <h1>Rap Analyzer</h1>
+            <h3>Powered by Genius.com</h3>
+            <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
+                <div class="form-row">
+                    <p>Name of song</p>
+                    <input type="text" name="song-name" value="" placeholder="Name"/>
+                </div>
+                <div class="form-row">
+                    <p>Name of artist</p>
+                    <input type="text" name="artist-name" value="" placeholder="Artist (Optional)"/>
+                </div>
+                <div class="form-row">
+                    <p>Don't know the name or artist?</p>
+                    <input type="text" name="lyrics" value="" placeholder="Lyrics"/>
+                </div>
+                <div class="form-row">
+                    <button type="submit" class="btn">
+                        Analyze!
+                    </button>
+                </div>
+            </form>
+            <div id="info-button" class="form-row">
+                <button href="/#" class="btn">
+                    How does this work?
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

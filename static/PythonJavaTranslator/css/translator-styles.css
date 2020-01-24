@@ -90,7 +90,8 @@ button:focus {
     margin-top: 50px;
 }
 
-.sidebar li {
+.sidebar li a {
+    text-decoration: none;
     margin-top: 20px;
     font-size: 70%;
     color: white;
