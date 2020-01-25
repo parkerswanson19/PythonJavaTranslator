@@ -81,11 +81,13 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd39em478lh03gf',
-        'USER': 'rvidkuahmzqgeq',
-        'PASSWORD': '43cf02b38c21269891dc1e382543f95aa5a38914beea716c79296c14f62f1b69',
-        'HOST': 'ec2-107-22-197-30.compute-1.amazonaws.com',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3'
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'd39em478lh03gf',
+        # 'USER': 'rvidkuahmzqgeq',
+        # 'PASSWORD': '43cf02b38c21269891dc1e382543f95aa5a38914beea716c79296c14f62f1b69',
+        # 'HOST': 'ec2-107-22-197-30.compute-1.amazonaws.com',
         # 'PORT': '5432',
     }
 }
