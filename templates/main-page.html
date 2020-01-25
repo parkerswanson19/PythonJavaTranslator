@@ -1,172 +1,170 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>madlabs.dev</title>
 
     <link
-      href="{% static 'PythonJavaTranslator/css/main-site-styles.css' %}"
-      rel="stylesheet"
+            href="{% static 'PythonJavaTranslator/css/main-site-styles.css' %}"
+            rel="stylesheet"
     />
-  </head>
+</head>
 
-  <body>
-    <section class="main-page">
-      <div class="header">
+<body>
+<section class="main-page">
+    <div class="header">
         <div class="header-left">
-          MadLabs
+            MadLabs
         </div>
         <div class="header-right">
-          <a href="/home/about/">About</a>
-          <a href="#">Contact</a>
+            <a href="/home/about/">About</a>
+            <a href="#">Contact</a>
         </div>
-      </div>
-      <div class="welcome">
+    </div>
+    <div class="welcome">
         <h1>Welcome to MadLabs!</h1>
-      </div>
-      <div class="pointer">
+    </div>
+    <div class="pointer">
         <a href="#portfolio">Our Portfolio!</a>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="portfolio" id="portfolio">
-      <div class="project">
+<section class="portfolio" id="portfolio">
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img
-              src="{% static 'PythonJavaTranslator/img/PythonToJavaTranslatorImage.png' %}"
-            />
-          </div>
+            <div class="content">
+                <img
+                        src="{% static 'PythonJavaTranslator/img/PythonToJavaTranslatorImage.png' %}"
+                />
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <h3>Python to Java Translator</h3>
-            <p>
-              This application translates Python and Java code. It is able to convert many different
-                aspects of the languages and accomplishes it very swiftly.
-            </p>
-            <h3>Tools/Frameworks used</h3>
-            <p>
-              On the backend we used Python, and on the frontend we used CSS, HTML, and JavaScript.
-                We also used Bootstrap, Django, and Heroku.
-            </p>
-            <a href="/translator/">Check it out!</a>
-          </div>
+            <div class="content">
+                <h3>Python to Java Translator</h3>
+                <p>
+                    This application translates Python and Java code. It is able to convert many different
+                    aspects of the languages and accomplishes it very swiftly.
+                </p>
+                <h3>Tools/Frameworks used</h3>
+                <p>
+                    On the backend we used Python, and on the frontend we used CSS, HTML, and JavaScript.
+                    We also used Bootstrap, Django, and Heroku.
+                </p>
+                <a href="/translator/">Check it out!</a>
+            </div>
         </div>
-      </div>
-      <div class="project">
+    </div>
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img src="https://loremflickr.com/320/160?random=1" />
-          </div>
+            <div class="content">
+                <img src="{% static 'PythonJavaTranslator/img/RapAnalyzer.png' %}"/>
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <h3>(Something webscraping?)</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <h3>Tools/Frameworks used</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <a href="#">Lorem, ipsum.</a>
-          </div>
+            <div class="content">
+                <h3>Rap Analyzer</h3>
+                <p>
+                    This application takes a given rap song and returns an analysis of the lyrics. The user learns
+                    the number of expletives used, the average grade level the song was written at, and much more.
+                </p>
+                <h3>Tools/Frameworks used</h3>
+                <p>
+                    We used Python for the backend, and HTML and CSS for the frontend. For the lyrics, the Genius API
+                    was used. Postgresql for the database, storing all of the songs analyzed.
+                </p>
+                <a href="/rap-analyzer/">Check it out!</a>
+            </div>
         </div>
-      </div>
-      <div class="project">
+    </div>
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img src="https://loremflickr.com/320/160?random=1" />
-          </div>
+            <div class="content">
+                <img src="https://loremflickr.com/320/160?random=1"/>
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <h3>(Something Raseberry Pi?)</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <h3>Tools/Frameworks used</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <a href="#">Lorem, ipsum.</a>
-          </div>
+            <div class="content">
+                <h3>(Something Raseberry Pi?)</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <h3>Tools/Frameworks used</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <a href="#">Lorem, ipsum.</a>
+            </div>
         </div>
-      </div>
-      <div class="project">
+    </div>
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img src="https://loremflickr.com/320/160?random=1" />
-          </div>
+            <div class="content">
+                <img src="https://loremflickr.com/320/160?random=1"/>
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <h3>Lorem ipsum dolor sit.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <h3>Lorem ipsum dolor sit.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <a href="#">Lorem, ipsum.</a>
-          </div>
+            <div class="content">
+                <h3>Lorem ipsum dolor sit.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <h3>Lorem ipsum dolor sit.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <a href="#">Lorem, ipsum.</a>
+            </div>
         </div>
-      </div>
-      <div class="project">
+    </div>
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img src="https://loremflickr.com/320/160?random=1" />
-          </div>
+            <div class="content">
+                <img src="https://loremflickr.com/320/160?random=1"/>
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <h3>Lorem ipsum dolor sit.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <h3>Lorem ipsum dolor sit.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <a href="#">Lorem, ipsum.</a>
-          </div>
+            <div class="content">
+                <h3>Lorem ipsum dolor sit.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <h3>Lorem ipsum dolor sit.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <a href="#">Lorem, ipsum.</a>
+            </div>
         </div>
-      </div>
-      <div class="project">
+    </div>
+    <div class="project">
         <div class="card card-img">
-          <div class="content">
-            <img src="https://loremflickr.com/320/160?random=1" />
-          </div>
+            <div class="content">
+                <img src="https://loremflickr.com/320/160?random=1"/>
+            </div>
         </div>
         <div class="card card-text">
-          <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              eveniet totam recusandae eum nulla, id dolore facere debitis
-              doloribus eius.
-            </p>
-            <a href="#">Lorem, ipsum.</a>
-          </div>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+                    eveniet totam recusandae eum nulla, id dolore facere debitis
+                    doloribus eius.
+                </p>
+                <a href="#">Lorem, ipsum.</a>
+            </div>
         </div>
-      </div>
-    </section>
-  </body>
+    </div>
+</section>
+</body>
 </html>
