@@ -80,6 +80,7 @@ body {
 
 .header-left a {
     font-size: 130%;
+    padding-left: 40px;
 }
 
 .header-right a,
