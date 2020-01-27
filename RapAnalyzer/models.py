@@ -139,7 +139,9 @@ class Song:
                 self.lyrics = "Error: Song not found. Check for typos."
                 return
             # Gets the lyrics by passing in the url of the first search result to find_lyrics()
-            self.lyrics = find_lyrics(song_info["response"]["hits"][0]["result"]["url"])
+            self.url = song_info["response"]["hits"][0]["result"]["url"]
+            self.lyrics = find_lyrics(self.url)
+
             # ALso gets the song's full name
             self.full_name = song_info["response"]["hits"][0]["result"]["full_title"]
         else:
@@ -156,18 +158,6 @@ class Song:
                 hit_name = hit["result"]["title"].lower()  # Make lowercase
                 # Remove all extra characters to make comparison easier for user
                 hit_name = re.sub('.|\(|\)|,|\u200b', '', hit_name)
-
-                # user_input_name = user_input_name.replace(".", "")
-                # user_input_name = user_input_name.replace("(", "")
-                # user_input_name = user_input_name.replace(")", "")
-                # user_input_name = user_input_name.replace(",", "")
-                # hit_name = hit_name.replace(".", "")
-                # hit_name = hit_name.replace("(", "")
-                # hit_name = hit_name.replace(")", "")
-                # hit_name = hit_name.replace(",", "")
-                # hit_name = hit_name.replace(u'\u200b', "")
-                # print("User_input_name: " + user_input_name)
-                # print("hit_name: " + hit_name)
 
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
@@ -192,11 +182,6 @@ class Song:
 
         # Removes all non alphanumeric characters from the lyrics
         self.bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", self.bare_lyrics)
-        # print(self.bare_lyrics)
-        # self.bare_lyrics = re.sub(",|\(|\)", '', self.bare_lyrics)
-        # self.bare_lyrics = self.bare_lyrics.replace(",", "")
-        # self.bare_lyrics = self.bare_lyrics.replace("(", "")
-        # self.bare_lyrics = self.bare_lyrics.replace(")", "")
         self.bare_lyrics = self.bare_lyrics.lower()
 
         # print(self.bare_lyrics)
@@ -274,8 +259,6 @@ class Song:
 
         for word in self.swear_words:
             self.num_of_swear_words += self.bare_lyrics.count(word)
-
-        # print("YEET " + str(self.num_of_swear_words))
 
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
                     self.url, self.num_of_jewelery_references, self.num_of_drug_references,
