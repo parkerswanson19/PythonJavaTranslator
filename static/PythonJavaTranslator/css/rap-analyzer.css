@@ -248,6 +248,10 @@ textarea {
     display: flex;
 }
 
+#back-row {
+    justify-content: space-between;
+}
+
 .stats-list {
     margin: 25px 0 25px 25px;
 }

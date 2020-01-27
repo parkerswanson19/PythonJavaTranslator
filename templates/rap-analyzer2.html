@@ -28,7 +28,11 @@
     <div class="body-content">
         <div class="body-box">
             <h1>Rap Analyzer</h1>
-            <h3>Powered by Genius.com</h3>
+            <div class="row" id="back-row">
+                <a href="#" onclick="history.go(-1)">Go Back</a>
+                <h3>Powered by Genius.com</h3>
+            </div>
+
             <h2>{{ code.full_name }}</h2>
             <div class="row">
                 <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
