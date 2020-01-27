@@ -9,8 +9,9 @@
     box-sizing: border-box;
     /*font-family: 'Roboto', sans-serif;*/
     font-family: 'Alata', sans-serif;
-    /*font-size: 0.8vw;*/
-    font-size: calc(0.3em + 0.6vw);
+    /*!*font-size: 0.8vw;*!*/
+    /*font-size: calc(0.3em + 0.6vw);*/
+    font-size: 20px;
 }
 
 body, html {
