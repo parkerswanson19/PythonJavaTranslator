@@ -169,7 +169,6 @@ class Song:
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
                     self.full_name = hit["result"]["full_title"]
-                    print(hit)
                     self.artist = hit["result"]["primary_artist"]["name"]
                     break
             else:
@@ -183,6 +182,19 @@ class Song:
         lines = self.lyrics.split("\n")
         self.num_of_lines = len(lines)
         for line in lines:
+            line_copy = line
+            # Counting the number of parentheses to find the number of adlibs
+            num_of_parentheses = line_copy.count('(')
+            index_2 = 0
+            while num_of_parentheses > 0:
+                index = line_copy.index("(")
+                index_2 = line_copy.index(")")
+                substring = line_copy[index + 1: index_2]
+                line_copy = line_copy[index_2 + 1:]
+                self.num_of_adlibs += (substring.count(",")) + 1
+                num_of_parentheses -= 1
+
+            # Adding only the lines that have lyrics to the variable, bare_lyrics
             if type(line) is None or len(line) == 0 or line[0] == "[":
                 self.num_of_lines -= 1
                 continue
