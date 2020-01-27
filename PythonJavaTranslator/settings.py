@@ -11,10 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+# import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# This is new:
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -25,7 +31,7 @@ SECRET_KEY = '1*v1@8js^l*d5fg2ar^t1nyhbp@!+y#)a-9a$1o6p$6#v%a824'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['madlabs-apps.herokuapp.com', 'jablab.io', 'www.jablab.io', 'madtown.io', 'www.madtown.io',
+ALLOWED_HOSTS = ['language-converter.herokuapp.com', 'jablab.io', 'www.jablab.io', 'madtown.io', 'www.madtown.io',
                  '127.0.0.1', 'www.madlabs.dev', 'madlabs.dev']
 
 # Application definition
@@ -51,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'PythonJavaTranslator.urls'
@@ -76,14 +83,13 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
