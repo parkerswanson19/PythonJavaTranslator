@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 # }
 
 DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
-DATABASES['default']['NAME'] = 'den1qbclavkue9'
+# DATABASES['default']['NAME'] = 'lpetmppxoqojfn'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
