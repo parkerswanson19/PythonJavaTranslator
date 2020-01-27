@@ -203,10 +203,10 @@ class Song:
         bare_lyrics_split = self.bare_lyrics.split()
         self.num_of_words = len(bare_lyrics_split)  # Counts the number of words in the song
 
-        #########################################################################
+        #######################################################################################################
         # Third, the number of syllables for each word, the total number of syllables, and the average sentence
         # length are calculated, essentially all of the stats needed by the formulas
-        #########################################################################
+        #######################################################################################################
 
         # Creates a set where each lyric only appears once, used to speed up syllable calculations
         lyrics_set = set(bare_lyrics_split)

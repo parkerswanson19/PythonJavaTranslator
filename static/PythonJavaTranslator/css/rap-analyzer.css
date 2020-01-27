@@ -9,7 +9,8 @@
     box-sizing: border-box;
     /*font-family: 'Roboto', sans-serif;*/
     font-family: 'Alata', sans-serif;
-    font-size: 20px;
+    /*font-size: 0.8vw;*/
+    font-size: calc(0.3em + 0.6vw);
 }
 
 body, html {
@@ -112,6 +113,7 @@ h1:after {
 
 }
 h3 {
+    margin-top: 5px;
     font-size: 75%;
     color: #000000;
     text-align: right;
