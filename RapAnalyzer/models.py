@@ -89,9 +89,12 @@ class Song:
                    "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
                    "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
-    drugs = ["percs", "percocet", "cocaine", "xan", "molly"]
+    drugs = ["percs", "percocet", "cocaine", "xan", "molly", "weed", "drugs", "coke", "lean", "8th", "dirty sprite",
+             "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca", "heroin",
+             "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy"]
 
-    jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie"]
+    jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
+                , "cuban", "cartier", "ice", "icy", ]
 
     def __init__(self, song_title, artist, lyrics_query):
         # Attributes that the user (can) enter
