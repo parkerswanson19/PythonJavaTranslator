@@ -4,10 +4,10 @@ from django.db import models
 from bs4 import BeautifulSoup
 
 
-def to_database(title_, lyrics_, swear_words, num_words, url_, artist_, jewelry_, drugs_, g, f, p,
+def to_database(title_, lyrics_, swear_words, num_words, artist_, url_, jewelry_, drugs_, g, f, p,
                 adlibs_, lines_, syllables_, big, sentences_):
-    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words,
-                 num_of_swear_words=swear_words, url = url_, artist=artist_, jewelry=jewelry_,
+    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_,
+                 num_of_swear_words=swear_words, artist=artist_, jewelry=jewelry_,
                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
                  sentence_length=sentences_)
@@ -68,7 +68,7 @@ class SongDB(models.Model):
     artist = models.TextField()
     lyrics = models.TextField()
     num_of_swear_words = models.IntegerField()
-    url = models.TextField()
+    url = models.URLField()
     jewelry = models.IntegerField()
     drugs = models.IntegerField()
     reading_level_g = models.FloatField()
@@ -98,7 +98,6 @@ class Song:
         self.song_title = song_title
         self.artist = artist
         self.lyrics_query = lyrics_query
-        self.url = ""
 
         self.full_name = ""  # This is for the name of the song with the artist and any features
         self.lyrics = ""  # This holds the original/full text representing the lyrics, meant to be displayed to user
@@ -275,7 +274,9 @@ class Song:
         for word in self.swear_words:
             self.num_of_swear_words += self.bare_lyrics.count(word)
 
-        to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.url, self.artist,
-                    self.num_of_jewelery_references, self.num_of_drug_references,
-                    self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-                    self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+        print("YEET " + str(self.num_of_swear_words))
+
+        # to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+        #             hit["result"]["url"], self.num_of_jewelery_references, self.num_of_drug_references,
+        #             self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
+        #             self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
