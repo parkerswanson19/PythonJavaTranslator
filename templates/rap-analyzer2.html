@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <title>Rap Analyzer</title>
 </head>
 <body>
@@ -20,16 +21,18 @@
     </div>
 </div>
 <div class="body">
-    <div class="sidebar">
-        <h2 class="sidebar-header">MORE PROJECTS!</h2>
-        <li><a href="/translator/">Python to Java Translator</a></li>
-        <li><a href="#">More coming soon!</a></li>
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <h2 class="sidebar-header">MORE PROJECTS!</h2>
+            <li><a href="/translator/">Python to Java Translator</a></li>
+            <li><a href="#">More coming soon!</a></li>
+        </div>
     </div>
     <div class="body-content">
         <div class="body-box">
             <h1>Rap Analyzer</h1>
             <div class="row" id="back-button">
-                <a href="#" onclick="history.go(-1)">Go Back</a>
+                <a href="#" onclick="history.go(-1)"><i class="icon ion-md-arrow"></i>Go Back</a>
                 <h3>Powered by Genius.com</h3>
             </div>
 
@@ -46,9 +49,9 @@
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;Power Sumner
                         Kearl<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.power_sumner_kearl }}</span></li>
                     <li>Number of swear words:<br><span>{{ code.num_of_swear_words }}</span></li>
-                    <li>Number of adlibs:<br><span>(Coming soon)</span></li>
-                    <li>Number of drug references:<br><span>(Coming soon)</span></li>
-                    <li>Number of jewelery references<br><span>(Coming soon)</span></li>
+                    <li>Number of adlibs:<br><span>{{ code.num_of_adlibs }}</span></li>
+                    <li>Number of drug references:<br><span>{{ code.num_of_drug_references }}</span></li>
+                    <li>Number of jewelery references<br><span>{{ code.num_of_jewelery_references }}</span></li>
                 </ul>
             </div>
         </div>

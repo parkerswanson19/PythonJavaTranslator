@@ -27,7 +27,7 @@ def get_song_info(*args):
     parameters = " ".join(args)
     data = {'q': parameters}
     response = requests.get(url, headers=headers, data=data)
-    # with open("test.json", "w") as file:
+    # with open("sicko-mode.json", "w") as file:
     #     file.write(str(response.json()))
     return response.json()
 
@@ -91,10 +91,10 @@ class Song:
 
     drugs = ["percs", "percocet", "cocaine", "xan", "molly", "weed", "drugs", "coke", "lean", "8th", "dirty sprite",
              "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca", "heroin",
-             "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy"]
+             "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
 
     jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
-                , "cuban", "cartier", "ice", "icy", ]
+                , "cuban", "cartier", "ice", "icy", "baguettes"]
 
     def __init__(self, song_title, artist, lyrics_query):
         # Attributes that the user (can) enter
@@ -147,8 +147,12 @@ class Song:
 
             # ALso gets the song's full name
             self.full_name = song_info["response"]["hits"][0]["result"]["full_title"]
+
+            # Fetches primary artist's name
+            self.artist = song_info["response"]["hits"][0]["primary_artist"]["name"]
         else:
             song_info = get_song_info(self.song_title, self.artist)
+            self.url = song_info["response"]["hits"][0]["result"]["url"]
             # with open("file.json", 'w') as file:
             #     file.write(str(song_info))
 
@@ -165,6 +169,8 @@ class Song:
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
                     self.full_name = hit["result"]["full_title"]
+                    print(hit)
+                    self.artist = hit["result"]["primary_artist"]["name"]
                     break
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
@@ -262,6 +268,12 @@ class Song:
 
         for word in self.swear_words:
             self.num_of_swear_words += self.bare_lyrics.count(word)
+
+        for word in self.drugs:
+            self.num_of_drug_references += self.bare_lyrics.count(word)
+
+        for word in self.jewelery:
+            self.num_of_jewelery_references += self.bare_lyrics.count(word)
 
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
                     self.url, self.num_of_jewelery_references, self.num_of_drug_references,
