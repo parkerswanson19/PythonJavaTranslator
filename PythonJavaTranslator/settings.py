@@ -12,9 +12,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 
 # Quick-start development settings - unsuitable for production
@@ -79,18 +84,8 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'd39em478lh03gf',
-        # 'USER': 'rvidkuahmzqgeq',
-        # 'PASSWORD': '43cf02b38c21269891dc1e382543f95aa5a38914beea716c79296c14f62f1b69',
-        # 'HOST': 'ec2-107-22-197-30.compute-1.amazonaws.com',
-        # 'PORT': '5432',
-    }
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
@@ -137,3 +132,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# This should already be in your settings.py
+#django_heroku.settings(locals())
+# This is new
+#del DATABASES['default']['OPTIONS']['sslmode']
