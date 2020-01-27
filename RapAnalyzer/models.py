@@ -276,7 +276,7 @@ class Song:
 
         print("YEET " + str(self.num_of_swear_words))
 
-        # to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-        #             hit["result"]["url"], self.num_of_jewelery_references, self.num_of_drug_references,
-        #             self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-        #             self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+        to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+                    hit["result"]["url"], self.num_of_jewelery_references, self.num_of_drug_references,
+                    self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
+                    self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
