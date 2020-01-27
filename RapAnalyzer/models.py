@@ -200,7 +200,7 @@ class Song:
                 continue
             # Only adds lines that are actual lyrics of the song, not headers
             self.bare_lyrics += line + " "
-
+        print(f"num of lines{self.num_of_lines}")
         # Removes all non alphanumeric characters from the lyrics
         self.bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", self.bare_lyrics)
         self.bare_lyrics = self.bare_lyrics.lower()
@@ -228,6 +228,7 @@ class Song:
                 self.num_of_big_words += 1  # This is for the Gunning Fog index which needs the number of words that are
             self.num_of_syllables += self.syllables_dict[word]
 
+        print(f"num of big words {self.num_of_big_words}")
         ###########################################################
         # Fourth, the three grade level measurements are calculated
         ###########################################################
@@ -286,6 +287,12 @@ class Song:
 
         for word in self.jewelery:
             self.num_of_jewelery_references += self.bare_lyrics.count(word)
+
+        print(self.bare_lyrics)
+        with open("lyrics2.txt", "w") as file:
+            lines = self.lyrics.split("\n")
+            for line in lines:
+                file.write(line + ".\n")
 
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
                     self.url, self.num_of_jewelery_references, self.num_of_drug_references,
