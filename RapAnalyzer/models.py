@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 def to_database(title_, lyrics_, swear_words, num_words, artist_, jewelry_, drugs_, g, f, p,
                 adlibs_, lines_, syllables_, big, sentences_):
-    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_,
+    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words,
                  num_of_swear_words=swear_words, artist=artist_, jewelry=jewelry_,
                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
