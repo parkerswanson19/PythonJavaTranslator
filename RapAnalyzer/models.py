@@ -275,8 +275,6 @@ class Song:
         for word in self.swear_words:
             self.num_of_swear_words += self.bare_lyrics.count(word)
 
-        print("YEET " + str(self.num_of_swear_words))
-
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.url, self.artist,
                     self.num_of_jewelery_references, self.num_of_drug_references,
                     self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,

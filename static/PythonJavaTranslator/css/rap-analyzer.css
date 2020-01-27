@@ -249,8 +249,13 @@ textarea {
     display: flex;
 }
 
-#back-row {
+#back-button {
     justify-content: space-between;
+}
+
+#back-button a {
+    text-decoration: none;
+
 }
 
 .stats-list {
