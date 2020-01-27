@@ -1,23 +1,15 @@
 {% load static %}
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*font-family: 'Roboto', sans-serif;*/
     font-family: 'Alata', sans-serif;
-    /*font-size: 0.8vw;*/
-    font-size: calc(0.3em + 0.6vw);
+    font-size: 20px;
 }
 
 body, html {
-    /*background-color: #2ecc71;*/
-    /*background-color: #00ad4b;*/
-    /*background-color: #4cb963;*/
-    /*background-color: #eeeeee;*/
     background-image: linear-gradient(rgba(33, 37, 41, 0.7), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/static/PythonJavaTranslator/img/Travis-scott.jpg");
     background-size: cover;
     background-position: center;
@@ -27,7 +19,6 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    /*overflow: hidden;*/
 }
 
 .body-content {
@@ -43,19 +34,10 @@ body {
     justify-items: center;
     justify-self: center;
     padding: 10px;
-    /*background-color: #00ad4b;*/
     background-color: white;
     border-radius: 15px;
     box-shadow: 5px 5px 10px #5c6784;
 }
-
-/*::selection {*/
-/*    background: #99EF36; !* WebKit/Blink Browsers *!*/
-/*}*/
-
-/*::-moz-selection {*/
-/*    background: #99EF36; !* Gecko Browsers *!*/
-/*}*/
 
 /* Header */
 .header {
@@ -93,7 +75,6 @@ body {
 
 /* Form body */
 h1 {
-    /*font-family: 'Alata', sans-serif;*/
     font-size: 400%;
     text-align: center;
     color: #000000;
@@ -178,7 +159,6 @@ form {
 
 /* Sidebar */
 .sidebar {
-    /*height: calc(90vh);*/
     height: 100%;
     margin-left: 20px;
     flex: 0 1 auto;
@@ -263,14 +243,6 @@ textarea {
 .lyrics-output::-webkit-scrollbar-thumb:hover {
     background: #e0e8db;
 }
-
-/*.lyrics-output::selection {*/
-/*  background: rgba(76, 188, 95, 0.76); !* WebKit/Blink Browsers *!*/
-/*}*/
-
-/*.lyrics-output::-moz-selection {*/
-/*  background: rgba(76, 188, 95, 0.76); !* Gecko Browsers *!*/
-/*}*/
 
 .row {
     display: flex;
