@@ -1,5 +1,6 @@
 {% load static %}
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
 * {
     margin: 0;
@@ -246,6 +247,15 @@ textarea {
 
 .row {
     display: flex;
+}
+
+#back-button {
+    justify-content: space-between;
+}
+
+#back-button a {
+    text-decoration: none;
+
 }
 
 .stats-list {
