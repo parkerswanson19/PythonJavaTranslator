@@ -292,10 +292,10 @@ class Song:
             self.num_of_jewelery_references += self.bare_lyrics.count(word)
 
         # print(self.bare_lyrics)
-        with open("lyrics2.txt", "w") as file:
-            lines = self.lyrics.split("\n")
-            for line in lines:
-                file.write(line + ".\n")
+        # with open("lyrics2.txt", "w") as file:
+        #     lines = self.lyrics.split("\n")
+        #     for line in lines:
+        #         file.write(line + ".\n")
 
         to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
                     self.url, self.num_of_jewelery_references, self.num_of_drug_references,
