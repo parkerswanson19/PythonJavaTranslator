@@ -107,6 +107,7 @@ class Song:
         self.bare_lyrics = ""  # String of all of the words extracted without any new lines, punctuations, or headers
         # ^ Meant to be used in analysis
         self.url = ""
+        self.img_url = ""
 
         # Stats about the song
         self.num_of_words = 0
@@ -150,6 +151,8 @@ class Song:
 
             # Fetches primary artist's name
             self.artist = song_info["response"]["hits"][0]["primary_artist"]["name"]
+
+            self.img_url = song_info["response"]["hits"][0]["primary_artist"]["name"]
         else:
             song_info = get_song_info(self.song_title, self.artist)
             self.url = song_info["response"]["hits"][0]["result"]["url"]
@@ -200,7 +203,7 @@ class Song:
                 continue
             # Only adds lines that are actual lyrics of the song, not headers
             self.bare_lyrics += line + " "
-        print(f"num of lines{self.num_of_lines}")
+        # print(f"num of lines{self.num_of_lines}")
         # Removes all non alphanumeric characters from the lyrics
         self.bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", self.bare_lyrics)
         self.bare_lyrics = self.bare_lyrics.lower()
@@ -228,7 +231,7 @@ class Song:
                 self.num_of_big_words += 1  # This is for the Gunning Fog index which needs the number of words that are
             self.num_of_syllables += self.syllables_dict[word]
 
-        print(f"num of big words {self.num_of_big_words}")
+        # print(f"num of big words {self.num_of_big_words}")
         ###########################################################
         # Fourth, the three grade level measurements are calculated
         ###########################################################
@@ -288,7 +291,7 @@ class Song:
         for word in self.jewelery:
             self.num_of_jewelery_references += self.bare_lyrics.count(word)
 
-        print(self.bare_lyrics)
+        # print(self.bare_lyrics)
         with open("lyrics2.txt", "w") as file:
             lines = self.lyrics.split("\n")
             for line in lines:
