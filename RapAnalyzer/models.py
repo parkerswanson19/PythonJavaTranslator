@@ -150,9 +150,9 @@ class Song:
             self.full_name = song_info["response"]["hits"][0]["result"]["full_title"]
 
             # Fetches primary artist's name
-            self.artist = song_info["response"]["hits"][0]["primary_artist"]["name"]
+            self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
 
-            self.img_url = song_info["response"]["hits"][0]["primary_artist"]["name"]
+            self.img_url = song_info["response"]["hits"][0]["result"]["url"]
         else:
             song_info = get_song_info(self.song_title, self.artist)
             self.url = song_info["response"]["hits"][0]["result"]["url"]
@@ -173,6 +173,7 @@ class Song:
                     self.lyrics = find_lyrics(hit["result"]["url"])
                     self.full_name = hit["result"]["full_title"]
                     self.artist = hit["result"]["primary_artist"]["name"]
+                    self.img_url = hit["result"]["primary_artist"]["name"]
                     break
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
