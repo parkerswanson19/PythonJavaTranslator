@@ -27,8 +27,8 @@ def get_song_info(*args):
     parameters = " ".join(args)
     data = {'q': parameters}
     response = requests.get(url, headers=headers, data=data)
-    # with open("sicko-mode.json", "w") as file:
-    #     file.write(str(response.json()))
+    with open("hoes.json", "w") as file:
+        file.write(str(response.json()))
     return response.json()
 
 
@@ -189,14 +189,18 @@ class Song:
             line_copy = line
             # Counting the number of parentheses to find the number of adlibs
             num_of_parentheses = line_copy.count('(')
+            print(line_copy)
             index_2 = 0
             while num_of_parentheses > 0:
-                index = line_copy.index("(")
-                index_2 = line_copy.index(")")
-                substring = line_copy[index + 1: index_2]
-                line_copy = line_copy[index_2 + 1:]
-                self.num_of_adlibs += (substring.count(",")) + 1
-                num_of_parentheses -= 1
+                try:
+                    index = line_copy.index("(")
+                    index_2 = line_copy.index(")")
+                    substring = line_copy[index + 1: index_2]
+                    line_copy = line_copy[index_2 + 1:]
+                    self.num_of_adlibs += (substring.count(",")) + 1
+                    num_of_parentheses -= 1
+                except:
+                    num_of_parentheses -= 1
 
             # Adding only the lines that have lyrics to the variable, bare_lyrics
             if type(line) is None or len(line) == 0 or line[0] == "[":
