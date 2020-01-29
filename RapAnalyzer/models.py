@@ -94,7 +94,7 @@ class Song:
              "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
 
     jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
-                , "cuban", "cartier", "ice", "icy", "baguettes"]
+        , "cuban", "cartier", "ice", "icy", "baguettes"]
 
     def __init__(self, song_title, artist, lyrics_query):
         # Attributes that the user (can) enter
@@ -189,7 +189,6 @@ class Song:
             line_copy = line
             # Counting the number of parentheses to find the number of adlibs
             num_of_parentheses = line_copy.count('(')
-            print(line_copy)
             index_2 = 0
             while num_of_parentheses > 0:
                 try:
@@ -198,9 +197,9 @@ class Song:
                     substring = line_copy[index + 1: index_2]
                     line_copy = line_copy[index_2 + 1:]
                     self.num_of_adlibs += (substring.count(",")) + 1
-                    num_of_parentheses -= 1
                 except:
-                    num_of_parentheses -= 1
+                    pass
+                num_of_parentheses -= 1
 
             # Adding only the lines that have lyrics to the variable, bare_lyrics
             if type(line) is None or len(line) == 0 or line[0] == "[":
