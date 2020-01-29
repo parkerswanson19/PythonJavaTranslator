@@ -27,8 +27,8 @@ def get_song_info(*args):
     parameters = " ".join(args)
     data = {'q': parameters}
     response = requests.get(url, headers=headers, data=data)
-    with open("hoes.json", "w") as file:
-        file.write(str(response.json()))
+    # with open("hoes.json", "w") as file:
+    #     file.write(str(response.json()))
     return response.json()
 
 
