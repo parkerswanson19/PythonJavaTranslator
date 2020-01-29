@@ -20,6 +20,13 @@ def find_lyrics(url):
     lyrics = soup.find('div', class_='lyrics').get_text()
     return lyrics
 
+def order_by(category):
+    objs = SongDB.objects.order_by(category)
+    if len(objs) >= 10:
+        return objs[:10]
+    else:
+        return objs
+
 
 def get_song_info(*args):
     url = 'https://api.genius.com/search'
@@ -115,12 +122,12 @@ class Song:
         self.num_of_drug_references = 0
         self.num_of_jewelery_references = 0
         self.num_of_adlibs = 0
-        self.to_add = 0
-        self.gunning_counter = 0
-        self.flesch_counter = 0
-        self.sumner_counter = 0
-        self.drugs_counter = 0
-        self.adlibs_counter = 0
+        # self.to_add = 0
+        # self.gunning_counter = 0
+        # self.flesch_counter = 0
+        # self.sumner_counter = 0
+        # self.drugs_counter = 0
+        # self.adlibs_counter = 0
 
         # The grade level indices
         self.gunning_fog = 0
@@ -313,35 +320,37 @@ class Song:
         for current in currents:
             # check to see if the song already exists in our DB
             if current.title == self.full_name:
-                return
-
-            if self.gunning_fog < current.reading_level_g:
-                self.gunning_counter += 1
-            if self.flesch < current.reading_level_f:
-                self.flesch_counter += 1
-            if self.power_sumner_kearl < current.reading_level_p:
-                self.sumner_counter += 1
-            if self.num_of_drug_references < current.drugs:
-                self.drugs_counter += 1
-            if self.num_of_adlibs < current.adlibs:
-                self.adlibs_counter += 1
-
-        if self.gunning_counter <= 10:
-            self.to_add += 1
-        if self.sumner_counter <= 10:
-            self.to_add += 1
-        if self.flesch_counter <= 10:
-            self.to_add += 1
-        if self.drugs_counter <= 10:
-            self.to_add += 1
-        if self.adlibs_counter <= 10:
-            self.to_add += 1
-
-        if self.to_add > 0:
+                break
+        else:
             to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
                         self.url, self.num_of_jewelery_references, self.num_of_drug_references,
                         self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
                         self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+
+
+        #     if self.gunning_fog < current.reading_level_g:
+        #         self.gunning_counter += 1
+        #     if self.flesch < current.reading_level_f:
+        #         self.flesch_counter += 1
+        #     if self.power_sumner_kearl < current.reading_level_p:
+        #         self.sumner_counter += 1
+        #     if self.num_of_drug_references < current.drugs:
+        #         self.drugs_counter += 1
+        #     if self.num_of_adlibs < current.adlibs:
+        #         self.adlibs_counter += 1
+        #
+        # if self.gunning_counter <= 10:
+        #     self.to_add += 1
+        # if self.sumner_counter <= 10:
+        #     self.to_add += 1
+        # if self.flesch_counter <= 10:
+        #     self.to_add += 1
+        # if self.drugs_counter <= 10:
+        #     self.to_add += 1
+        # if self.adlibs_counter <= 10:
+        #     self.to_add += 1
+
+        # if self.to_add > 0:
 
 
         # to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
