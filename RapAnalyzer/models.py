@@ -4,11 +4,12 @@ from django.db import models
 from bs4 import BeautifulSoup
 
 
-def to_database(title_, lyrics_, swear_words, num_words, artist_, url_, img_url_, header_url_, jewelry_, drugs_, g,
+def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
+                drugs_, g,
                 f, p, adlibs_, lines_, syllables_, big, sentences_):
     obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_, img_url=img_url_,
                  header_url=header_url_,
-                 num_of_swear_words=swear_words, artist=artist_, jewelry=jewelry_,
+                 num_of_swear_words=swear_words, artist=artist_, full_artists=full_artist_, jewelry=jewelry_,
                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
                  sentence_length=sentences_)
@@ -36,7 +37,7 @@ def get_song_info(*args):
     parameters = " ".join(args)
     data = {'q': parameters}
     response = requests.get(url, headers=headers, data=data)
-    # with open("hoes.json", "w") as file:
+    # with open("test.json", "w") as file:
     #     file.write(str(response.json()))
     return response.json()
 
@@ -168,8 +169,9 @@ class Song:
 
             # ALso gets the song's full name
             full_name = song_info["response"]["hits"][0]["result"]["full_title"]
+            full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
             self.song_title = full_name[:full_name.index(" by ")]
-            self.full_artists_names = full_name[full_name.index(" by ") + 5:]
+            self.full_artists_names = full_name[full_name.index(" by ") + 4:]
 
             # Fetches primary artist's name
             self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
@@ -330,12 +332,12 @@ class Song:
 
         currents = SongDB.objects.all()
 
-        if len(currents) == 0:
-            to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-                        self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
-                        self.num_of_drug_references,
-                        self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-                        self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+        # if len(currents) == 0:
+        #     to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+        #                 self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
+        #                 self.num_of_drug_references,
+        #                 self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
+        #                 self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
 
         for current in currents:
             # check to see if the song already exists in our DB
@@ -343,10 +345,10 @@ class Song:
                 break
         else:
             to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-                        self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
-                        self.num_of_drug_references,
-                        self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-                        self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+                        self.full_artists_names, self.url, self.img_url, self.header_url,
+                        self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
+                        self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
+                        self.num_of_big_words, self.avg_sen_len)
 
         #     if self.gunning_fog < current.reading_level_g:
         #         self.gunning_counter += 1
