@@ -31,12 +31,20 @@
     <div class="body-content">
         <div class="body-box">
             <h1>Rap Analyzer</h1>
-            <div class="row" id="back-button">
+            <div class="row" id="body-box-subheader">
                 <a href="#" onclick="history.go(-1)">Go Back</a> <!-- <i class="icon arrow-md-back"></i> -->
-                <h3>Powered by Genius.com</h3>
+                <a href={{ code.url }}>Check this song out on Genius.com</a>
+                {#                <h3>Powered by Genius.com</h3>#}
+            </div>
+            <div class="title-row">
+{#                <img src={{ code.img_url }}>#}
+                <div id="title">
+                    <h2>{{ code.song_title }}</h2>
+                    <h3>{{ code.full_name }}</h3>
+                </div>
+{#                <img src={{ code.header_url }}>#}
             </div>
 
-            <h2>{{ code.full_name }}</h2>
             <div class="row">
                 <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
                 <ul class="stats-list">

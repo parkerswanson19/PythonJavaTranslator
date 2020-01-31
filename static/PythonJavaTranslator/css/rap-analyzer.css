@@ -7,7 +7,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Alata', sans-serif;
-    font-size: 20px;
+    /*font-size: 20px;*/
+    font-size: calc(15px + 0.5vw);
 }
 
 body, html {
@@ -65,8 +66,8 @@ body {
 }
 
 .header-left a {
-    font-size: 130%;
-    padding-left: 40px;
+    font-size: 140%;
+    padding-left: 10px;
     position: fixed;
 }
 
@@ -161,11 +162,12 @@ form {
     cursor: pointer;
 }
 
-/* Sidebar */
-.sidebar-container {
-    width: 230px;
-}
+/*#body-boy-subheader a {*/
+/*    font-size: 50%;*/
+/*}*/
 
+
+/* Sidebar */
 .sidebar {
     height: 90%;
     margin-left: 20px;
@@ -185,9 +187,9 @@ form {
 .sidebar h2 {
     color: white;
     font-weight: 300;
-    font-size: 85%;
+    font-size: 80%;
     text-align: center;
-    margin: 15px 30px 15px;
+    margin: 15px 10px 15px;
 }
 
 .sidebar-header:after {
@@ -201,7 +203,7 @@ form {
 }
 
 .sidebar li:first-of-type {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .sidebar li {
@@ -212,7 +214,7 @@ form {
 .sidebar a {
     text-decoration: none;
     margin-top: 10px;
-    font-size: 70%;
+    font-size: 60%;
     color: white;
     font-weight: 300;
 }
@@ -228,6 +230,15 @@ textarea {
     resize: none;
     border-radius: 10px;
     font-family: 'Ubuntu', sans-serif;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+}
+
+#title h2 {
+    padding: 0;
 }
 
 /* width */
@@ -256,16 +267,17 @@ textarea {
     display: flex;
 }
 
-#back-button {
+#body-box-subheader {
     justify-content: space-between;
 }
 
-#back-button a {
+#body-box-subheader a {
     text-decoration: none;
+    font-size: 75%;
 }
 
-#back-button a:visited,
-#back-button a:active {
+#body-box-subheader a:visited,
+#body-box-subheader a:active {
     color: #000000;
 }
 
