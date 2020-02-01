@@ -4,10 +4,12 @@ from django.db import models
 from bs4 import BeautifulSoup
 
 
-def to_database(title_, lyrics_, swear_words, num_words, artist_, url_, jewelry_, drugs_, g, f, p,
-                adlibs_, lines_, syllables_, big, sentences_):
-    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_,
-                 num_of_swear_words=swear_words, artist=artist_, jewelry=jewelry_,
+def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
+                drugs_, g,
+                f, p, adlibs_, lines_, syllables_, big, sentences_):
+    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_, img_url=img_url_,
+                 header_url=header_url_,
+                 num_of_swear_words=swear_words, artist=artist_, full_artists=full_artist_, jewelry=jewelry_,
                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
                  sentence_length=sentences_)
@@ -19,6 +21,7 @@ def find_lyrics(url):
     soup = BeautifulSoup(page.text, 'html.parser')
     lyrics = soup.find('div', class_='lyrics').get_text()
     return lyrics
+
 
 def order_by(category):
     objs = SongDB.objects.order_by(category)
@@ -34,7 +37,7 @@ def get_song_info(*args):
     parameters = " ".join(args)
     data = {'q': parameters}
     response = requests.get(url, headers=headers, data=data)
-    # with open("hoes.json", "w") as file:
+    # with open("test.json", "w") as file:
     #     file.write(str(response.json()))
     return response.json()
 
@@ -70,12 +73,15 @@ def find_syllables(word):
 
 
 class SongDB(models.Model):
-    num_of_words = models.IntegerField()
     title = models.TextField()
     artist = models.TextField()
+    full_artists = models.TextField()
     lyrics = models.TextField()
+    num_of_words = models.IntegerField()
     num_of_swear_words = models.IntegerField()
     url = models.URLField()
+    img_url = models.URLField()
+    header_url = models.URLField()
     jewelry = models.IntegerField()
     drugs = models.IntegerField()
     reading_level_g = models.FloatField()
@@ -96,12 +102,12 @@ class Song:
                    "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
                    "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
-    drugs = ["percs", "percocet", "cocaine", "xan", "molly", "weed", "drugs", "coke", "lean", "8th", "dirty sprite",
-             "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca", "heroin",
-             "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
+    drugs = ["percs", "percocet", "cocaine", "coco", "xan", "molly", "weed", "drugs", "coke", "lean", "8th",
+             "dirty sprite",  "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
+             "heroin", "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
 
     jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
-                , "cuban", "cartier", "ice", "icy", "baguettes"]
+        , "cuban", "cartier", "ice", "icy", "baguettes"]
 
     def __init__(self, song_title, artist, lyrics_query):
         # Attributes that the user (can) enter
@@ -109,12 +115,14 @@ class Song:
         self.artist = artist
         self.lyrics_query = lyrics_query
 
-        self.full_name = ""  # This is for the name of the song with the artist and any features
+        # self.full_name = ""  # This is for the name of the song with the artist and any features
+        self.full_artists_names = ""
         self.lyrics = ""  # This holds the original/full text representing the lyrics, meant to be displayed to user
         self.bare_lyrics = ""  # String of all of the words extracted without any new lines, punctuations, or headers
         # ^ Meant to be used in analysis
         self.url = ""
         self.img_url = ""
+        self.header_url = ""
 
         # Stats about the song
         self.num_of_words = 0
@@ -160,7 +168,10 @@ class Song:
             self.lyrics = find_lyrics(self.url)
 
             # ALso gets the song's full name
-            self.full_name = song_info["response"]["hits"][0]["result"]["full_title"]
+            full_name = song_info["response"]["hits"][0]["result"]["full_title"]
+            full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
+            self.song_title = full_name[:full_name.index(" by ")]
+            self.full_artists_names = full_name[full_name.index(" by ") + 4:]
 
             # Fetches primary artist's name
             self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
@@ -184,9 +195,14 @@ class Song:
 
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
-                    self.full_name = hit["result"]["full_title"]
+                    full_name = hit["result"]["full_title"]
+                    # print("YEET: " + self.full_name)
+                    self.song_title = full_name[:full_name.index("by")].strip()
+                    self.full_artists_names = full_name[full_name.index("by") + 3:].strip()
+
                     self.artist = hit["result"]["primary_artist"]["name"]
-                    self.img_url = hit["result"]["primary_artist"]["name"]
+                    self.img_url = hit["result"]["song_art_image_url"]
+                    self.header_url = hit["result"]["header_image_url"]
                     break
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
@@ -202,7 +218,6 @@ class Song:
             line_copy = line
             # Counting the number of parentheses to find the number of adlibs
             num_of_parentheses = line_copy.count('(')
-            print(line_copy)
             index_2 = 0
             while num_of_parentheses > 0:
                 try:
@@ -211,9 +226,9 @@ class Song:
                     substring = line_copy[index + 1: index_2]
                     line_copy = line_copy[index_2 + 1:]
                     self.num_of_adlibs += (substring.count(",")) + 1
-                    num_of_parentheses -= 1
                 except:
-                    num_of_parentheses -= 1
+                    pass
+                num_of_parentheses -= 1
 
             # Adding only the lines that have lyrics to the variable, bare_lyrics
             if type(line) is None or len(line) == 0 or line[0] == "[":
@@ -317,16 +332,23 @@ class Song:
 
         currents = SongDB.objects.all()
 
+        # if len(currents) == 0:
+        #     to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+        #                 self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
+        #                 self.num_of_drug_references,
+        #                 self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
+        #                 self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
+
         for current in currents:
             # check to see if the song already exists in our DB
-            if current.title == self.full_name:
+            if current.title == self.song_title and current.artist == self.artist:
                 break
         else:
-            to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-                        self.url, self.num_of_jewelery_references, self.num_of_drug_references,
-                        self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-                        self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
-
+            to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
+                        self.full_artists_names, self.url, self.img_url, self.header_url,
+                        self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
+                        self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
+                        self.num_of_big_words, self.avg_sen_len)
 
         #     if self.gunning_fog < current.reading_level_g:
         #         self.gunning_counter += 1
@@ -351,7 +373,6 @@ class Song:
         #     self.to_add += 1
 
         # if self.to_add > 0:
-
 
         # to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
         #             self.url, self.num_of_jewelery_references, self.num_of_drug_references,

@@ -90,6 +90,10 @@ button:focus {
     margin-top: 50px;
 }
 
+.sidebar li {
+    list-style: none;
+}
+
 .sidebar li a {
     text-decoration: none;
     margin-top: 20px;

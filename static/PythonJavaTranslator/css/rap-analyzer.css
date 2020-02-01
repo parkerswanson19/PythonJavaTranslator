@@ -1,4 +1,9 @@
-{% load static %}
+{
+%
+load
+static
+%
+}
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
@@ -7,7 +12,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Alata', sans-serif;
-    font-size: 20px;
+    /*font-size: 20px;*/
+    font-size: calc(15px + 0.5vw);
 }
 
 body, html {
@@ -65,8 +71,8 @@ body {
 }
 
 .header-left a {
-    font-size: 130%;
-    padding-left: 40px;
+    font-size: 140%;
+    padding-left: 10px;
     position: fixed;
 }
 
@@ -97,6 +103,7 @@ h1:after {
     width: 100%;
 
 }
+
 h3 {
     margin-top: 5px;
     font-size: 75%;
@@ -161,11 +168,12 @@ form {
     cursor: pointer;
 }
 
-/* Sidebar */
-.sidebar-container {
-    width: 230px;
-}
+/*#body-boy-subheader a {*/
+/*    font-size: 50%;*/
+/*}*/
 
+
+/* Sidebar */
 .sidebar {
     height: 90%;
     margin-left: 20px;
@@ -185,9 +193,9 @@ form {
 .sidebar h2 {
     color: white;
     font-weight: 300;
-    font-size: 85%;
+    font-size: 80%;
     text-align: center;
-    margin: 15px 30px 15px;
+    margin: 15px 10px 15px;
 }
 
 .sidebar-header:after {
@@ -201,7 +209,7 @@ form {
 }
 
 .sidebar li:first-of-type {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .sidebar li {
@@ -212,7 +220,7 @@ form {
 .sidebar a {
     text-decoration: none;
     margin-top: 10px;
-    font-size: 70%;
+    font-size: 60%;
     color: white;
     font-weight: 300;
 }
@@ -228,6 +236,29 @@ textarea {
     resize: none;
     border-radius: 10px;
     font-family: 'Ubuntu', sans-serif;
+}
+
+.title-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-row img {
+    max-width: 120px;
+    height: auto;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title h2 {
+    font-size: 150%;
+    padding: 0;
 }
 
 /* width */
@@ -256,16 +287,20 @@ textarea {
     display: flex;
 }
 
-#back-button {
+#body-box-subheader {
+    margin-top: 5px;
     justify-content: space-between;
 }
 
-#back-button a {
+#body-box-subheader a {
     text-decoration: none;
+    font-size: 75%;
 }
 
-#back-button a:visited,
-#back-button a:active {
+#body-box-subheader a:link,
+#body-box-subheader a:hover,
+#body-box-subheader a:active,
+#body-box-subheader a:visited {
     color: #000000;
 }
 
@@ -287,5 +322,55 @@ textarea {
     * {
         scrollbar-width: thin;
         scrollbar-color: #1d263b rgba(205, 205, 205, 0);
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    h1 {
+        font-size: 300%;
+    }
+
+    .header-left a {
+        font-size: 100%;
+        position: absolute;
+    }
+
+    .sidebar-container {
+        display: none;
+    }
+
+    .body-box {
+        width: 95vw;
+    }
+
+    #body-box-subheader a {
+        font-size: 85%;
+    }
+
+    .title-row {
+        flex-direction: column;
+    }
+
+    #title-row-header-img {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column-reverse;
+    }
+
+
+    .main-content textarea {
+        height: 80vh;
+        width: 100%;
+    }
+
+    .stats-list {
+        width: 100%;
+        margin: 0;
+    }
+
+    .stats-list li {
+        text-align: center;
     }
 }

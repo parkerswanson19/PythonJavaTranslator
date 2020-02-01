@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+/*@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");*/
 /*@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');*/
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Public+Sans&display=swap");
+/*@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");*/
+/*@import url("https://fonts.googleapis.com/css?family=Public+Sans&display=swap");*/
 @import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap");
 
 /* Basic Setup */
@@ -154,6 +154,11 @@ h1 {
     transform: translateY(0);
 }
 
+.portfolio .project .card.card-text .content {
+    display: flex;
+    flex-direction: column;
+}
+
 .portfolio .project .card.card-text .content p {
     margin: 0;
     padding: 0;
@@ -161,6 +166,7 @@ h1 {
 }
 
 .portfolio .project .card.card-text .content a {
+    align-self: center;
     margin: 15px 0 0;
     display: inline-block;
     text-decoration: none;
@@ -168,10 +174,28 @@ h1 {
     color: #333;
     padding: 5px;
     border: 1px solid #333;
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .portfolio .project .card.card-text .content a:hover {
     background: #333;
     color: #fff;
+}
+
+
+@media only screen and (max-width: 550px) {
+    .pointer {
+        text-wrap: none;
+    }
+
+    .pointer a {
+        text-wrap: none;
+        font-size: 150%;
+    }
+
+    .portfolio .project .card {
+        width: 90vw;
+    }
+
+
 }
