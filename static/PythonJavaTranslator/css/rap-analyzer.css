@@ -317,3 +317,23 @@ textarea {
         scrollbar-color: #1d263b rgba(205, 205, 205, 0);
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .sidebar-container {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .main-content textarea {
+        height: 80vh;
+        width: 100%;
+    }
+
+    .stats-list {
+        width: 100%;
+        padding: 0;
+    }
+}
