@@ -341,7 +341,7 @@ class Song:
 
         for current in currents:
             # check to see if the song already exists in our DB
-            if current.title == self.song_title:
+            if current.title == self.song_title and current.artist == self.artist:
                 break
         else:
             to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
