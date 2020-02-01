@@ -202,7 +202,7 @@ class Song:
 
                     self.artist = hit["result"]["primary_artist"]["name"]
                     self.img_url = hit["result"]["song_art_image_url"]
-                    self.header_url = hit["result"]["primary_artist"]["header_image_url"]
+                    self.header_url = hit["result"]["header_image_url"]
                     break
             else:
                 self.lyrics = "Error: Song not found. Check for typos."

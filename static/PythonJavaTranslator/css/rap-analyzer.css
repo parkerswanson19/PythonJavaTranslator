@@ -236,10 +236,12 @@ textarea {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .title-row img {
-    max-height: 100px;
+    max-width: 120px;
+    height: 100%;
 }
 
 #title {
@@ -249,6 +251,7 @@ textarea {
 }
 
 #title h2 {
+    font-size: 150%;
     padding: 0;
 }
 
