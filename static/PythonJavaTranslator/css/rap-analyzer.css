@@ -247,7 +247,7 @@ textarea {
 
 .title-row img {
     max-width: 120px;
-    height: 100%;
+    height: auto;
 }
 
 #title {
