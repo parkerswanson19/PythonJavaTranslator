@@ -1,4 +1,9 @@
-{% load static %}
+{
+%
+load
+static
+%
+}
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
@@ -98,6 +103,7 @@ h1:after {
     width: 100%;
 
 }
+
 h3 {
     margin-top: 5px;
     font-size: 75%;
@@ -282,6 +288,7 @@ textarea {
 }
 
 #body-box-subheader {
+    margin-top: 5px;
     justify-content: space-between;
 }
 
@@ -319,13 +326,39 @@ textarea {
 }
 
 @media only screen and (max-width: 1024px) {
+    h1 {
+        font-size: 300%;
+    }
+
+    .header-left a {
+        font-size: 100%;
+        position: absolute;
+    }
+
     .sidebar-container {
         display: none;
     }
 
-    .main-content {
+    .body-box {
+        width: 95vw;
+    }
+
+    #body-box-subheader a {
+        font-size: 85%;
+    }
+
+    .title-row {
         flex-direction: column;
     }
+
+    #title-row-header-img {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: column-reverse;
+    }
+
 
     .main-content textarea {
         height: 80vh;
@@ -334,6 +367,10 @@ textarea {
 
     .stats-list {
         width: 100%;
-        padding: 0;
+        margin: 0;
+    }
+
+    .stats-list li {
+        text-align: center;
     }
 }

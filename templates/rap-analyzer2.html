@@ -32,9 +32,8 @@
         <div class="body-box">
             <h1>Rap Analyzer</h1>
             <div class="row" id="body-box-subheader">
-                <a href="#" onclick="history.go(-1)">Go Back</a> <!-- <i class="icon arrow-md-back"></i> -->
-                <a href={{ code.url }}>Check this song out on Genius.com</a>
-                {#                <h3>Powered by Genius.com</h3>#}
+                <a href="#" onclick="history.go(-1)">Search again</a> <!-- <i class="icon arrow-md-back"></i> -->
+                <a href={{ code.url }}>Song's Genius.com page</a>
             </div>
             <div class="title-row">
                 <img src={{ code.img_url }}>
@@ -42,7 +41,7 @@
                     <h2>{{ code.song_title }}</h2>
                     <h3>{{ code.full_artists_names }}</h3>
                 </div>
-                <img src={{ code.header_url }}>
+                <img id="title-row-header-img" src={{ code.header_url }}>
             </div>
 
             <div class="row main-content">
