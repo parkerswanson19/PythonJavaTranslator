@@ -2,6 +2,34 @@ import requests
 import re
 from django.db import models
 from bs4 import BeautifulSoup
+# from selenium import webdriver
+#
+#
+# def get_top100():
+#     driver = webdriver.Chrome()
+#     genius_site = "https://genius.com/#top-songs"
+#     driver.get(genius_site)
+#     drop_down = driver.find_element_by_class_name("TextLabel-sc-8kw9oj-0 jUHitR")
+#     drop_down.click()
+#     rap = driver.find_element_by_class_name("SquareSelectOption__Container-h4rr3o-0 AegvI")
+#     rap.click()
+#     load_more = driver.find_element_by_class_name("SquareButton-sc-109lda7-0 kCybKa")
+#     for element in range(10):
+#         load_more.click()
+#         WebDriverWait(driver, 2)
+#
+#
+#     soupy = BeautifulSoup(driver.page_source, "html.parser")
+#     driver.close()
+#
+# get_top100()
+#
+#
+# def input_top100(top100):
+#     for title, artist in top100.items():
+#         temp_song = Song(title, artist, " ")
+#         temp_song.analyze()
+
 
 
 def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
