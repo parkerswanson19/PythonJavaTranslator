@@ -2,6 +2,7 @@ import requests
 import re
 from django.db import models
 from bs4 import BeautifulSoup
+# import selenium
 
 
 def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
@@ -155,18 +156,19 @@ class Song:
         ####################################################
         # First, the song lyrics and the full name are found
         ####################################################
-
+        # print("YEET 0")
         # If the user entered a lyric query, just return the first hit
         if len(self.lyrics_query) > 0:
             # Gets the json response from Genius with the entered lyric query
             song_info = get_song_info(self.lyrics_query, self.artist)
             if len(song_info["response"]["hits"]) < 1:  # If not hits are there, then return
                 self.lyrics = "Error: Song not found. Check for typos."
+                # print("Yeet 1")
                 return
             # Gets the lyrics by passing in the url of the first search result to find_lyrics()
             self.url = song_info["response"]["hits"][0]["result"]["url"]
             self.lyrics = find_lyrics(self.url)
-
+            # print("Yeet 2: " + self.lyrics)
             # ALso gets the song's full name
             full_name = song_info["response"]["hits"][0]["result"]["full_title"]
             full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
@@ -176,7 +178,9 @@ class Song:
             # Fetches primary artist's name
             self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
 
-            self.img_url = song_info["response"]["hits"][0]["result"]["url"]
+            # Grabs the images for the song
+            self.img_url = song_info["response"]["hits"][0]["result"]["song_art_image_url"]
+            self.header_url = song_info["response"]["hits"][0]["result"]["header_image_url"]
         else:
             song_info = get_song_info(self.song_title, self.artist)
             self.url = song_info["response"]["hits"][0]["result"]["url"]
@@ -203,7 +207,7 @@ class Song:
                     self.artist = hit["result"]["primary_artist"]["name"]
                     self.img_url = hit["result"]["song_art_image_url"]
                     self.header_url = hit["result"]["header_image_url"]
-                    break
+                    break # Don't delete this line lmao
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
                 return
