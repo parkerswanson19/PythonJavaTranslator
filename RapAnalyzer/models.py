@@ -204,7 +204,9 @@ class Song:
             # Fetches primary artist's name
             self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
 
-            self.img_url = song_info["response"]["hits"][0]["result"]["url"]
+            # Grabs the images for the song
+            self.img_url = song_info["response"]["hits"][0]["result"]["song_art_image_url"]
+            self.header_url = song_info["response"]["hits"][0]["result"]["header_image_url"]
         else:
             song_info = get_song_info(self.song_title, self.artist)
             self.url = song_info["response"]["hits"][0]["result"]["url"]
@@ -224,14 +226,14 @@ class Song:
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
                     full_name = hit["result"]["full_title"]
-                    # print("YEET: " + self.full_name)
-                    self.song_title = full_name[:full_name.index("by")].strip()
-                    self.full_artists_names = full_name[full_name.index("by") + 3:].strip()
+                    full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
+                    self.song_title = full_name[:full_name.index(" by ")].strip()
+                    self.full_artists_names = full_name[full_name.index(" by ") + 4:].strip()
 
                     self.artist = hit["result"]["primary_artist"]["name"]
                     self.img_url = hit["result"]["song_art_image_url"]
                     self.header_url = hit["result"]["header_image_url"]
-                    break
+                    break # Don't delete this line lmao
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
                 return

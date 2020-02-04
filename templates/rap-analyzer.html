@@ -51,12 +51,63 @@
                 </div>
             </form>
             <div id="info-button" class="form-row">
-                <button href="/#" class="btn">
+                <button type="button" class="btn trigger">
                     How does this work?
                 </button>
+                <div class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>
+                                Welcome to our Rap Music Analyzer!
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Imperdiet massa tincidunt nunc pulvinar
+                                sapien et ligula. At tempor commodo ullamcorper a lacus vestibulum. Dictum at tempor
+                                commodo ullamcorper. Dolor purus non enim praesent elementum facilisis. Phasellus
+                                vestibulum lorem sed risus ultricies tristique nulla. Scelerisque eleifend donec pretium
+                                vulputate. Ut tristique et egestas quis ipsum suspendisse. Pretium aenean pharetra magna
+                                ac placerat vestibulum lectus mauris ultrices. Interdum velit euismod in pellentesque.
+                                Feugiat sed lectus vestibulum mattis ullamcorper velit. Justo eget magna fermentum
+                                iaculis eu non. Nibh ipsum consequat nisl vel.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="close-button" class="link3-close-modal">
+                                Close
+                            </button>
+                            <button type="button" class="modal-btn">
+                                Contact us
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+<script>
+    var modal = document.querySelector(".modal");
+    var trigger = document.querySelector(".trigger");
+    var closeButton = document.querySelector(".close-button");
+
+
+    function toggleModal() {
+        modal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+        if (event.target === modal) {
+            toggleModal();
+        }
+    }
+
+    trigger.addEventListener("click", toggleModal);
+    closeButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+</script>
