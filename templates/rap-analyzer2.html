@@ -22,10 +22,21 @@
 <div class="body">
     <div class="sidebar-container">
         <div class="sidebar">
-            <h2 class="sidebar-header">MORE PROJECTS!</h2>
-            <li><a href="/translator/">Python to Java Translator</a></li>
-            <li><a href="#">More coming soon!</a></li>
+            <h2 class="sidebar-header">Songs with the<br>{{ adlibs_list.0 }}</h2>
+            <p></p>
+            {% for stat in adlibs_list.1 %}
+                <div class="list-item">
+                    <img src="{{ stat.img_url }}">
+                    <a href="#">{{ stat.title }}</a>
+                <span>{{ stat.adlibs }}</span>
+                </div>
+            {% endfor %}
         </div>
+        {#        <div class="sidebar">#}
+        {#            <h2 class="sidebar-header">MORE PROJECTS!</h2>#}
+        {#            <li><a href="/translator/">Python to Java Translator</a></li>#}
+        {#            <li><a href="#">More coming soon!</a></li>#}
+        {#        </div>#}
     </div>
     <div class="body-content">
         <div class="body-box">

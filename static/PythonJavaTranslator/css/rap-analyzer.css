@@ -201,15 +201,21 @@ form {
 .sidebar-header:after {
     content: "";
     position: absolute;
-    top: 70px;
+    top: 100px;
     right: 15px;
     height: 1px;
     width: calc(100% - 30px);
     background: rgba(255, 255, 255, 0.5);
 }
 
+.sidebar p:first-of-type {
+    color: white;
+    font-size: 75%;
+    margin-top: 30px;
+}
+
 .sidebar li:first-of-type {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .sidebar li {
@@ -217,12 +223,26 @@ form {
     list-style: none;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar span {
     text-decoration: none;
     margin-top: 10px;
     font-size: 60%;
     color: white;
     font-weight: 300;
+}
+
+.sidebar img {
+    margin-top: 5px;
+    max-height: 50px;
+}
+
+.list-item {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Page 2 */
