@@ -111,8 +111,21 @@ h2 {
     align-self: center;
 }
 
+.person .text {
+    /*height: 10vh;*/
+}
+
 .person p {
+    font-size: 120%;
     margin-top: 20px;
+}
+
+.person a {
+    text-decoration: none;
+}
+
+.person span {
+    font-weight: bold;
 }
 
 .image {
@@ -123,7 +136,13 @@ h2 {
     height: 100%;
 }
 
+.more {
+    display: flex;
+    flex-direction: column;
+}
+
 .personal-link {
+    align-self: center;
     display: inline-block;
     text-align: center;
     padding: 5px;

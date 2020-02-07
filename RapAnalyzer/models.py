@@ -126,7 +126,8 @@ class SongDB(models.Model):
 
 
 class Song:
-    swear_words = ["fuck", "fucker", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga", "niggas", "ass",
+    swear_words = ["fuck", "fucker", "fucked", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga",
+                   "niggas", "ass",
                    "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
                    "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 

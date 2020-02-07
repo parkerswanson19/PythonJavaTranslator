@@ -79,10 +79,7 @@ WSGI_APPLICATION = 'PythonJavaTranslator.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASE_URL = os.environ['DATABASE_URL']
-# print("YEET" + str(DATABASE_URL))
-
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600),
 }

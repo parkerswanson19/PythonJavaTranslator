@@ -1,9 +1,4 @@
-{
-%
-load
-static
-%
-}
+{% load static %}
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
@@ -12,8 +7,7 @@ static
     padding: 0;
     box-sizing: border-box;
     font-family: 'Alata', sans-serif;
-    /*font-size: 20px;*/
-    font-size: calc(15px + 0.5vw);
+    font-size: calc(14px + 0.4vw);
 }
 
 body, html {
@@ -95,7 +89,7 @@ h1:after {
     position: absolute;
     content: "";
     height: 2px;
-    bottom: -4px;
+    bottom: -9px;
     background: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     left: 0;
@@ -178,51 +172,155 @@ form {
     height: 90%;
     margin-left: 20px;
     flex: 0 1 auto;
-    width: auto;
-    max-width: 230px;
+    width: 200px;
+    /*max-width: 230px;*/
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     bottom: 0; /* Stay at the top */
     left: 0;
     background-color: #1d263b;
-    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow: hidden; /* Disable horizontal scroll */
+
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px #5c6784;
+
 }
 
-.sidebar h2 {
+.sidebar-slide h2 {
     color: white;
     font-weight: 300;
     font-size: 80%;
     text-align: center;
-    margin: 15px 10px 15px;
+    /*margin: 15px 10px 15px;*/
+    white-space: nowrap;
 }
 
-.sidebar-header:after {
+.sidebar-slide-header:after {
     content: "";
-    position: absolute;
-    top: 70px;
-    right: 15px;
+    position: relative;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
     height: 1px;
-    width: calc(100% - 30px);
+    width: calc(100% - 10px);
     background: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
 }
 
-.sidebar li:first-of-type {
-    margin-top: 40px;
+.sidebar-slide p:first-of-type {
+    color: white;
+    font-size: 75%;
+    margin-top: 30px;
 }
 
-.sidebar li {
+.sidebar-slide li:first-of-type {
+    margin-top: 20px;
+}
+
+.sidebar-slide li {
     padding: 5px;
     list-style: none;
 }
 
-.sidebar a {
+.sidebar-slide a,
+.sidebar-slide span {
     text-decoration: none;
-    margin-top: 10px;
-    font-size: 60%;
+
     color: white;
     font-weight: 300;
+}
+
+.sidebar-slide a {
+    font-size: 75%;
+    margin-top: 10px;
+}
+
+.sidebar-slide span {
+    font-size: 50%;
+}
+
+.sidebar-slide img {
+    margin-top: 5px;
+    max-height: 50px;
+}
+
+.list-item {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slideshow functionality*/
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    /*position: absolute;*/
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    /*font-weight: bold;*/
+    font-size: 70%;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+
+}
+
+.slide-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 7px;
+    width: 7px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 /* Page 2 */
@@ -398,90 +496,6 @@ textarea {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @-moz-document url-prefix() {
     * {
         scrollbar-width: thin;
@@ -499,7 +513,7 @@ textarea {
         position: absolute;
     }
 
-    .sidebar-container {
+    .sidebar {
         display: none;
     }
 
