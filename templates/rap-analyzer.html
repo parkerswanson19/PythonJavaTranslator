@@ -1,110 +1,111 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
-    <title>Rap Analyzer</title>
-</head>
-<body>
-
-<div class="header">
-    <div class="header-left">
-        <a href="/home/">madlabs.dev</a>
-    </div>
-    <div class="header-right">
-        <a href="/home/about/">About the Creators</a>
-        {#<a href="/home/">More Projects!</a>#}
-    </div>
-</div>
-<div class="body">
-    <div class="sidebar">
-        {% for list in lists %}
-            <div class="sidebar-slide">
-                <h2 class="sidebar-slide-header">Songs with the<br>{{ list.0 }}</h2>
-                {% for stat in list.1 %}
-                    <div class="list-item">
-                        <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>{{ stat.adlibs }}</span>
-                    </div>
-                {% endfor %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
+        <title>Rap Analyzer</title>
+    </head>
+    <body>
+    {% block header %}
+        <div class="header">
+            <div class="header-left">
+                <a href="/home/">madlabs.dev</a>
             </div>
-        {% endfor %}
-        <div style='text-align: center;'>
-            <span class="dot" onclick='currentSlide(1)'></span>
-            <span class="dot" onclick='currentSlide(2)'></span>
-            <span class="dot" onclick='currentSlide(3)'></span>
-            <span class="dot" onclick='currentSlide(4)'></span>
+            <div class="header-right">
+                <a href="/home/about/">About the Creators</a>
+                {#        <a href="/home/">More Projects!</a>#}
+            </div>
         </div>
-        <a class="prev" onclick='plusSlides(-1)'>&#10094;Previous</a>
-        <a class="next" onclick='plusSlides(1)'>&#10095;</a>
-    </div>
-    <div class="body-content">
+    {% endblock header %}
+    <div class="body">
+        {% block sidebar %}
+            <div class="sidebar-container">
+                <div class="sidebar">
+                    <h2 class="sidebar-header">Songs with the<br>{{ adlibs_list.0 }}</h2>
+                    <p></p>
+                    {% for stat in adlibs_list.1 %}
+                        <div class="list-item">
+                            <img src="{{ stat.img_url }}">
+                            <a href="#">{{ stat.title }}</a>
+                            <span>{{ stat.adlibs }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                {#        <div class="sidebar">#}
+                {#            <h2 class="sidebar-header">MORE PROJECTS!</h2>#}
+                {#            <li><a href="/translator/">Python to Java Translator</a></li>#}
+                {#            <li><a href="#">More coming soon!</a></li>#}
+                {#        </div>#}
+            </div>
+        {% endblock %}
         {% block body-content %}
-            <div class="body-box">
-                <h1>Rap Analyzer</h1>
-                <h3>Powered by Genius.com</h3>
-                <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
-                    <div class="form-row">
-                        <p>Name of song</p>
-                        <input type="text" name="song-name" value="" placeholder="Name"/>
-                    </div>
-                    <div class="form-row">
-                        <p>Name of artist</p>
-                        <input type="text" name="artist-name" value="" placeholder="Artist (Optional)"/>
-                    </div>
-                    <div class="form-row">
-                        <p>Don't know the name or artist?</p>
-                        <input type="text" name="lyrics" value="" placeholder="Lyrics"/>
-                    </div>
-                    <div class="form-row">
-                        <button type="submit" class="btn">
-                            Analyze!
+            <div class="body-content">
+                <div class="body-box">
+                    <h1>Rap Analyzer</h1>
+                    <h3>Powered by Genius.com</h3>
+                    <form action="/rap-analyzer/analyze/" method="post">{% csrf_token %}
+                        <div class="form-row">
+                            <p>Name of song</p>
+                            <input type="text" name="song-name" value="" placeholder="Name"/>
+                        </div>
+                        <div class="form-row">
+                            <p>Name of artist</p>
+                            <input type="text" name="artist-name" value="" placeholder="Artist (Optional)"/>
+                        </div>
+                        <div class="form-row">
+                            <p>Don't know the name or artist?</p>
+                            <input type="text" name="lyrics" value="" placeholder="Lyrics"/>
+                        </div>
+                        <div class="form-row">
+                            <button type="submit" class="btn">
+                                Analyze!
+                            </button>
+                        </div>
+                    </form>
+                    <div id="info-button" class="form-row">
+                        <button type="button" class="btn trigger">
+                            How does this work?
                         </button>
-                    </div>
-                </form>
-                <div id="info-button" class="form-row">
-                    <button type="button" class="btn trigger">
-                        How does this work?
-                    </button>
-                    <div class="modal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>
-                                    Welcome to our Rap Music Analyzer!
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Imperdiet massa tincidunt nunc
-                                    pulvinar
-                                    sapien et ligula. At tempor commodo ullamcorper a lacus vestibulum. Dictum at
-                                    tempor
-                                    commodo ullamcorper. Dolor purus non enim praesent elementum facilisis.
-                                    Phasellus
-                                    vestibulum lorem sed risus ultricies tristique nulla. Scelerisque eleifend donec
-                                    pretium
-                                    vulputate. Ut tristique et egestas quis ipsum suspendisse. Pretium aenean
-                                    pharetra
-                                    magna
-                                    ac placerat vestibulum lectus mauris ultrices. Interdum velit euismod in
-                                    pellentesque.
-                                    Feugiat sed lectus vestibulum mattis ullamcorper velit. Justo eget magna
-                                    fermentum
-                                    iaculis eu non. Nibh ipsum consequat nisl vel.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="close-button" class="link3-close-modal">
-                                    Close
-                                </button>
-                                <button type="button" class="modal-btn">
-                                    Contact us
-                                </button>
+                        <div class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>
+                                        Welcome to our Rap Music Analyzer!
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Imperdiet massa tincidunt nunc
+                                        pulvinar
+                                        sapien et ligula. At tempor commodo ullamcorper a lacus vestibulum. Dictum at
+                                        tempor
+                                        commodo ullamcorper. Dolor purus non enim praesent elementum facilisis.
+                                        Phasellus
+                                        vestibulum lorem sed risus ultricies tristique nulla. Scelerisque eleifend donec
+                                        pretium
+                                        vulputate. Ut tristique et egestas quis ipsum suspendisse. Pretium aenean
+                                        pharetra
+                                        magna
+                                        ac placerat vestibulum lectus mauris ultrices. Interdum velit euismod in
+                                        pellentesque.
+                                        Feugiat sed lectus vestibulum mattis ullamcorper velit. Justo eget magna
+                                        fermentum
+                                        iaculis eu non. Nibh ipsum consequat nisl vel.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="close-button" class="link3-close-modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="modal-btn">
+                                        Contact us
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,96 +113,27 @@
             </div>
         {% endblock body-content %}
     </div>
-</div>
-</body>
-</html>
+    </body>
+    </html>
 
-<script>
-    var modal = document.querySelector(".modal");
-    var trigger = document.querySelector(".trigger");
-    var closeButton = document.querySelector(".close-button");
+    <script>
+        var modal = document.querySelector(".modal");
+        var trigger = document.querySelector(".trigger");
+        var closeButton = document.querySelector(".close-button");
 
 
-    function toggleModal() {
-        modal.classList.toggle("show-modal");
-    }
-
-    function windowOnClick(event) {
-        if (event.target === modal) {
-            toggleModal();
+        function toggleModal() {
+            modal.classList.toggle("show-modal");
         }
-    }
 
-    trigger.addEventListener("click", toggleModal);
-    closeButton.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
-
-
-    function plusSlides(n) {
-        clearInterval(myTimer);
-        if (n < 0) {
-            showSlides(slideIndex -= 1);
-        } else {
-            showSlides(slideIndex += 1);
+        function windowOnClick(event) {
+            if (event.target === modal) {
+                toggleModal();
+            }
         }
-        if (n === -1) {
-            myTimer = setInterval(function () {
-                plusSlides(n + 2)
-            }, 4000);
-        } else {
-            myTimer = setInterval(function () {
-                plusSlides(n + 1)
-            }, 4000);
-        }
-    }
 
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("sidebar-slide");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-    }
-
-    window.addEventListener("load", function () {
-        showSlides(slideIndex);
-        myTimer = setInterval(function () {
-            plusSlides(1)
-        }, 4000);
-    });
-
-    function currentSlide(n) {
-        clearInterval(myTimer);
-        myTimer = setInterval(function () {
-            plusSlides(n + 1)
-        }, 4000);
-        showSlides(slideIndex = n);
-    }
-
-    var slideshowContainer = document.getElementsByClassName('sidebar')[0];
-    slideshowContainer.addEventListener('mouseenter', pause);
-    slideshowContainer.addEventListener('mouseleave', resume);
-
-    pause = () => {
-        clearInterval(myTimer);
-    };
-
-    resume = () => {
-        clearInterval(myTimer);
-        myTimer = setInterval(function () {
-            plusSlides(slideIndex)
-        }, 4000);
-    }
-</script>
+        trigger.addEventListener("click", toggleModal);
+        closeButton.addEventListener("click", toggleModal);
+        window.addEventListener("click", windowOnClick);
+    </script>
+{% endblock content %}
