@@ -226,10 +226,17 @@ form {
 .sidebar-slide a,
 .sidebar-slide span {
     text-decoration: none;
-    margin-top: 10px;
-    font-size: 60%;
+
     color: white;
     font-weight: 300;
+}
+
+.sidebar a {
+    font-size: 75%;
+    margin-top: 10px;
+}
+.sidebar span {
+    font-size: 50%;
 }
 
 .sidebar-slide img {

@@ -29,8 +29,8 @@
                 {% for stat in list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="#">{{ stat.title }}</a>
-                        <span>{{ stat.adlibs }}</span>
+                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+                        <span>{{ stat.num_of_swear_words }}</span>
                     </div>
                 {% endfor %}
             </div>

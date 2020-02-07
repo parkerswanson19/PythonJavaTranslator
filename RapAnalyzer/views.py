@@ -42,7 +42,7 @@ def RapAnalyzerAnalyze(request):
 
 def getTopLists():
     top_lists = [
-        ["most ad libs", SongDB.objects.order_by('-adlibs')[:4]],
-        ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4]],
+        ["most ad libs", SongDB.objects.order_by('-adlibs')[:4], "words"],
+        ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4], "ad libs"],
     ]
     return top_lists
