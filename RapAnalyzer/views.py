@@ -40,6 +40,10 @@ def RapAnalyzerAnalyze(request):
 def getTopLists():
     top_lists = {
         'adlibs_list': ["most ad libs", SongDB.objects.order_by('-adlibs')[:4]],
-        'swear_words_list': ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4]]
+        'swear_words_list': ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4]],
+        'drug_ref_list': ["most drug references", SongDB.objects.order_by('-drugs')[:4]],
+        'jewelery_ref_list': ["most jewelery references", SongDB.objects.order_by('-jewelry')[:4]],
+        'high_grade_lvl_list': ["highest grade level", SongDB.objects.order_by('-reading_level_g')[:4]],
+        'low_grade_lvl_list': ["lowest grade level", SongDB.objects.order_by('reading_level_g')[:4]],
     }
     return top_lists
