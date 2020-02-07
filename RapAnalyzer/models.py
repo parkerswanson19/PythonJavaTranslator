@@ -2,6 +2,8 @@ import requests
 import re
 from django.db import models
 from bs4 import BeautifulSoup
+
+
 # import selenium
 
 
@@ -105,7 +107,7 @@ class Song:
                    "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
     drugs = ["percs", "percocet", "cocaine", "coco", "xan", "molly", "weed", "drugs", "coke", "lean", "8th",
-             "dirty sprite",  "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
+             "dirty sprite", "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
              "heroin", "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
 
     jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
@@ -166,6 +168,7 @@ class Song:
                 self.lyrics = "Error: Song not found. Check for typos."
                 # print("Yeet 1")
                 return
+            song = song_info["response"]["hits"][0]
             # Gets the lyrics by passing in the url of the first search result to find_lyrics()
             self.url = song_info["response"]["hits"][0]["result"]["url"]
             self.lyrics = find_lyrics(self.url)
@@ -190,13 +193,17 @@ class Song:
 
             for hit in song_info["response"]["hits"]:
                 user_input_name = self.song_title.lower()  # Make the title lowercase for consistency
-
+                # print('YEET user input name: ' + user_input_name)
+                # user_input_name = user_input_name[]
                 # Remove all extra characters to make comparison easier for user
-                user_input_name = re.sub('.|\(|\)|,', '', user_input_name)
+                re.sub('.|(|)|,', '', user_input_name)
+                print('YEET user input name: ' + user_input_name)
 
                 hit_name = hit["result"]["title"].lower()  # Make lowercase
                 # Remove all extra characters to make comparison easier for user
-                hit_name = re.sub('.|\(|\)|,|\u200b', '', hit_name)
+                hit_name = re.sub('[()\u200b.,]', '', hit_name)
+                # hit_name = re.sub('[()]', '', hit_name)
+                print("hit name is " + hit_name)
 
                 if user_input_name in hit_name:
                     self.lyrics = find_lyrics(hit["result"]["url"])
@@ -204,11 +211,12 @@ class Song:
                     full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
                     self.song_title = full_name[:full_name.index(" by ")].strip()
                     self.full_artists_names = full_name[full_name.index(" by ") + 4:].strip()
+                    self.url = hit["result"]["url"]
 
                     self.artist = hit["result"]["primary_artist"]["name"]
                     self.img_url = hit["result"]["song_art_image_url"]
                     self.header_url = hit["result"]["header_image_url"]
-                    break # Don't delete this line lmao
+                    break  # Don't delete this line lmao
             else:
                 self.lyrics = "Error: Song not found. Check for typos."
                 return
