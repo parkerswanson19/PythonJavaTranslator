@@ -95,7 +95,7 @@ h1:after {
     position: absolute;
     content: "";
     height: 2px;
-    bottom: -4px;
+    bottom: -9px;
     background: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     left: 0;
@@ -174,20 +174,22 @@ form {
 
 
 /* Sidebar */
-.sidebar-slide {
+.sidebar {
     height: 90%;
     margin-left: 20px;
     flex: 0 1 auto;
-    width: auto;
-    max-width: 230px;
+    width: 200px;
+    /*max-width: 230px;*/
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     bottom: 0; /* Stay at the top */
     left: 0;
     background-color: #1d263b;
-    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow: hidden; /* Disable horizontal scroll */
+
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px #5c6784;
+
 }
 
 .sidebar-slide h2 {
@@ -195,17 +197,19 @@ form {
     font-weight: 300;
     font-size: 80%;
     text-align: center;
-    margin: 15px 10px 15px;
+    /*margin: 15px 10px 15px;*/
 }
 
 .sidebar-slide-header:after {
     content: "";
-    position: absolute;
-    top: 100px;
-    right: 15px;
+    position: relative;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
     height: 1px;
-    width: calc(100% - 30px);
+    width: calc(100% - 10px);
     background: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
 }
 
 .sidebar-slide p:first-of-type {
@@ -231,11 +235,12 @@ form {
     font-weight: 300;
 }
 
-.sidebar a {
+.sidebar-slide a {
     font-size: 75%;
     margin-top: 10px;
 }
-.sidebar span {
+
+.sidebar-slide span {
     font-size: 50%;
 }
 
@@ -425,88 +430,84 @@ textarea {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*dsfsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
+
+
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    /*position: absolute;*/
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    /*font-weight: bold;*/
+    font-size: 50%;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    /*background-color: rgba(0,0,0,0.8);*/
+}
+
+.slide-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
 
 
 @-moz-document url-prefix() {

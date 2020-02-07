@@ -19,14 +19,22 @@
         {#<a href="/home/">More Projects!</a>#}
     </div>
 </div>
-
 <div class="body">
     <div class="sidebar-container">
-        {% for list in lists %}
-            <div class="sidebar">
-                <h2 class="sidebar-header">Songs with the<br>{{ list.0 }}</h2>
-                <p></p>
-                {% for stat in list.1 %}
+        <div class="sidebar">
+            <div class="sidebar-slide">
+                <h2 class="sidebar-slide-header">Songs with the<br>{{ adlibs_list.0 }}</h2>
+                {% for stat in adlibs_list.1 %}
+                    <div class="list-item">
+                        <img src="{{ stat.img_url }}">
+                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+                        <span>{{ stat.adlibs }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="sidebar-slide">
+                <h2 class="sidebar-slide-header">Songs with the<br>{{ swear_words_list.0 }}</h2>
+                {% for stat in swear_words_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
@@ -34,8 +42,19 @@
                     </div>
                 {% endfor %}
             </div>
-        {% endfor %}
+            <div style='text-align: center;'>
+                <span class="dot" onclick='currentSlide(1)'></span>
+                <span class="dot" onclick='currentSlide(2)'></span>
+                <span class="dot" onclick='currentSlide(3)'></span>
+                <span class="dot" onclick='currentSlide(4)'></span>
+            </div>
+            <div class="slide-buttons">
+                <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
+                <a class="next" onclick='plusSlides(1)'>&#10095;</a>
+            </div>
+        </div>
     </div>
+
     <div class="body-content">
         {% block body-content %}
             <div class="body-box">
@@ -129,4 +148,38 @@
     trigger.addEventListener("click", toggleModal);
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
+
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("sidebar-slide");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
 </script>
