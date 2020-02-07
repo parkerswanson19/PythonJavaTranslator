@@ -22,17 +22,19 @@
 
 <div class="body">
     <div class="sidebar-container">
-        <div class="sidebar">
-            <h2 class="sidebar-header">Songs with the<br>{{ adlibs_list.0 }}</h2>
-            <p></p>
-            {% for stat in adlibs_list.1 %}
-                <div class="list-item">
-                    <img src="{{ stat.img_url }}">
-                    <a href="#">{{ stat.title }}</a>
-                    <span>{{ stat.adlibs }}</span>
-                </div>
-            {% endfor %}
-        </div>
+        {% for list in lists %}
+            <div class="sidebar">
+                <h2 class="sidebar-header">Songs with the<br>{{ list.0 }}</h2>
+                <p></p>
+                {% for stat in list.1 %}
+                    <div class="list-item">
+                        <img src="{{ stat.img_url }}">
+                        <a href="#">{{ stat.title }}</a>
+                        <span>{{ stat.adlibs }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     </div>
     <div class="body-content">
         {% block body-content %}
