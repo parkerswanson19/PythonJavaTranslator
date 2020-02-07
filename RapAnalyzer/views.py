@@ -12,6 +12,7 @@ def RapAnalyzerHomePage(request):
 
 
 def RapAnalyzerAnalyze(request):
+    print("Inside analyze")
     dictionary = getTopLists()
     # t0 = time.clock()
     # Creates a new Song object and assigns it to a local variable
@@ -19,6 +20,7 @@ def RapAnalyzerAnalyze(request):
     # and assign it to the input field in the InputtedCode class
     if len(request.POST['song-name']) == 0 and len(request.POST['artist-name']) == 0 and len(request.POST['lyrics']) \
             == 0:
+        print("YEET")
         return render(request, 'rap-analyzer.html')
 
     new_input = Song(request.POST['song-name'], request.POST['artist-name'], request.POST['lyrics'])
@@ -31,6 +33,7 @@ def RapAnalyzerAnalyze(request):
     # print("Time elapsed: ", t1 - t0)  # CPU seconds elapsed (floating point)
 
     # Re-renders the page and passes the InputtedCode object to the HTML file so the text boxes can be updated
+    print("yeet")
     return render(request, 'rap-analyzer2.html', dictionary)
 
 
