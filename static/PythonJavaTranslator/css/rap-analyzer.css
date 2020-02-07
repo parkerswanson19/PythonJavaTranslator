@@ -174,7 +174,7 @@ form {
 
 
 /* Sidebar */
-.sidebar {
+.sidebar-slide {
     height: 90%;
     margin-left: 20px;
     flex: 0 1 auto;
@@ -190,7 +190,7 @@ form {
     box-shadow: 0px 0px 15px #5c6784;
 }
 
-.sidebar h2 {
+.sidebar-slide h2 {
     color: white;
     font-weight: 300;
     font-size: 80%;
@@ -198,7 +198,7 @@ form {
     margin: 15px 10px 15px;
 }
 
-.sidebar-header:after {
+.sidebar-slide-header:after {
     content: "";
     position: absolute;
     top: 100px;
@@ -208,23 +208,23 @@ form {
     background: rgba(255, 255, 255, 0.5);
 }
 
-.sidebar p:first-of-type {
+.sidebar-slide p:first-of-type {
     color: white;
     font-size: 75%;
     margin-top: 30px;
 }
 
-.sidebar li:first-of-type {
+.sidebar-slide li:first-of-type {
     margin-top: 20px;
 }
 
-.sidebar li {
+.sidebar-slide li {
     padding: 5px;
     list-style: none;
 }
 
-.sidebar a,
-.sidebar span {
+.sidebar-slide a,
+.sidebar-slide span {
     text-decoration: none;
     margin-top: 10px;
     font-size: 60%;
@@ -232,7 +232,7 @@ form {
     font-weight: 300;
 }
 
-.sidebar img {
+.sidebar-slide img {
     margin-top: 5px;
     max-height: 50px;
 }
@@ -519,7 +519,7 @@ textarea {
         position: absolute;
     }
 
-    .sidebar-container {
+    .sidebar {
         display: none;
     }
 

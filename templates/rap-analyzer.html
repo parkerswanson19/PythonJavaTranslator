@@ -19,20 +19,28 @@
         {#<a href="/home/">More Projects!</a>#}
     </div>
 </div>
-
 <div class="body">
-    <div class="sidebar-container">
-        <div class="sidebar">
-            <h2 class="sidebar-header">Songs with the<br>{{ adlibs_list.0 }}</h2>
-            <p></p>
-            {% for stat in adlibs_list.1 %}
-                <div class="list-item">
-                    <img src="{{ stat.img_url }}">
-                    <a href="#">{{ stat.title }}</a>
-                    <span>{{ stat.adlibs }}</span>
-                </div>
-            {% endfor %}
+    <div class="sidebar">
+        {% for list in lists %}
+            <div class="sidebar-slide">
+                <h2 class="sidebar-slide-header">Songs with the<br>{{ list.0 }}</h2>
+                {% for stat in list.1 %}
+                    <div class="list-item">
+                        <img src="{{ stat.img_url }}">
+                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+                        <span>{{ stat.adlibs }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <div style='text-align: center;'>
+            <span class="dot" onclick='currentSlide(1)'></span>
+            <span class="dot" onclick='currentSlide(2)'></span>
+            <span class="dot" onclick='currentSlide(3)'></span>
+            <span class="dot" onclick='currentSlide(4)'></span>
         </div>
+        <a class="prev" onclick='plusSlides(-1)'>&#10094;Previous</a>
+        <a class="next" onclick='plusSlides(1)'>&#10095;</a>
     </div>
     <div class="body-content">
         {% block body-content %}
@@ -127,4 +135,73 @@
     trigger.addEventListener("click", toggleModal);
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
+
+
+    function plusSlides(n) {
+        clearInterval(myTimer);
+        if (n < 0) {
+            showSlides(slideIndex -= 1);
+        } else {
+            showSlides(slideIndex += 1);
+        }
+        if (n === -1) {
+            myTimer = setInterval(function () {
+                plusSlides(n + 2)
+            }, 4000);
+        } else {
+            myTimer = setInterval(function () {
+                plusSlides(n + 1)
+            }, 4000);
+        }
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("sidebar-slide");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+
+    window.addEventListener("load", function () {
+        showSlides(slideIndex);
+        myTimer = setInterval(function () {
+            plusSlides(1)
+        }, 4000);
+    });
+
+    function currentSlide(n) {
+        clearInterval(myTimer);
+        myTimer = setInterval(function () {
+            plusSlides(n + 1)
+        }, 4000);
+        showSlides(slideIndex = n);
+    }
+
+    var slideshowContainer = document.getElementsByClassName('sidebar')[0];
+    slideshowContainer.addEventListener('mouseenter', pause);
+    slideshowContainer.addEventListener('mouseleave', resume);
+
+    pause = () => {
+        clearInterval(myTimer);
+    };
+
+    resume = () => {
+        clearInterval(myTimer);
+        myTimer = setInterval(function () {
+            plusSlides(slideIndex)
+        }, 4000);
+    }
 </script>

@@ -6,14 +6,15 @@ from .models import *
 
 
 def RapAnalyzerHomePage(request):
-    top_lists = getTopLists()
-    print(top_lists)
-    return render(request, 'rap-analyzer.html', top_lists)
+    dictionary = {
+        'lists': getTopLists(),
+    }
+    return render(request, 'rap-analyzer.html', dictionary)
 
 
 def RapAnalyzerAnalyze(request):
     print("Inside analyze")
-    dictionary = getTopLists()
+
     # t0 = time.clock()
     # Creates a new Song object and assigns it to a local variable
     # 'content' is the name of the first textbox on the HTML page. It's telling Django to take the content of that box,
@@ -27,8 +28,10 @@ def RapAnalyzerAnalyze(request):
 
     new_input.analyze()
 
-    dictionary['code'] = new_input
-
+    dictionary = {
+        'lists': getTopLists(),
+        'code': new_input,
+    }
     # t1 = time.clock()
     # print("Time elapsed: ", t1 - t0)  # CPU seconds elapsed (floating point)
 
@@ -38,8 +41,8 @@ def RapAnalyzerAnalyze(request):
 
 
 def getTopLists():
-    top_lists = {
-        'adlibs_list': ["most ad libs", SongDB.objects.order_by('-adlibs')[:4]],
-        'swear_words_list': ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4]]
-    }
+    top_lists = [
+        ["most ad libs", SongDB.objects.order_by('-adlibs')[:4]],
+        ["most swear words", SongDB.objects.order_by('-num_of_swear_words')[:4]],
+    ]
     return top_lists
