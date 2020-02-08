@@ -159,67 +159,73 @@ class Song:
         ####################################################
         # First, the song lyrics and the full name are found
         ####################################################
-        # print("YEET 0")
-        # If the user entered a lyric query, just return the first hit
-        if len(self.lyrics_query) > 0:
-            # Gets the json response from Genius with the entered lyric query
-            song_info = get_song_info(self.lyrics_query, self.artist)
-            if len(song_info["response"]["hits"]) < 1:  # If not hits are there, then return
-                self.lyrics = "Error: Song not found. Check for typos."
-                # print("Yeet 1")
-                return
-            song = song_info["response"]["hits"][0]
-            # Gets the lyrics by passing in the url of the first search result to find_lyrics()
-            self.url = song_info["response"]["hits"][0]["result"]["url"]
-            self.lyrics = find_lyrics(self.url)
-            # print("Yeet 2: " + self.lyrics)
-            # ALso gets the song's full name
-            full_name = song_info["response"]["hits"][0]["result"]["full_title"]
-            full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
-            self.song_title = full_name[:full_name.index(" by ")]
-            self.full_artists_names = full_name[full_name.index(" by ") + 4:]
+        print("YES YEET")
+        if '(feat. ' in self.song_title:
+            print("YEET")
+            self.song_title = self.song_title[:self.song_title.index('(feat. ')]
+        elif '(ft. ' in self.song_title:
+            self.song_title = self.song_title[:self.song_title.index('(ft. ')]
+        elif '(with ' in self.song_title:
+            self.song_title = self.song_title[:self.song_title.index('(with ')]
+            print(self.song_title)
 
-            # Fetches primary artist's name
-            self.artist = song_info["response"]["hits"][0]["result"]["primary_artist"]["name"]
+        song_info = get_song_info(self.song_title, self.artist, self.lyrics_query)
+        if len(song_info["response"]["hits"]) < 1:  # If not hits are there, then return
+            self.lyrics = "Song not found. Try searching again."
+            return
 
-            # Grabs the images for the song
-            self.img_url = song_info["response"]["hits"][0]["result"]["song_art_image_url"]
-            self.header_url = song_info["response"]["hits"][0]["result"]["header_image_url"]
-        else:
-            song_info = get_song_info(self.song_title, self.artist)
-            self.url = song_info["response"]["hits"][0]["result"]["url"]
-            # with open("file.json", 'w') as file:
-            #     file.write(str(song_info))
+        song = song_info["response"]["hits"][0]
+        # Gets the lyrics by passing in the url of the first search result to find_lyrics()
+        self.url = song["result"]["url"]
+        self.lyrics = find_lyrics(self.url)
+        # print("Yeet 2: " + self.lyrics)
+        # ALso gets the song's full name
+        full_name = song["result"]["full_title"]
+        full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
+        self.song_title = full_name[:full_name.index(" by ")]
+        self.full_artists_names = full_name[full_name.index(" by ") + 4:]
 
-            for hit in song_info["response"]["hits"]:
-                user_input_name = self.song_title.lower()  # Make the title lowercase for consistency
-                # print('YEET user input name: ' + user_input_name)
-                # user_input_name = user_input_name[]
-                # Remove all extra characters to make comparison easier for user
-                re.sub('.|(|)|,', '', user_input_name)
-                print('YEET user input name: ' + user_input_name)
+        # Fetches primary artist's name
+        self.artist = song["result"]["primary_artist"]["name"]
 
-                hit_name = hit["result"]["title"].lower()  # Make lowercase
-                # Remove all extra characters to make comparison easier for user
-                hit_name = re.sub('[()\u200b.,]', '', hit_name)
-                # hit_name = re.sub('[()]', '', hit_name)
-                print("hit name is " + hit_name)
+        # Grabs the images for the song
+        self.img_url = song["result"]["song_art_image_url"]
+        self.header_url = song["result"]["header_image_url"]
+        # else:
 
-                if user_input_name in hit_name:
-                    self.lyrics = find_lyrics(hit["result"]["url"])
-                    full_name = hit["result"]["full_title"]
-                    full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
-                    self.song_title = full_name[:full_name.index(" by ")].strip()
-                    self.full_artists_names = full_name[full_name.index(" by ") + 4:].strip()
-                    self.url = hit["result"]["url"]
+        self.url = song["result"]["url"]
+        # with open("file.json", 'w') as file:
+        #     file.write(str(song_info))
 
-                    self.artist = hit["result"]["primary_artist"]["name"]
-                    self.img_url = hit["result"]["song_art_image_url"]
-                    self.header_url = hit["result"]["header_image_url"]
-                    break  # Don't delete this line lmao
-            else:
-                self.lyrics = "Error: Song not found. Check for typos."
-                return
+        # for hit in song_info["response"]["hits"]:
+        #     user_input_name = self.song_title.lower()  # Make the title lowercase for consistency
+        #     # print('YEET user input name: ' + user_input_name)
+        #     # user_input_name = user_input_name[]
+        #     # Remove all extra characters to make comparison easier for user
+        #     re.sub('.|(|)|,', '', user_input_name)
+        #     print('YEET user input name: ' + user_input_name)
+        #
+        #     hit_name = hit["result"]["title"].lower()  # Make lowercase
+        #     # Remove all extra characters to make comparison easier for user
+        #     hit_name = re.sub('[()\u200b.,]', '', hit_name)
+        #     # hit_name = re.sub('[()]', '', hit_name)
+        #     print("hit name is " + hit_name)
+        #
+        #     if user_input_name in hit_name:
+        #         self.lyrics = find_lyrics(hit["result"]["url"])
+        #         full_name = hit["result"]["full_title"]
+        #         full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
+        #         self.song_title = full_name[:full_name.index(" by ")].strip()
+        #         self.full_artists_names = full_name[full_name.index(" by ") + 4:].strip()
+        #         self.url = hit["result"]["url"]
+        #
+        #         self.artist = hit["result"]["primary_artist"]["name"]
+        #         self.img_url = hit["result"]["song_art_image_url"]
+        #         self.header_url = hit["result"]["header_image_url"]
+        #         break  # Don't delete this line lmao
+        # else:
+        #     self.lyrics = "Error: Song not found. Check for typos."
+        #     return
 
         #########################################################################
         # Second, the number of lines, words, and syllables of each word is found
@@ -343,8 +349,6 @@ class Song:
         #     for line in lines:
         #         file.write(line + ".\n")
 
-        currents = SongDB.objects.all()
-
         # if len(currents) == 0:
         #     to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
         #                 self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
@@ -352,6 +356,7 @@ class Song:
         #                 self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
         #                 self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
 
+        currents = SongDB.objects.all()
         for current in currents:
             # check to see if the song already exists in our DB
             if current.title == self.song_title and current.artist == self.artist:
@@ -362,32 +367,3 @@ class Song:
                         self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
                         self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
                         self.num_of_big_words, self.avg_sen_len)
-
-        #     if self.gunning_fog < current.reading_level_g:
-        #         self.gunning_counter += 1
-        #     if self.flesch < current.reading_level_f:
-        #         self.flesch_counter += 1
-        #     if self.power_sumner_kearl < current.reading_level_p:
-        #         self.sumner_counter += 1
-        #     if self.num_of_drug_references < current.drugs:
-        #         self.drugs_counter += 1
-        #     if self.num_of_adlibs < current.adlibs:
-        #         self.adlibs_counter += 1
-        #
-        # if self.gunning_counter <= 10:
-        #     self.to_add += 1
-        # if self.sumner_counter <= 10:
-        #     self.to_add += 1
-        # if self.flesch_counter <= 10:
-        #     self.to_add += 1
-        # if self.drugs_counter <= 10:
-        #     self.to_add += 1
-        # if self.adlibs_counter <= 10:
-        #     self.to_add += 1
-
-        # if self.to_add > 0:
-
-        # to_database(self.full_name, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-        #             self.url, self.num_of_jewelery_references, self.num_of_drug_references,
-        #             self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-        #             self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)

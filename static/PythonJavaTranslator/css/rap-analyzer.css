@@ -252,6 +252,10 @@ form {
     align-items: center;
 }
 
+.list-item a {
+    white-space: nowrap;
+}
+
 /* Slideshow functionality*/
 
 /* Next & previous buttons */

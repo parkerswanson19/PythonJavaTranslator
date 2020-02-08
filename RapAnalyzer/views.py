@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from .RapCaviar import pull_from_rap_caviar
+from .RapCaviar import pull_from_spotify_playlist
 
 
 # import time
@@ -13,7 +13,9 @@ def RapAnalyzerHomePage(request):
 
 
 def RapAnalyzerAnalyze(request):
-    # pull_from_rap_caviar()
+    # for i in range(6, 10):
+    #     pull_from_spotify_playlist(i * 100)
+
     dictionary = getTopLists()
     # t0 = time.clock()
     # Creates a new Song object and assigns it to a local variable
@@ -48,7 +50,6 @@ def getTopLists():
         'low_grade_lvl_list': ["lowest grade level", SongDB.objects.order_by('reading_level_g')[:4]],
     }
     return top_lists
-
 
 # def pull_from_rap_caviar():
 #     auth_url = 'https://accounts.spotify.com/api/token'
