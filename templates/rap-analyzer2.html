@@ -9,15 +9,15 @@
         <div class="title-row">
             <img src={{ code.img_url }}>
             <div id="title">
-                <h2>{{ code.song_title }}</h2>
-                <h3>{{ code.full_artists_names }}</h3>
+                <h2>{{ code.title }}</h2>
+                <h3>{{ code.all_artists }}</h3>
             </div>
             <img id="title-row-header-img" src={{ code.header_url }}>
         </div>
         <div class="row main-content">
             <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
             <ul class="stats-list">
-                <li>Number of words:<br><span>{{ code.num_of_words }}</span></li>
+                <li>Number of words:<br><span>{{ code.word_count }}</span></li>
                 <li>Average grade level of song:<br></li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;Gunning Fog
                     Index:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.gunning_fog }}</span></li>
@@ -25,10 +25,10 @@
                     Formula:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.flesch }}</span></li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;Power Sumner
                     Kearl<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.power_sumner_kearl }}</span></li>
-                <li>Number of swear words:<br><span>{{ code.num_of_swear_words }}</span></li>
-                <li>Number of adlibs:<br><span>{{ code.num_of_adlibs }}</span></li>
-                <li>Number of drug references:<br><span>{{ code.num_of_drug_references }}</span></li>
-                <li>Number of jewelery references<br><span>{{ code.num_of_jewelery_references }}</span></li>
+                <li>Number of swear words:<br><span>{{ code.swear_words_count }}</span></li>
+                <li>Number of adlibs:<br><span>{{ code.adlibs }}</span></li>
+                <li>Number of drug references:<br><span>{{ code.drug_references }}</span></li>
+                <li>Number of jewelery references<br><span>{{ code.jewelry_references }}</span></li>
             </ul>
         </div>
     </div>

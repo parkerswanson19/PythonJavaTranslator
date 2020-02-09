@@ -7,16 +7,16 @@ from bs4 import BeautifulSoup
 # import selenium
 
 
-def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
-                drugs_, g,
-                f, p, adlibs_, lines_, syllables_, big, sentences_):
-    obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_, img_url=img_url_,
-                 header_url=header_url_,
-                 num_of_swear_words=swear_words, artist=artist_, full_artists=full_artist_, jewelry=jewelry_,
-                 drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
-                 adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
-                 sentence_length=sentences_)
-    obj.save()
+# def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
+#                 drugs_, g,
+#                 f, p, adlibs_, lines_, syllables_, big, sentences_):
+#     obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_, img_url=img_url_,
+#                  header_url=header_url_,
+#                  num_of_swear_words=swear_words, artist=artist_, full_artists=full_artist_, jewelry=jewelry_,
+#                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
+#                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
+#                  sentence_length=sentences_)
+#     obj.save()
 
 
 def find_lyrics(url):
@@ -77,63 +77,68 @@ def find_syllables(word):
 
 class SongDB(models.Model):
     title = models.TextField()
-    artist = models.TextField()
-    full_artists = models.TextField()
+    primary_artist = models.TextField()
+    all_artists = models.TextField()
+
     lyrics = models.TextField()
-    num_of_words = models.IntegerField()
-    num_of_swear_words = models.IntegerField()
+    word_count = models.IntegerField()
+    swear_words_count = models.IntegerField()
+    adlibs = models.IntegerField()
+    drug_references = models.IntegerField()
+    jewelry_references = models.IntegerField()
+
+    gunning_fog = models.FloatField()
+    flesch_kincaid = models.FloatField()
+    power_sumner_kearl = models.FloatField()
+    avg_grade_level = models.FloatField()
+
+    lines_count = models.IntegerField()
+    syllables_count = models.IntegerField()
+    big_words_count = models.IntegerField()
+    avg_sentence_length = models.IntegerField()
+
     url = models.URLField()
     img_url = models.URLField()
     header_url = models.URLField()
-    jewelry = models.IntegerField()
-    drugs = models.IntegerField()
-    reading_level_g = models.FloatField()
-    reading_level_f = models.TextField()
-    reading_level_p = models.FloatField()
-    adlibs = models.IntegerField()
-    lines = models.IntegerField()
-    syllables = models.IntegerField()
-    big_words = models.IntegerField()
-    sentence_length = models.IntegerField()
 
     def __str__(self):
         return self.title
 
 
 class Song:
-    swear_words = ["fuck", "fucker", "fucked", "motherfucker", "motherfuck", "shit", "bitch", "bitches", "nigga",
-                   "niggas", "ass",
-                   "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks", "pussy", "sluts", "dickhead",
-                   "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
+    swear_words = ["fuck", "fucker", "fucked", "motherfucker", "motherfuck", "shit", "bitch", "bitches",
+                   "nigga",
+                   "niggas", "ass", "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks",
+                   "pussy",
+                   "sluts", "dickhead", "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
     drugs = ["percs", "percocet", "cocaine", "coco", "xan", "molly", "weed", "drugs", "coke", "lean", "8th",
              "dirty sprite", "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
              "heroin", "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
 
-    jewelery = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars", "piguet"
-        , "cuban", "cartier", "ice", "icy", "baguettes"]
+    jewelry = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars",
+               "piguet", "cuban", "cartier", "ice", "icy", "baguettes"]
 
-    def __init__(self, song_title, artist, lyrics_query):
+    def __init__(self, title, artist, lyrics_query):
         # Attributes that the user (can) enter
-        self.song_title = song_title
-        self.artist = artist
+        self.title = title
+        self.primary_artist = artist
         self.lyrics_query = lyrics_query
 
         # self.full_name = ""  # This is for the name of the song with the artist and any features
-        self.full_artists_names = ""
+        self.all_artists = ""
         self.lyrics = ""  # This holds the original/full text representing the lyrics, meant to be displayed to user
-        self.bare_lyrics = ""  # String of all of the words extracted without any new lines, punctuations, or headers
-        # ^ Meant to be used in analysis
+        # self.bare_lyrics = ""
         self.url = ""
         self.img_url = ""
         self.header_url = ""
 
         # Stats about the song
-        self.num_of_words = 0
-        self.num_of_swear_words = 0
-        self.num_of_drug_references = 0
-        self.num_of_jewelery_references = 0
-        self.num_of_adlibs = 0
+        self.word_count = 0
+        self.swear_words_count = 0
+        self.drug_references = 0
+        self.jewelry_references = 0
+        self.adlibs = 0
         # self.to_add = 0
         # self.gunning_counter = 0
         # self.flesch_counter = 0
@@ -143,15 +148,18 @@ class Song:
 
         # The grade level indices
         self.gunning_fog = 0
-        self.flesch = 0
+        self.flesch_kincaid = 0
         self.power_sumner_kearl = 0
+        self.avg_grade_level = 0
 
         # Parameters needs by the indices
-        self.num_of_lines = 0
-        self.num_of_syllables = 0
-        self.syllables_dict = {}  # Dictionary that holds the number of syllables of each word in the song
-        self.num_of_big_words = 0  # The number of words with three or more syllables, used by the indices
+        self.lines_count = 0
+        self.syllables_count = 0
+
+        self.big_words_count = 0  # The number of words with three or more syllables, used by the indices
         self.avg_sen_len = 0  # The average sentence length
+
+        self.analyze()
 
     # Besides the original three attributes that the user inputs, this method calculates all of the other stats and
     # indices
@@ -159,34 +167,57 @@ class Song:
         ####################################################
         # First, the song lyrics and the full name are found
         ####################################################
-        print("YES YEET")
-        if '(feat. ' in self.song_title:
-            print("YEET")
-            self.song_title = self.song_title[:self.song_title.index('(feat. ')]
-        elif '(ft. ' in self.song_title:
-            self.song_title = self.song_title[:self.song_title.index('(ft. ')]
-        elif '(with ' in self.song_title:
-            self.song_title = self.song_title[:self.song_title.index('(with ')]
-            print(self.song_title)
+        if '(feat. ' in self.title:
+            self.title = self.title[:self.title.index('(feat. ')]
+        elif '(ft. ' in self.title:
+            self.title = self.title[:self.title.index('(ft. ')]
+        elif '(with ' in self.title:
+            self.title = self.title[:self.title.index('(with ')]
 
-        song_info = get_song_info(self.song_title, self.artist, self.lyrics_query)
+        song_info = get_song_info(self.title, self.primary_artist, self.lyrics_query)
         if len(song_info["response"]["hits"]) < 1:  # If not hits are there, then return
             self.lyrics = "Song not found. Try searching again."
             return
 
         song = song_info["response"]["hits"][0]
+        full_name = song["result"]["full_title"]
+        full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
+        self.title = full_name[:full_name.index(" by ")]
+
+        # Fetches primary artist's name
+        self.primary_artist = song["result"]["primary_artist"]["name"]
+
+        try:
+            song_db = SongDB.objects.get(title=self.title, primary_artist=self.primary_artist)
+            self.lyrics = song_db.lyrics
+            self.word_count = song_db.word_count
+            self.swear_words_count = song_db.swear_words_count
+            self.adlibs = song_db.adlibs
+            self.drug_references = song_db.drug_references
+            self.jewelry_references = song_db.jewelry_references
+            self.gunning_fog = song_db.gunning_fog
+            self.flesch_kincaid = song_db.flesch_kincaid
+            self.power_sumner_kearl = song_db.power_sumner_kearl
+            self.avg_grade_level = song_db.avg_grade_level
+            self.lines_count = song_db.lines_count
+            self.syllables_count = song_db.syllables_count
+            self.big_words_count = song_db.big_words_count
+            self.avg_grade_level = song_db.avg_grade_level
+            self.avg_sen_len = song_db.avg_sentence_length
+            self.url = song_db.url
+            self.img_url = song_db.img_url
+            self.header_url = song_db.header_url
+            print("YEET")
+            return
+        except SongDB.DoesNotExist:
+            pass
+
+        self.all_artists = full_name[full_name.index(" by ") + 4:]
         # Gets the lyrics by passing in the url of the first search result to find_lyrics()
         self.url = song["result"]["url"]
         self.lyrics = find_lyrics(self.url)
         # print("Yeet 2: " + self.lyrics)
         # ALso gets the song's full name
-        full_name = song["result"]["full_title"]
-        full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
-        self.song_title = full_name[:full_name.index(" by ")]
-        self.full_artists_names = full_name[full_name.index(" by ") + 4:]
-
-        # Fetches primary artist's name
-        self.artist = song["result"]["primary_artist"]["name"]
 
         # Grabs the images for the song
         self.img_url = song["result"]["song_art_image_url"]
@@ -232,7 +263,9 @@ class Song:
         #########################################################################
 
         lines = self.lyrics.split("\n")
-        self.num_of_lines = len(lines)
+        self.lines_count = len(lines)
+        bare_lyrics = ""  # String of all of the words extracted without any new lines, punctuations, or headers
+        # ^ Meant to be used in analysis
         for line in lines:
             line_copy = line
             # Counting the number of parentheses to find the number of adlibs
@@ -244,26 +277,26 @@ class Song:
                     index_2 = line_copy.index(")")
                     substring = line_copy[index + 1: index_2]
                     line_copy = line_copy[index_2 + 1:]
-                    self.num_of_adlibs += (substring.count(",")) + 1
+                    self.adlibs += (substring.count(",")) + 1
                 except:
                     pass
                 num_of_parentheses -= 1
 
             # Adding only the lines that have lyrics to the variable, bare_lyrics
             if type(line) is None or len(line) == 0 or line[0] == "[":
-                self.num_of_lines -= 1
+                self.lines_count -= 1
                 continue
             # Only adds lines that are actual lyrics of the song, not headers
-            self.bare_lyrics += line + " "
+            bare_lyrics += line + " "
         # print(f"num of lines{self.num_of_lines}")
         # Removes all non alphanumeric characters from the lyrics
-        self.bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", self.bare_lyrics)
-        self.bare_lyrics = self.bare_lyrics.lower()
+        bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", bare_lyrics)
+        bare_lyrics = bare_lyrics.lower()
 
-        # print(self.bare_lyrics)
+        # print(bare_lyrics)
         # Makes a list of each individual word
-        bare_lyrics_split = self.bare_lyrics.split()
-        self.num_of_words = len(bare_lyrics_split)  # Counts the number of words in the song
+        bare_lyrics_split = bare_lyrics.split()
+        self.word_count = len(bare_lyrics_split)  # Counts the number of words in the song
 
         #######################################################################################################
         # Third, the number of syllables for each word, the total number of syllables, and the average sentence
@@ -274,14 +307,15 @@ class Song:
         lyrics_set = set(bare_lyrics_split)
 
         # Goes through each word and finds the number of syllables
+        syllables_dict = {}  # Dictionary that holds the number of syllables of each word in the song
         for word in lyrics_set:
-            self.syllables_dict[word] = find_syllables(word)
+            syllables_dict[word] = find_syllables(word)
             # greater than three syllables
 
         for word in bare_lyrics_split:
-            if self.syllables_dict[word] >= 3:
-                self.num_of_big_words += 1  # This is for the Gunning Fog index which needs the number of words that are
-            self.num_of_syllables += self.syllables_dict[word]
+            if syllables_dict[word] >= 3:
+                self.big_words_count += 1  # This is for the Gunning Fog index which needs the number of words that are
+            self.syllables_count += syllables_dict[word]
 
         # print(f"num of big words {self.num_of_big_words}")
         ###########################################################
@@ -290,58 +324,67 @@ class Song:
         # https://www.tameri.com/teaching/levels.html
 
         # Gunning Fog index
-        self.avg_sen_len = self.num_of_words / self.num_of_lines  # Finds the average sentence length
-        percentage_of_big_words = self.num_of_big_words / self.num_of_words
+        self.avg_sen_len = self.word_count / self.lines_count  # Finds the average sentence length
+        percentage_of_big_words = self.big_words_count / self.word_count
         self.gunning_fog = (self.avg_sen_len + percentage_of_big_words) * 0.4
-        self.gunning_fog = float(f"{self.gunning_fog:.2f}")  # Truncates the result to two decimal places
 
         # The Flesch Formula
-        x = self.avg_sen_len * 1.015
-        # print(f"num of words is {self.num_of_words} and number lines is {self.num_of_lines} and x is {x}")
-        y = self.num_of_syllables / self.num_of_words * 84.6
-        # print(f"{self.num_of_syllables} y is {y}")
-        level = 206.835 - (x + y)
+        x = self.word_count / self.lines_count
+        y = self.syllables_count / self.word_count
+        self.flesch_kincaid = (0.39 * x) + (11.8 * y) - 15.59
 
-        if level <= 29:
-            self.flesch = 'Very difficult Post Graduate'
-        elif level <= 49:
-            self.flesch = 'Difficult College'
-        elif level <= 59:
-            self.flesch = 'Fairly Difficult High School'
-        elif level <= 69:
-            self.flesch = 'Standard 8th to 9th grade'
-        elif level <= 79:
-            self.flesch = 'Fairly Easy 7th grade'
-        elif level <= 89:
-            self.flesch = 'Easy 5th to 6th grade'
-        elif level <= 100:
-            self.flesch = 'Very Easy 4th to 5th grade'
-        else:
-            self.flesch = 'Below 5th grade lmao'
+        # x = self.avg_sen_len * 1.015
+        # # print(f"num of words is {self.num_of_words} and number lines is {self.num_of_lines} and x is {x}")
+        # y = self.syllables_count / self.word_count * 84.6
+        # # print(f"{self.num_of_syllables} y is {y}")
+        # level = 206.835 - (x + y)
+        #
+        # if level <= 29:
+        #     self.flesch = 'Very difficult Post Graduate'
+        # elif level <= 49:
+        #     self.flesch = 'Difficult College'
+        # elif level <= 59:
+        #     self.flesch = 'Fairly Difficult High School'
+        # elif level <= 69:
+        #     self.flesch = 'Standard 8th to 9th grade'
+        # elif level <= 79:
+        #     self.flesch = 'Fairly Easy 7th grade'
+        # elif level <= 89:
+        #     self.flesch = 'Easy 5th to 6th grade'
+        # elif level <= 100:
+        #     self.flesch = 'Very Easy 4th to 5th grade'
+        # else:
+        #     self.flesch = 'Below 4th grade lmao'
+        # # self.flesch = (150 - level) / 10
 
         # Power Sumner Kearl
-        x = self.num_of_words / self.num_of_lines
+        x = self.word_count / self.lines_count
         # print("num of lines is: " + str(self.num_of_lines))
-        y = self.num_of_syllables
+        y = self.syllables_count
         # print(f"x is{x} and y is {y}")
-        y /= (self.num_of_words / 100)
+        y /= (self.word_count / 100)
         # print(f"x is{x} and y is {y}")
         z = (x * 0.0778) + (y * 0.0455)
         self.power_sumner_kearl = z - 2.2029
+
+        self.avg_grade_level = (self.gunning_fog + self.flesch_kincaid + self.power_sumner_kearl) / 3
+        self.gunning_fog = float(f"{self.gunning_fog:.2f}")  # Truncates the result to two decimal places
+        self.flesch_kincaid = float(f"{self.flesch_kincaid:.2f}")
         self.power_sumner_kearl = float(f"{self.power_sumner_kearl:.2f}")
+        self.avg_grade_level = float(f"{self.avg_grade_level:.2f}")
 
         #########################################################################################
         # Finally, all of the extra/fun stats are calculated (swear words, drug references, etc.)
         #########################################################################################
 
         for word in self.swear_words:
-            self.num_of_swear_words += self.bare_lyrics.count(word)
+            self.swear_words_count += bare_lyrics.count(word)
 
         for word in self.drugs:
-            self.num_of_drug_references += self.bare_lyrics.count(word)
+            self.drug_references += bare_lyrics.count(word)
 
-        for word in self.jewelery:
-            self.num_of_jewelery_references += self.bare_lyrics.count(word)
+        for word in self.jewelry:
+            self.jewelry_references += bare_lyrics.count(word)
 
         # print(self.bare_lyrics)
         # with open("lyrics2.txt", "w") as file:
@@ -356,14 +399,25 @@ class Song:
         #                 self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
         #                 self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
 
-        currents = SongDB.objects.all()
-        for current in currents:
-            # check to see if the song already exists in our DB
-            if current.title == self.song_title and current.artist == self.artist:
-                break
-        else:
-            to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-                        self.full_artists_names, self.url, self.img_url, self.header_url,
-                        self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
-                        self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
-                        self.num_of_big_words, self.avg_sen_len)
+        # currents = SongDB.objects.all()
+        # for current in currents:
+        #     # check to see if the song already exists in our DB
+        #     if current.title == self.title and current.artist == self.primary_artist:
+        #         break
+        # else:
+        song = SongDB(title=self.title, primary_artist=self.primary_artist, all_artists=self.all_artists,
+                      lyrics=self.lyrics, word_count=self.word_count, swear_words_count=self.swear_words_count,
+                      adlibs=self.adlibs,
+                      drug_references=self.drug_references, jewelry_references=self.jewelry_references,
+                      gunning_fog=self.gunning_fog, flesch_kincaid=self.flesch_kincaid,
+                      power_sumner_kearl=self.power_sumner_kearl,
+                      avg_grade_level=self.avg_grade_level, lines_count=self.lines_count,
+                      syllables_count=self.syllables_count, big_words_count=self.big_words_count,
+                      avg_sentence_length=self.avg_sen_len, url=self.url, img_url=self.img_url,
+                      header_url=self.header_url)
+        song.save()
+        #     to_database(self.title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.primary_artist,
+        #                 self.all_artists, self.url, self.img_url, self.header_url,
+        #                 self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
+        #                 self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
+        #                 self.num_of_big_words, self.avg_sen_len)

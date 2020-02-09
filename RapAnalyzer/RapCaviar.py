@@ -1,5 +1,6 @@
 import requests
 from RapAnalyzer.models import Song
+import time
 
 
 def pull_from_spotify_playlist(offset=0):
@@ -17,19 +18,19 @@ def pull_from_spotify_playlist(offset=0):
     url = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks'
     headers = {'Authorization': 'Bearer ' + auth_response['access_token']}
     response = requests.get(url, headers=headers, params={'offset': offset}).json()
-    # response = response
-    # print(response['items'][0]['track']
-    # print(response.json())
     # with open('spotify3.json', 'w') as file:
     #     file.write(str(response['items'][0]['track']['artists'][0]['name']))
-    counter = 1
+    counter = offset + 1
     for track in response['items']:
         try:
             song_name = track['track']['name']
             artist_name = track['track']['artists'][0]['name']
             print(f"{counter}: {song_name} - {artist_name}")
+            t0 = time.clock()
             song = Song(song_name, artist_name, '')
-            song.analyze()
+            t1 = time.clock()
+            print(song.title + ': ' + str(t1 - t0))
+            # song.analyze()
             counter += 1
         except:
             pass
