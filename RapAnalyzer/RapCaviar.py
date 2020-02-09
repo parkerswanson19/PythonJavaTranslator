@@ -3,8 +3,6 @@ from RapAnalyzer.models import Song
 import time
 
 
-
-
 def pull_from_spotify_playlist(offset=0):
     auth_url = 'https://accounts.spotify.com/api/token'
     body_params = {'grant_type': 'client_credentials'}

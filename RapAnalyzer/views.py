@@ -27,6 +27,7 @@ def RapAnalyzerAnalyze(request):
     new_input = Song(request.POST['song-name'], request.POST['artist-name'], request.POST['lyrics'])
 
     dictionary['code'] = new_input
+    print(new_input.all_artists)
 
     t1 = time.clock()
     print("Time elapsed: ", t1 - t0)  # CPU seconds elapsed (floating point)

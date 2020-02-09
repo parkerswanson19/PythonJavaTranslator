@@ -5,18 +5,6 @@ from bs4 import BeautifulSoup
 # import selenium
 
 
-# def to_database(title_, lyrics_, swear_words, num_words, artist_, full_artist_, url_, img_url_, header_url_, jewelry_,
-#                 drugs_, g,
-#                 f, p, adlibs_, lines_, syllables_, big, sentences_):
-#     obj = SongDB(title=title_, lyrics=lyrics_, num_of_words=num_words, url=url_, img_url=img_url_,
-#                  header_url=header_url_,
-#                  num_of_swear_words=swear_words, artist=artist_, full_artists=full_artist_, jewelry=jewelry_,
-#                  drugs=drugs_, reading_level_g=g, reading_level_f=f, reading_level_p=p,
-#                  adlibs=adlibs_, lines=lines_, syllables=syllables_, big_words=big,
-#                  sentence_length=sentences_)
-#     obj.save()
-
-
 def find_lyrics(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'html.parser')
@@ -184,6 +172,7 @@ class Song:
 
         try:
             song_db = SongDB.objects.get(title=self.title, primary_artist=self.primary_artist)
+            self.all_artists = song_db.all_artists
             self.lyrics = song_db.lyrics
             self.word_count = song_db.word_count
             self.swear_words_count = song_db.swear_words_count
@@ -354,32 +343,13 @@ class Song:
         #     for line in lines:
         #         file.write(line + ".\n")
 
-        # if len(currents) == 0:
-        #     to_database(self.song_title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.artist,
-        #                 self.url, self.img_url, self.header_url, self.num_of_jewelery_references,
-        #                 self.num_of_drug_references,
-        #                 self.gunning_fog, self.flesch, self.power_sumner_kearl, self.num_of_adlibs,
-        #                 self.num_of_lines, self.num_of_syllables, self.num_of_big_words, self.avg_sen_len)
-
-        # currents = SongDB.objects.all()
-        # for current in currents:
-        #     # check to see if the song already exists in our DB
-        #     if current.title == self.title and current.artist == self.primary_artist:
-        #         break
-        # else:
         song = SongDB(title=self.title, primary_artist=self.primary_artist, all_artists=self.all_artists,
                       lyrics=self.lyrics, word_count=self.word_count, swear_words_count=self.swear_words_count,
-                      adlibs=self.adlibs,
-                      drug_references=self.drug_references, jewelry_references=self.jewelry_references,
-                      gunning_fog=self.gunning_fog, flesch_kincaid=self.flesch_kincaid,
-                      power_sumner_kearl=self.power_sumner_kearl,
+                      adlibs=self.adlibs, drug_references=self.drug_references,
+                      jewelry_references=self.jewelry_references, gunning_fog=self.gunning_fog,
+                      flesch_kincaid=self.flesch_kincaid, power_sumner_kearl=self.power_sumner_kearl,
                       avg_grade_level=self.avg_grade_level, lines_count=self.lines_count,
                       syllables_count=self.syllables_count, big_words_count=self.big_words_count,
                       avg_sentence_length=self.avg_sen_len, url=self.url, img_url=self.img_url,
                       header_url=self.header_url)
         song.save()
-        #     to_database(self.title, self.lyrics, self.num_of_swear_words, self.num_of_words, self.primary_artist,
-        #                 self.all_artists, self.url, self.img_url, self.header_url,
-        #                 self.num_of_jewelery_references, self.num_of_drug_references, self.gunning_fog, self.flesch,
-        #                 self.power_sumner_kearl, self.num_of_adlibs, self.num_of_lines, self.num_of_syllables,
-        #                 self.num_of_big_words, self.avg_sen_len)
