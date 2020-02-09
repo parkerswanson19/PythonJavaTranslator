@@ -39,7 +39,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>{{ stat.num_of_swear_words }} words</span>
+                        <span>{{ stat.swear_words_count }} words</span>
                     </div>
                 {% endfor %}
             </div>
@@ -49,7 +49,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>{{ stat.drugs }} references</span>
+                        <span>{{ stat.drug_references }} references</span>
                     </div>
                 {% endfor %}
             </div>
@@ -59,7 +59,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>{{ stat.jewelry }} references</span>
+                        <span>{{ stat.jewelry_references }} references</span>
                     </div>
                 {% endfor %}
             </div>
@@ -69,7 +69,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>Grade {{ stat.reading_level_g }}</span>
+                        <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}
             </div>
@@ -79,7 +79,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{{ stat.url }}">{{ stat.title }}</a>
-                        <span>Grade {{ stat.reading_level_g }}</span>
+                        <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}
             </div>
