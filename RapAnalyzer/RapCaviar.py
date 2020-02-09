@@ -13,8 +13,8 @@ def pull_from_spotify_playlist(offset=0):
     # auth_response = auth_response
     # print(r.json())
 
-    # playlist_id = '37i9dQZF1DX0XUsuxWHRQd'  # Rap Caviar's ID
-    playlist_id = '2zcCNH4mL7OjsqnzrRFaJm'  # Sourish's playlist
+    playlist_id = '37i9dQZF1DX0XUsuxWHRQd'  # Rap Caviar's ID
+    # playlist_id = '2zcCNH4mL7OjsqnzrRFaJm'  # Sourish's playlist
     url = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks'
     headers = {'Authorization': 'Bearer ' + auth_response['access_token']}
     response = requests.get(url, headers=headers, params={'offset': offset}).json()
