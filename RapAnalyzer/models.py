@@ -107,10 +107,8 @@ class SongDB(models.Model):
 
 class Song:
     swear_words = ["fuck", "fucker", "fucked", "motherfucker", "motherfuck", "shit", "bitch", "bitches",
-                   "nigga",
-                   "niggas", "ass", "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks",
-                   "pussy",
-                   "sluts", "dickhead", "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
+                   "nigga", "niggas", "ass", "cunt", "cunts", "whore", "hoe", "slut", "bastard", "dick", "dicks",
+                   "pussy", "sluts", "dickhead", "piss", "asshole", "damn", "goddamn", "titty", "titties", ]
 
     drugs = ["percs", "percocet", "cocaine", "coco", "xan", "molly", "weed", "drugs", "coke", "lean", "8th",
              "dirty sprite", "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
@@ -139,12 +137,6 @@ class Song:
         self.drug_references = 0
         self.jewelry_references = 0
         self.adlibs = 0
-        # self.to_add = 0
-        # self.gunning_counter = 0
-        # self.flesch_counter = 0
-        # self.sumner_counter = 0
-        # self.drugs_counter = 0
-        # self.adlibs_counter = 0
 
         # The grade level indices
         self.gunning_fog = 0
@@ -169,10 +161,15 @@ class Song:
         ####################################################
         if '(feat. ' in self.title:
             self.title = self.title[:self.title.index('(feat. ')]
+        elif '(Feat. ' in self.title:
+            self.title = self.title[:self.title.index('(Feat. ')]
         elif '(ft. ' in self.title:
             self.title = self.title[:self.title.index('(ft. ')]
+        elif '(Ft. ' in self.title:
+            self.title = self.title[:self.title.index('(Ft. ')]
         elif '(with ' in self.title:
             self.title = self.title[:self.title.index('(with ')]
+        # print(self.title)
 
         song_info = get_song_info(self.title, self.primary_artist, self.lyrics_query)
         if len(song_info["response"]["hits"]) < 1:  # If not hits are there, then return
@@ -207,7 +204,6 @@ class Song:
             self.url = song_db.url
             self.img_url = song_db.img_url
             self.header_url = song_db.header_url
-            print("YEET")
             return
         except SongDB.DoesNotExist:
             pass
@@ -227,36 +223,6 @@ class Song:
         self.url = song["result"]["url"]
         # with open("file.json", 'w') as file:
         #     file.write(str(song_info))
-
-        # for hit in song_info["response"]["hits"]:
-        #     user_input_name = self.song_title.lower()  # Make the title lowercase for consistency
-        #     # print('YEET user input name: ' + user_input_name)
-        #     # user_input_name = user_input_name[]
-        #     # Remove all extra characters to make comparison easier for user
-        #     re.sub('.|(|)|,', '', user_input_name)
-        #     print('YEET user input name: ' + user_input_name)
-        #
-        #     hit_name = hit["result"]["title"].lower()  # Make lowercase
-        #     # Remove all extra characters to make comparison easier for user
-        #     hit_name = re.sub('[()\u200b.,]', '', hit_name)
-        #     # hit_name = re.sub('[()]', '', hit_name)
-        #     print("hit name is " + hit_name)
-        #
-        #     if user_input_name in hit_name:
-        #         self.lyrics = find_lyrics(hit["result"]["url"])
-        #         full_name = hit["result"]["full_title"]
-        #         full_name = full_name.replace(u'\xa0', u' ')  # Take out the weird spaces
-        #         self.song_title = full_name[:full_name.index(" by ")].strip()
-        #         self.full_artists_names = full_name[full_name.index(" by ") + 4:].strip()
-        #         self.url = hit["result"]["url"]
-        #
-        #         self.artist = hit["result"]["primary_artist"]["name"]
-        #         self.img_url = hit["result"]["song_art_image_url"]
-        #         self.header_url = hit["result"]["header_image_url"]
-        #         break  # Don't delete this line lmao
-        # else:
-        #     self.lyrics = "Error: Song not found. Check for typos."
-        #     return
 
         #########################################################################
         # Second, the number of lines, words, and syllables of each word is found
@@ -288,12 +254,10 @@ class Song:
                 continue
             # Only adds lines that are actual lyrics of the song, not headers
             bare_lyrics += line + " "
-        # print(f"num of lines{self.num_of_lines}")
         # Removes all non alphanumeric characters from the lyrics
         bare_lyrics = re.sub(r'[^a-zA-Z| |0-9]', "", bare_lyrics)
         bare_lyrics = bare_lyrics.lower()
 
-        # print(bare_lyrics)
         # Makes a list of each individual word
         bare_lyrics_split = bare_lyrics.split()
         self.word_count = len(bare_lyrics_split)  # Counts the number of words in the song

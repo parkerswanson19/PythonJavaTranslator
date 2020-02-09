@@ -4,7 +4,7 @@
         <h1>Rap Analyzer</h1>
         <div class="row" id="body-box-subheader">
             <a href="#" onclick="history.go(-1)">Search again</a>
-            <a href={{ code.url }}>Song's Genius.com page</a>
+            <a href={{ code.url }}>Genius.com</a>
         </div>
         <div class="title-row">
             <img src={{ code.img_url }}>
@@ -18,11 +18,11 @@
             <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
             <ul class="stats-list">
                 <li>Number of words:<br><span>{{ code.word_count }}</span></li>
-                <li>Average grade level of song:<br></li>
+                <li>Average grade level of song: {{ code.avg_grade_level }}<br></li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;Gunning Fog
                     Index:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.gunning_fog }}</span></li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;The Flesch
-                    Formula:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.flesch }}</span></li>
+                    Formula:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.flesch_kincaid }}</span></li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;Power Sumner
                     Kearl<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.power_sumner_kearl }}</span></li>
                 <li>Number of swear words:<br><span>{{ code.swear_words_count }}</span></li>
