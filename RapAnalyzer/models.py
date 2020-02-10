@@ -100,7 +100,7 @@ class Song:
 
     drugs = ["percs", "percocet", "cocaine", "coco", "xan", "molly", "weed", "drugs", "coke", "lean", "8th",
              "dirty sprite", "codeine", "blunt", "xannie", "acid", "shrooms", "blow", "crack", "powder", "coca",
-             "heroin", "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "pop", "remy", "bootch"]
+             "heroin", "420", "broccoli", "cush", "mary jane", "meth", "Act", "addies", "addy", "remy", "bootch"]
 
     jewelry = ["patek", "rollie", "chain", "phillipe", "rolex", "diamond", "richard", "millie", "audemars",
                "piguet", "cuban", "cartier", "ice", "icy", "baguettes"]
