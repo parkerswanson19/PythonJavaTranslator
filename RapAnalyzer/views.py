@@ -41,7 +41,7 @@ def getTopLists():
         'adlibs_list': ["most ad libs", SongDB.objects.order_by('-adlibs')[:4]],
         'swear_words_list': ["most swear words", SongDB.objects.order_by('-swear_words_count')[:4]],
         'drug_ref_list': ["most drug references", SongDB.objects.order_by('-drug_references')[:4]],
-        'jewelery_ref_list': ["most jewelery references", SongDB.objects.order_by('-jewelry_references')[:4]],
+        'jewelery_ref_list': ["most jewelry references", SongDB.objects.order_by('-jewelry_references')[:4]],
         'high_grade_lvl_list': ["highest grade level", SongDB.objects.order_by('-avg_grade_level')[:4]],
         'low_grade_lvl_list': ["lowest grade level", SongDB.objects.order_by('avg_grade_level')[:4]],
     }
