@@ -397,6 +397,7 @@ textarea {
 #body-box-subheader a {
     text-decoration: none;
     font-size: 75%;
+    margin-top: 3px;
 }
 
 #body-box-subheader a:link,

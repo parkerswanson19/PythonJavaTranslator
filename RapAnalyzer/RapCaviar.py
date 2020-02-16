@@ -39,4 +39,4 @@ def pull_from_spotify_playlist(offset=0):
     #     file.write(str(response['items'][0]['track']['name']))
 
 
-pull_from_spotify_playlist()
+# pull_from_spotify_playlist()
