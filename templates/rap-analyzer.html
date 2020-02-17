@@ -28,7 +28,8 @@
                 {% for stat in adlibs_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <span>{{ stat.adlibs }} ad libs</span>
                     </div>
                 {% endfor %}
@@ -38,7 +39,8 @@
                 {% for stat in swear_words_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.swear_words_count }} words</span>
                     </div>
                 {% endfor %}
@@ -48,7 +50,8 @@
                 {% for stat in drug_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.drug_references }} references</span>
                     </div>
                 {% endfor %}
@@ -58,7 +61,8 @@
                 {% for stat in jewelery_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.jewelry_references }} references</span>
                     </div>
                 {% endfor %}
@@ -68,7 +72,8 @@
                 {% for stat in high_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}
@@ -78,7 +83,8 @@
                 {% for stat in low_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}

@@ -47,3 +47,9 @@ def getTopLists():
     }
     return top_lists
 
+
+def viewStatSong(request, title, artist):
+    song = Song(title, artist, "")
+    dictionary = getTopLists()
+    dictionary['code'] = song
+    return render(request, 'rap-analyzer2.html', dictionary)
