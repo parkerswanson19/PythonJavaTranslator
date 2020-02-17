@@ -28,7 +28,8 @@
                 {% for stat in adlibs_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <span>{{ stat.adlibs }} ad libs</span>
                     </div>
                 {% endfor %}
@@ -38,7 +39,8 @@
                 {% for stat in swear_words_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.swear_words_count }} words</span>
                     </div>
                 {% endfor %}
@@ -48,7 +50,8 @@
                 {% for stat in drug_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.drug_references }} references</span>
                     </div>
                 {% endfor %}
@@ -58,7 +61,8 @@
                 {% for stat in jewelery_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.jewelry_references }} references</span>
                     </div>
                 {% endfor %}
@@ -68,7 +72,8 @@
                 {% for stat in high_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}
@@ -78,7 +83,8 @@
                 {% for stat in low_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-                        <a href="{{ stat.url }}">{{ stat.title }}</a>
+{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
                 {% endfor %}
@@ -135,23 +141,13 @@
                             </div>
                             <div class="modal-body">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Imperdiet massa tincidunt nunc
-                                    pulvinar
-                                    sapien et ligula. At tempor commodo ullamcorper a lacus vestibulum. Dictum at
-                                    tempor
-                                    commodo ullamcorper. Dolor purus non enim praesent elementum facilisis.
-                                    Phasellus
-                                    vestibulum lorem sed risus ultricies tristique nulla. Scelerisque eleifend donec
-                                    pretium
-                                    vulputate. Ut tristique et egestas quis ipsum suspendisse. Pretium aenean
-                                    pharetra
-                                    magna
-                                    ac placerat vestibulum lectus mauris ultrices. Interdum velit euismod in
-                                    pellentesque.
-                                    Feugiat sed lectus vestibulum mattis ullamcorper velit. Justo eget magna
-                                    fermentum
-                                    iaculis eu non. Nibh ipsum consequat nisl vel.
+                                    When the user enters in the song name, artist, and/or lyrics, we use Genius's API
+                                    to figure out what song the user wants. We then calculate all of the stats
+                                    corresponding to the song. Finally, that song is added to our Postgres database
+                                    so it can be compared with other songs that our analyzer has been given. This is
+                                    how the lists on the left side are created. In the background, we use Spotify's
+                                    API to pull songs for the Rap Caviar playlist, ensuring that the lists are
+                                    updated with the newest rap songs.
                                 </p>
                             </div>
                             <div class="modal-footer">
@@ -173,6 +169,25 @@
 </html>
 
 <script>
+    {#var modal = document.querySelector(".modal");#}
+    {#var trigger = document.querySelector(".trigger");#}
+    {#var closeButton = document.querySelector(".close-button");#}
+    {##}
+    {##}
+    {#function toggleModal() {#}
+    {#    modal.classList.toggle("show-modal");#}
+    {#}#}
+    {##}
+    {#function windowOnClick(event) {#}
+    {#    if (event.target === modal) {#}
+    {#        toggleModal();#}
+    {#    }#}
+    {#}#}
+    {##}
+    {#trigger.addEventListener("click", toggleModal);#}
+    {#closeButton.addEventListener("click", toggleModal);#}
+    {#window.addEventListener("click", windowOnClick);#}
+
     var slideIndex = 1;
     showSlides(slideIndex);
 </script>

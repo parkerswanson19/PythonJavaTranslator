@@ -3,7 +3,7 @@
     <div class="body-box">
         <h1>Rap Analyzer</h1>
         <div class="row" id="body-box-subheader">
-            <a href="#" onclick="history.go(-1)">Search again</a>
+            <a href="{% url 'homePage' %}">Search again</a>
             <a href={{ code.url }}>Genius.com</a>
         </div>
         <div class="title-row">
@@ -18,17 +18,45 @@
             <textarea class="lyrics-output" readonly="readonly">{{ code.lyrics }}</textarea>
             <ul class="stats-list">
                 <li>Number of words:<br><span>{{ code.word_count }}</span></li>
-                <li>Average grade level of song: {{ code.avg_grade_level }}<br></li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;Gunning Fog
-                    Index:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.gunning_fog }}</span></li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;The Flesch
-                    Formula:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.flesch_kincaid }}</span></li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;Power Sumner
-                    Kearl<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ code.power_sumner_kearl }}</span></li>
+                <li>Average grade level of song:<br><span>{{ code.avg_grade_level }}</span></li>
+                <li class="index-stat">
+                    <div>
+                        <h2>How's it calculated?</h2>
+{#                        Number of words: {{ code.word_count }}<br>#}
+{#                        Number of lines: {{ code.lines_count }}<br>#}
+{#                        Average sentence length: {{ code.avg_sen_len }}<br>#}
+{#                        Number of words above three syllables: {{ code.big_words_count }}<br>#}
+                        0.4 * (Avg sentence length + % of complex words)
+
+                    </div>
+                    Gunning Fog Index: <span>{{ code.gunning_fog }}</span>
+                </li>
+                <li class="index-stat">
+                    <div>
+                        <h2>How's it calculated?</h2>
+{#                        Number of words: {{ code.word_count }}<br>#}
+{#                        Number of lines: {{ code.lines_count }}<br>#}
+{#                        Average sentence length: {{ code.avg_sen_len }}<br>#}
+{#                        Number of words above three syllables: {{ code.big_words_count }}<br>#}
+                        (0.39 * Avg sentence length) + 11.8 * Avg syllables per word) - 15.59
+                    </div>
+                    The Flesch-Kincaid Formula: <span>{{ code.flesch_kincaid }}</span>
+                </li>
+                <li class="index-stat">
+                    <div>
+                        <h2>How's it calculated?</h2>
+{#                        Number of words: {{ code.word_count }}<br>#}
+{#                        Number of lines: {{ code.lines_count }}<br>#}
+{#                        Average sentence length: {{ code.avg_sen_len }}<br>#}
+{#                        Number of words above three syllables: {{ code.big_words_count }}<br>#}
+                        (0.0778 * Avg sentence length) + (0.0455 * Avg syllables per word) - 2.2029
+                    </div>
+                    Power-Sumner-Kearl Formula: <span>{{ code.power_sumner_kearl }}</span>
+                </li>
                 <li>Number of swear words:<br><span>{{ code.swear_words_count }}</span></li>
                 <li>Number of adlibs:<br><span>{{ code.adlibs }}</span></li>
                 <li>Number of drug references:<br><span>{{ code.drug_references }}</span></li>
-                <li>Number of jewelery references<br><span>{{ code.jewelry_references }}</span></li>
+                <li>Number of jewelery references:<br><span>{{ code.jewelry_references }}</span></li>
             </ul>
         </div>
     </div>
