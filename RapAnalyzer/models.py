@@ -2,6 +2,7 @@ import requests
 import re
 from django.db import models
 from bs4 import BeautifulSoup
+import time
 # import selenium
 
 
@@ -353,3 +354,5 @@ class Song:
                       avg_sentence_length=self.avg_sen_len, url=self.url, img_url=self.img_url,
                       header_url=self.header_url)
         song.save()
+
+

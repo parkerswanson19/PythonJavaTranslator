@@ -1,8 +1,5 @@
-import time
-
 from django.shortcuts import render
 from .models import *
-from .RapCaviar import pull_from_spotify_playlist
 
 
 def RapAnalyzerHomePage(request):
