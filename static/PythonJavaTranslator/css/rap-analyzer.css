@@ -531,7 +531,7 @@ textarea {
 
 .modal-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
 }
 
 .close-button {
