@@ -518,7 +518,6 @@ textarea {
     font-size: 125%;
     font-weight: 100;
     line-height: 1;
-    overflow-y: hidden;
 }
 
 .modal-body {
@@ -531,7 +530,7 @@ textarea {
 
 .modal-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
 }
 
 .close-button {

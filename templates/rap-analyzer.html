@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'PythonJavaTranslator/css/rap-analyzer.css' %}" rel="stylesheet"/>
     <link rel="icon" href="{% static 'PythonJavaTranslator/img/icon.png' %}">
-    <script type="text/javascript" src="{% static 'PythonJavaTranslator/js/scripts.js' %}"></script>
     <title>Rap Analyzer</title>
 </head>
 <body>
@@ -30,7 +29,7 @@
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <span>{{ stat.adlibs }} ad libs</span>
                     </div>
                 {% endfor %}
@@ -40,7 +39,7 @@
                 {% for stat in swear_words_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.swear_words_count }} words</span>
                     </div>
@@ -51,7 +50,7 @@
                 {% for stat in drug_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.drug_references }} references</span>
                     </div>
@@ -62,7 +61,7 @@
                 {% for stat in jewelery_ref_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>{{ stat.jewelry_references }} references</span>
                     </div>
@@ -73,7 +72,7 @@
                 {% for stat in high_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
@@ -84,7 +83,7 @@
                 {% for stat in low_grade_lvl_list.1 %}
                     <div class="list-item">
                         <img src="{{ stat.img_url }}">
-{#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
+                        {#                        <a href="{{ stat.url }}">{{ stat.title }}</a>#}
                         <a href="{% url 'stat' stat.title stat.primary_artist %}">{{ stat.title }}</a>
                         <span>Grade {{ stat.avg_grade_level }}</span>
                     </div>
@@ -155,9 +154,9 @@
                                 <button class="close-button" class="link3-close-modal">
                                     Close
                                 </button>
-                                <button type="button" class="modal-btn">
-                                    Contact us
-                                </button>
+{#                                <button type="button" class="modal-btn">#}
+{#                                    <a href="www.madlabs.dev/about">Contact us</a>#}
+{#                                </button>#}
                             </div>
                         </div>
                     </div>
@@ -166,29 +165,31 @@
         {% endblock body-content %}
     </div>
 </div>
+
+<script type="text/javascript" src="{% static 'PythonJavaTranslator/js/scripts.js' %}"></script>
 </body>
 </html>
 
-<script>
-    {#var modal = document.querySelector(".modal");#}
-    {#var trigger = document.querySelector(".trigger");#}
-    {#var closeButton = document.querySelector(".close-button");#}
-    {##}
-    {##}
-    {#function toggleModal() {#}
-    {#    modal.classList.toggle("show-modal");#}
-    {#}#}
-    {##}
-    {#function windowOnClick(event) {#}
-    {#    if (event.target === modal) {#}
-    {#        toggleModal();#}
-    {#    }#}
-    {#}#}
-    {##}
-    {#trigger.addEventListener("click", toggleModal);#}
-    {#closeButton.addEventListener("click", toggleModal);#}
-    {#window.addEventListener("click", windowOnClick);#}
-
-    var slideIndex = 1;
-    showSlides(slideIndex);
-</script>
+{#<script>#}
+{#    var slideIndex = 1;#}
+{#    showSlides(slideIndex);#}
+{##}
+{#    // This is for the modal on the first page#}
+{#    var modal = document.querySelector(".modal");#}
+{#    var trigger = document.querySelector(".trigger");#}
+{#    var closeButton = document.querySelector(".close-button");#}
+{##}
+{#    function toggleModal() {#}
+{#        modal.classList.toggle("show-modal");#}
+{#    }#}
+{##}
+{#    function windowOnClick(event) {#}
+{#        if (event.target === modal) {#}
+{#            toggleModal();#}
+{#        }#}
+{#    }#}
+{##}
+{#    trigger.addEventListener("click", toggleModal);#}
+{#    closeButton.addEventListener("click", toggleModal);#}
+{#    window.addEventListener("click", windowOnClick);#}
+{#</script>#}
