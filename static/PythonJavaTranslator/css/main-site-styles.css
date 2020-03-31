@@ -4,6 +4,7 @@
 /*@import url("https://fonts.googleapis.com/css?family=Public+Sans&display=swap");*/
 @import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap");
 
+
 /* Basic Setup */
 * {
     margin: 0;
@@ -199,3 +200,10 @@ h1 {
 
 
 }
+
+.ball {
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.7;
+}
+
