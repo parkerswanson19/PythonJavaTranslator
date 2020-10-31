@@ -27,7 +27,7 @@ SECRET_KEY = '1*v1@8js^l*d5fg2ar^t1nyhbp@!+y#)a-9a$1o6p$6#v%a824'
 DEBUG = True
 
 ALLOWED_HOSTS = ['madlabs-apps.herokuapp.com', 'jablab.io', 'www.jablab.io', 'madtown.io', 'www.madtown.io',
-                 '127.0.0.1', 'www.madlabs.dev', 'madlabs.dev']
+                 '127.0.0.1', 'www.madlabs.dev', 'madlabs.dev', 'localhost']
 
 # Application definition
 
